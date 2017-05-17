@@ -4,7 +4,7 @@
 	<groupId>fr.epsi</groupId>
 	<!-- artifactId correspond au nom de votre application, 
 	n'hésitez pas à changer la valeur par défaut -->
-	<artifactId>webapp</artifactId>
+	<artifactId>bankProjectWeb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
