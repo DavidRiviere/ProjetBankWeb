@@ -29,7 +29,7 @@ public class Category implements Serializable {
 	 * Used only by the ORM
 	 */
 	@SuppressWarnings("unused")
-	private Category() {
+	public Category() {
 
 	}
 

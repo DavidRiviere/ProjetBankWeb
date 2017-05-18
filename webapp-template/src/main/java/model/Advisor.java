@@ -36,7 +36,7 @@ public class Advisor implements Serializable {
 	 * Used only by the ORM
 	 */
 	@SuppressWarnings("unused")
-	private Advisor() {
+	public Advisor() {
 
 	}
 

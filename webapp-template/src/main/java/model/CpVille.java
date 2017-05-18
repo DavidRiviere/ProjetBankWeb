@@ -26,7 +26,7 @@ public class CpVille implements Serializable {
 	private String city;
 
 	@SuppressWarnings("unused")
-	private CpVille() {}
+	public CpVille() {}
 
 	/**
 	 * @param zip

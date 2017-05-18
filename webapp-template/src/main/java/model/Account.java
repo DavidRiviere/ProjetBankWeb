@@ -62,7 +62,7 @@ public class Account implements Serializable {
 
 	// for ORM use
 	@SuppressWarnings("unused")
-	private Account() {
+	public Account() {
 	}
 
 	/**

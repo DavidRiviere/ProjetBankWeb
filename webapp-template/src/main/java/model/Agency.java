@@ -37,7 +37,7 @@ public class Agency implements Serializable {
 	 * Used only by the ORM
 	 */
 	@SuppressWarnings("unused")
-	private Agency() {
+	public Agency() {
 
 	}
 

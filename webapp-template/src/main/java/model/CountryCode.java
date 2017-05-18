@@ -17,7 +17,7 @@ public class CountryCode implements Serializable {
 	private String code;
 
 	@SuppressWarnings("unused")
-	private CountryCode() {}
+	public CountryCode() {}
 
 	/**
 	 * @param code : country code

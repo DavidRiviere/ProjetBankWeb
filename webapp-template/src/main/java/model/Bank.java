@@ -36,7 +36,7 @@ public class Bank implements Serializable{
 	 * Used only by the ORM
 	 */
 	@SuppressWarnings("unused")
-	private Bank(){
+	public Bank(){
 //		this.setCode("1235");
 	}
 	

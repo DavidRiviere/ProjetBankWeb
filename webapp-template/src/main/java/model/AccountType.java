@@ -26,7 +26,7 @@ public class AccountType implements Serializable {
 	 * Used only by the ORM
 	 */
 	@SuppressWarnings("unused")
-	private AccountType() {
+	public AccountType() {
 	}
 
 	/**Constructor

@@ -18,7 +18,7 @@ public class Frequency implements Serializable {
 	private String unit;
 
 	@SuppressWarnings("unused")
-	private Frequency() {}
+	public Frequency() {}
 
 	/**
 	 * @param unit
