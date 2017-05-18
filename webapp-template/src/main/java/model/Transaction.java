@@ -53,7 +53,7 @@ public class Transaction implements Serializable {
 	private PeriodicTransaction periodicTransaction;
     
 	@SuppressWarnings("unused")
-	private Transaction(){}
+	public Transaction(){}
   
     /**
      * @param description

@@ -23,7 +23,7 @@ public class TargetTransaction implements Serializable {
 	private String iban;
 	
 	@SuppressWarnings("unused")
-	private TargetTransaction(){}
+	public TargetTransaction(){}
 	
 	public TargetTransaction(String summary) {
 		this.setSummary(summary);

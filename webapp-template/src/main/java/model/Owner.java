@@ -40,7 +40,7 @@ public class Owner implements Serializable {
 	private List<Account> accounts;
 
 	@SuppressWarnings("unused")
-	private Owner() {
+	public Owner() {
 	}
 
 	/**
