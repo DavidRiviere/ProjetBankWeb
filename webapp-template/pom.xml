@@ -11,11 +11,15 @@
 	<!-- précisez le nom et l'email de chaque membre de votre groupe -->
 	<developers>
 		<developer>
-			<name>VOTRE_NOM</name>
+			<name>Mathieu Traparic</name>
+			<email>Mathieu.traparic@gmail.com</email>
+		</developer>
+		<developer>
+			<name>Lucien Boulet Roblin</name>
 			<email>VOTRE_EMAIL</email>
 		</developer>
 		<developer>
-			<name>VOTRE_NOM</name>
+			<name>David Riviere</name>
 			<email>VOTRE_EMAIL</email>
 		</developer>
 	</developers>
@@ -53,7 +57,6 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
