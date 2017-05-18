@@ -30,7 +30,7 @@ public class PeriodicTransaction implements Serializable {
 	private List<Transaction> transactions;
 
 	@SuppressWarnings("unused")
-	private PeriodicTransaction() {}
+	public PeriodicTransaction() {}
 
 	/**
 	 * @param endDate

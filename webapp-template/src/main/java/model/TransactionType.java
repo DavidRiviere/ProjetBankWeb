@@ -17,7 +17,7 @@ public class TransactionType implements Serializable {
 	private String description;
 
 	@SuppressWarnings("unused")
-	private TransactionType() {}
+	public TransactionType() {}
 
 	/**
 	 * @param description
