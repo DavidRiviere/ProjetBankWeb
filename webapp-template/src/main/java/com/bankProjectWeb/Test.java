@@ -37,4 +37,5 @@ public class Test extends HttpServlet {
 		
 		resp.getWriter().write("count : "+ a+" count2 = "+ l.size());
 	}
+
 }
