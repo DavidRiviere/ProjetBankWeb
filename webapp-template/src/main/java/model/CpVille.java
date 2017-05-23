@@ -33,8 +33,8 @@ public class CpVille implements Serializable {
 	 * @param city
 	 */
 	public CpVille(String zip, String city) {
-		this.setZip(zip);
-		this.setCity(city); 
+		this.setZip();
+		this.setCity(); 
 	}
 
 	@Id
@@ -52,18 +52,18 @@ public class CpVille implements Serializable {
 		return this.zip;
 	}
 
-	public void setZip(String zip) {
-		checkZip(zip);
-		this.zip = Formater.removeUsualSeparators(zip);
+	public void setZip() {
+		checkZip(getZip());
+		this.zip = Formater.removeUsualSeparators(getZip());
 	}
 
 	public String getCity() {
 		return this.city;
 	}
 
-	public void setCity(String city) {
-		checkCity(city);
-		this.city = Formater.formatNameCase(city);
+	public void setCity() {
+		checkCity(getCity());
+		this.city = Formater.formatNameCase(getCity());
 	}
 
 	private static void checkZip(String zip) throws IllegalArgumentException {
