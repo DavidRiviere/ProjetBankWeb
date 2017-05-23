@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,19 +24,20 @@ import model.CpVille;
  */
 @WebServlet("/hello")
 public class Test extends HttpServlet {
-	
-	 @PersistenceUnit(unitName="bankProjectWeb")
-	 private EntityManagerFactory entityManagerFactory;
-	 
-	 @Override
+
+	@PersistenceContext(unitName = "bankProjectWeb")
+	private EntityManager em;
+
+	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		EntityManager em =this.entityManagerFactory.createEntityManager();
-		
-		long a = em.createNativeQuery("Select COUNT(*) FROM cpville").getFirstResult();
-		List<CpVille> l = em.createNamedQuery("CpVille.findAll", CpVille.class).getResultList();
-		em.close();
-		
-		resp.getWriter().write("count : "+ a+" count2 = "+ l.size());
+
+		long b = em.createNativeQuery("SELECT 1", Long.class).getFirstResult();
+		// EntityManager em =this.entityManagerFactory.createEntityManager();
+
+		List<?> a = em.createNativeQuery("SELECT * FROM `cpville` ").getResultList();
+
+		resp.getWriter().write("count : " + a.size() );
+		resp.getWriter().write(" " + a.get(1) );
 	}
 
 }
