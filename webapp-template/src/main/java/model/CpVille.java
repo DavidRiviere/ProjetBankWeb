@@ -26,7 +26,7 @@ public class CpVille implements Serializable {
 	private String city;
 
 	@SuppressWarnings("unused")
-	private CpVille() {}
+	public CpVille() {}
 
 	/**
 	 * @param zip
@@ -44,7 +44,7 @@ public class CpVille implements Serializable {
 	}
 
 	@SuppressWarnings("unused")
-	private void setId(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
