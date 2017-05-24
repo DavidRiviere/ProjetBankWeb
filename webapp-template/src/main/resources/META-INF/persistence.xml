@@ -4,8 +4,7 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="bankProjectWeb"
 		transaction-type="JTA">
-		<jta-data-source>bankProjectWeb</jta-data-source>
-		<non-jta-data-source>bankProjectWebUnmanaged</non-jta-data-source>
+		<jta-data-source>bankProjectWeb</jta-data-source>		
 		<class>model.CpVille</class>
 		<properties>
 			<property name="javax.persistence.schema-generation.database.action"
