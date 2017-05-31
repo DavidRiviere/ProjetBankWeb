@@ -1,8 +1,5 @@
 package mvc.biz;
 
-import javax.ejb.Lock;
-import javax.ejb.LockType;
-import javax.ejb.Singleton;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -16,7 +13,7 @@ import mvc.model.Amount;
 @Stateless
 public class AccountManagerEJB {
 	
-	@PersistenceContext(unitName="bankProjectWeb")
+	@PersistenceContext(unitName="AccountPersistenceUnit")
 	private EntityManager entityManager;
 
 
