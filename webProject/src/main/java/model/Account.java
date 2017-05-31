@@ -25,12 +25,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import util.Formater;
 
 @Entity
 @Table(name = "Account")
 @NamedQuery(name = "Account.findAll", query = "SELECT t FROM Account t")
+@XmlRootElement
 public class Account implements Serializable {
 
 	private static final long serialVersionUID = 4046352721505678179L;
@@ -60,7 +62,7 @@ public class Account implements Serializable {
 		}
 	};
 
-	public Account() {
+	private Account() {
 	}
 
 	/**
@@ -309,7 +311,7 @@ public class Account implements Serializable {
 	 *         transaction values TODO cache the value calculated and consider
 	 *         interestRate
 	 */
-	public double getBalance() {
+	public double calculateBalance() {
 		double balance = this.initialBalance;
 		List<Transaction> transactions = getTransactions();
 		for (Transaction t : transactions) {
@@ -323,7 +325,7 @@ public class Account implements Serializable {
 	 *         transaction date
 	 * 
 	 */
-	public List<Entry<Double, Date>> getBalanceHistory() {
+	public List<Entry<Double, Date>> calculateBalanceHistory() {
 		double balance = this.getInitialBalance();
 		ArrayList<Transaction> sortedTransactions = new ArrayList<>(this.getTransactions());
 		// sort transaction by chronological order ?
@@ -355,10 +357,10 @@ public class Account implements Serializable {
 	 *         positive and of the current year, and calculates the interest depending of this positive 
 	 *         balance (every 15 days)
 	 */
-	public String getInterestAccountPerYear() {
+	public String calculateInterestAccountPerYear() {
 		double interestRate = this.getInterestRate() / 100;
 
-		List<Entry<Double, Date>> balanceHistory = getBalanceHistory();
+		List<Entry<Double, Date>> balanceHistory = calculateBalanceHistory();
 
 		int coef = 0;
 		
@@ -416,7 +418,7 @@ public class Account implements Serializable {
 	 * @return go through the balance history and select if the balance is
 	 *         negative and of the current year, calculate the agios
 	 */
-	public String getAgioAccountPerYear() {
+	public String calculateAgioAccountPerYear() {
 
 		double agioRate = this.getAgioRate() / 100;
 		double agioTotal = 0;
@@ -427,7 +429,7 @@ public class Account implements Serializable {
 		cal.setTime(new Date());
 		int numOfDays = cal.getActualMaximum(Calendar.DAY_OF_YEAR);
 
-		List<Entry<Double, Date>> balanceHistory = getBalanceHistory();
+		List<Entry<Double, Date>> balanceHistory = calculateBalanceHistory();
 
 		for (Entry<Double, Date> entry : balanceHistory) {
 			

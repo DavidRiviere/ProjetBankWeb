@@ -9,11 +9,9 @@
 </head>
 <body>
 	<section>
-		<c:out value="${account.name}" />
+		<c:out value="${account.description}" />
 		&nbsp;:
-		<fmt:formatNumber type="currency"
-			currencySymbol="${account.balanceAmount.currency.symbol}"
-			value="${account.balanceAmount.valueWithFractionDigits}" />
+		
 	</section>
 	<nav>
 		<ul>

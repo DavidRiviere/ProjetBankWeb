@@ -19,7 +19,7 @@ import javax.persistence.Table;
 public class AccountType implements Serializable {
 
 	private static final long serialVersionUID = 6668423498399671975L;
-	private int id;
+	private Long id;
 	private String type;
 	
 
@@ -42,12 +42,12 @@ public class AccountType implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getId() {
+	public Long getId() {
 		return this.id;
 	}
 	
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -57,7 +57,7 @@ public class AccountType implements Serializable {
 
 	public void setType(String type) {
 		
-		checkType(type);
+		//checkType(type);
 		
 		this.type = type;
 	}

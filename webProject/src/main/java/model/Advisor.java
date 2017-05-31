@@ -24,7 +24,7 @@ import util.Validator;
 public class Advisor implements Serializable {
 
 	private static final long serialVersionUID = -882488167799880777L;
-	private int id;
+	private Long id;
 	private String name;
 	private String firstName;
 	private String phoneNumber;
@@ -216,12 +216,12 @@ public class Advisor implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getId() {
+	public Long getId() {
 		return this.id;
 	}
 
 	
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

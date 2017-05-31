@@ -18,7 +18,7 @@ import util.Validator;
 public class TargetTransaction implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private int id;
+	private Long id;
 	private String summary;
 	private String iban;
 
@@ -35,11 +35,11 @@ public class TargetTransaction implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	
