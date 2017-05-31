@@ -21,7 +21,7 @@ import util.Validator;
 public class Bank implements Serializable{
 
 	private static final long serialVersionUID = -5364979069387254961L;
-	private int id;
+	private Long id;
 	private String name;
 	private String code;
 	public static final Comparator<Bank> ALPHABETICAL_COMPARATOR =new Comparator<Bank>() {
@@ -58,12 +58,12 @@ public class Bank implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getId() {
+	public Long getId() {
 		return this.id;
 	}
 	
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	
@@ -97,7 +97,7 @@ public class Bank implements Serializable{
 
 
 	public void setName(String name) {
-		checkBankName(name);
+		//checkBankName(name);
 		this.name = name;
 	}
 
@@ -108,7 +108,7 @@ public class Bank implements Serializable{
 
 
 	public void setCode(String code) {
-		checkBankCode(code);
+		//checkBankCode(code);
 		this.code = code;
 	}
 

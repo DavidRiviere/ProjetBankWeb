@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class Address implements Serializable{
 
 	private static final long serialVersionUID = 3089550499268003492L;
-	private int id;
+	private Long id;
 	private String line1;
 	private String line2 = null; //line2 is not mandatory
 	private CpVille cpVille;
@@ -63,7 +63,7 @@ public class Address implements Serializable{
 
 	public void setLine1(String line1) {
 		
-		checkLine1(line1);
+		//checkLine1(line1);
 		
 		this.line1 = line1;
 	}
@@ -93,12 +93,12 @@ public class Address implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getId() {
+	public Long getId() {
 		return this.id;
 	}
 	
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
