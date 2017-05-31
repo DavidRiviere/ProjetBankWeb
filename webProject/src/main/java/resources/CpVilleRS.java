@@ -1,5 +1,7 @@
 package resources;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -25,6 +27,16 @@ public class CpVilleRS {
 		try {
 			return entityManager.createQuery("SELECT a FROM CpVille a WHERE a.id = :id", CpVille.class)
 					.setParameter("id", id).getSingleResult();
+		} catch (NoResultException e) {
+			throw new AccountDoesNotExistException();
+		}
+	}
+	
+	@GET
+	@Produces( MediaType.APPLICATION_JSON)
+	public List<CpVille> get() throws AccountDoesNotExistException {
+		try {
+			return entityManager.createQuery("SELECT a FROM CpVille a", CpVille.class).getResultList();
 		} catch (NoResultException e) {
 			throw new AccountDoesNotExistException();
 		}
