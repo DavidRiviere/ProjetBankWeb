@@ -36,7 +36,7 @@ public class AccountServlet extends HttpServlet {
 			req.setAttribute("account", account);
 			req.getServletContext().getRequestDispatcher("/WEB-INF/jsp/account.jsp").forward(req, res);
 		} catch (AccountDoesNotExistException e) {
-			log(e.getMessage(), e);
+			//log(e.getMessage(), e);
 			res.sendError(HttpServletResponse.SC_NOT_FOUND);
 		}
 

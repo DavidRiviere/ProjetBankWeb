@@ -92,7 +92,7 @@ public class Agency implements Serializable {
 	}
 
 	public void setName(String name) {
-		checkName(name);
+		//checkName(name);
 
 		this.name = name;
 	}
@@ -102,7 +102,7 @@ public class Agency implements Serializable {
 	}
 
 	public void setCounterCode(String counterCode) {
-		checkCounterCode(counterCode);
+		//checkCounterCode(counterCode);
 		this.counterCode = counterCode;
 	}
 
@@ -113,9 +113,9 @@ public class Agency implements Serializable {
 	}
 
 	public void setAdress(Address address) {
-		if (address == null) {
-			throw new NullPointerException("address cannot be null");
-		}
+//		if (address == null) {
+//			throw new NullPointerException("address cannot be null");
+//		}
 		this.adress = address;
 	}
 
@@ -126,9 +126,9 @@ public class Agency implements Serializable {
 	}
 
 	public void setBank(Bank bank) {
-		if (bank == null) {
-			throw new NullPointerException("bank cannot be null");
-		}
+//		if (bank == null) {
+//			throw new NullPointerException("bank cannot be null");
+//		}
 		this.bank = bank;
 	}
 

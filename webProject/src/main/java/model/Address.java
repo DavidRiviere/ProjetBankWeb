@@ -84,9 +84,9 @@ public class Address implements Serializable{
 	}
 
 	public void setCpVille(CpVille cpVille) {
-		if (cpVille==null){
-			throw new NullPointerException("cpVille cannot be null");
-		}
+//		if (cpVille==null){
+//			throw new NullPointerException("cpVille cannot be null");
+//		}
 		this.cpVille = cpVille;
 	}
 	

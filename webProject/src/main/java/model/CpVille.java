@@ -21,7 +21,7 @@ import util.Formater;
 public class CpVille implements Serializable {
 
 	private static final long serialVersionUID = -7208703135643719589L;
-	private int id;
+	private Long id;
 	private String zip;
 	private String city;
 
@@ -38,12 +38,12 @@ public class CpVille implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getId() {
+	public Long getId() {
 		return this.id;
 	}
 
 	
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -52,8 +52,8 @@ public class CpVille implements Serializable {
 	}
 
 	public void setZip(String zip) {
-		checkZip(zip);
-		this.zip = Formater.removeUsualSeparators(zip);
+		//checkZip(zip);
+		this.zip = zip;//Formater.removeUsualSeparators(zip);
 	}
 
 	public String getCity() {
@@ -61,8 +61,8 @@ public class CpVille implements Serializable {
 	}
 
 	public void setCity(String city) {
-		checkCity(city);
-		this.city = Formater.formatNameCase(city);
+		//checkCity(city);
+		this.city =city;// Formater.formatNameCase(city);
 	}
 
 	private static void checkZip(String zip) throws IllegalArgumentException {

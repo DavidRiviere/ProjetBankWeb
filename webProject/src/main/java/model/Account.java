@@ -34,7 +34,7 @@ import util.Formater;
 public class Account implements Serializable {
 
 	private static final long serialVersionUID = 4046352721505678179L;
-	private int id;
+	private Long id;
 	private String number;
 	private String description;
 	private double initialBalance;
@@ -160,13 +160,11 @@ public class Account implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Integer getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	// for ORM use
-	@SuppressWarnings("unused")
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -178,7 +176,7 @@ public class Account implements Serializable {
 	}
 
 	public void setNumber(String number) {
-		check_number(number);
+		//check_number(number);
 		this.number = number;
 	}
 
@@ -187,7 +185,7 @@ public class Account implements Serializable {
 	}
 
 	public void setDescription(String description) {
-		check_description(description);
+		//check_description(description);
 		this.description = description;
 	}
 
@@ -196,7 +194,7 @@ public class Account implements Serializable {
 	}
 
 	public void setOverdraft(double overdraft) {
-		check_overdraft(overdraft);
+		//check_overdraft(overdraft);
 		this.overdraft = overdraft;
 	}
 
@@ -228,9 +226,9 @@ public class Account implements Serializable {
 	}
 
 	public void setCountryCode(CountryCode countryCode) {
-		if (countryCode == null) {
-			throw new NullPointerException("The countryCode cannot be null");
-		}
+//		if (countryCode == null) {
+//			throw new NullPointerException("The countryCode cannot be null");
+//		}
 		this.countryCode = countryCode;
 	}
 
@@ -241,9 +239,9 @@ public class Account implements Serializable {
 	}
 
 	public void setAgency(Agency agency) {
-		if (agency == null) {
-			throw new NullPointerException("The agency cannot be null");
-		}
+//		if (agency == null) {
+//			throw new NullPointerException("The agency cannot be null");
+//		}
 		this.agency = agency;
 	}
 
@@ -254,15 +252,15 @@ public class Account implements Serializable {
 	}
 
 	public void setAccountType(AccountType accountType) {
-		if (accountType == null) {
-			throw new NullPointerException("The accountType cannot be null");
-		}
+//		if (accountType == null) {
+//			throw new NullPointerException("The accountType cannot be null");
+//		}
 		this.accountType = accountType;
 	}
 
 	@Override
 	public String toString() {
-		return this.description;
+		return this.getDescription();
 	}
 
 	// bi-directional many-to-one association to transaction
@@ -313,7 +311,8 @@ public class Account implements Serializable {
 	 */
 	public double getBalance() {
 		double balance = this.initialBalance;
-		for (Transaction t : this.transactions) {
+		List<Transaction> transactions = getTransactions();
+		for (Transaction t : transactions) {
 			balance += t.getValue();
 		}
 		return balance;
@@ -325,13 +324,13 @@ public class Account implements Serializable {
 	 * 
 	 */
 	public List<Entry<Double, Date>> getBalanceHistory() {
-		double balance = this.initialBalance;
-		ArrayList<Transaction> sortedTransactions = new ArrayList<>(this.transactions);
+		double balance = this.getInitialBalance();
+		ArrayList<Transaction> sortedTransactions = new ArrayList<>(this.getTransactions());
 		// sort transaction by chronological order ?
 		// sortedTransactions.sort(Transaction.CHRONOLOGICAL_COMPARATOR);
 		List<Entry<Double, Date>> result = new ArrayList<>();
 		// add a first entry at account creation
-		result.add(new SimpleImmutableEntry<Double, Date>(balance, this.creationDate));
+		result.add(new SimpleImmutableEntry<Double, Date>(balance, this.getCreationDate()));
 
 		// add all balance evolutions
 		for (Transaction t : sortedTransactions) {
