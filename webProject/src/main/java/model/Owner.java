@@ -39,8 +39,7 @@ public class Owner implements Serializable {
 	private boolean newUser;
 	private List<Account> accounts;
 
-	@SuppressWarnings("unused")
-	private Owner() {
+	public Owner() {
 	}
 
 	/**
@@ -87,8 +86,8 @@ public class Owner implements Serializable {
 		return this.id;
 	}
 
-	@SuppressWarnings("unused")
-	private void setId(int id) {
+	
+	public void setId(int id) {
 		this.id = id;
 	}
 

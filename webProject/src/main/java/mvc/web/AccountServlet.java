@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import mvc.biz.AccountManagerEJB;
-import mvc.model.Account;
+import biz.AccountManager;
+import model.Account;
 import mvc.model.AccountDoesNotExistException;
 
 /**
@@ -19,7 +19,7 @@ import mvc.model.AccountDoesNotExistException;
 @WebServlet("/account")
 public class AccountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private @EJB AccountManagerEJB accountManager;
+	private @EJB AccountManager accountManager;
 
 	/**
 	 * @see HttpServlet#HttpServlet()

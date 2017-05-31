@@ -21,9 +21,8 @@ public class TargetTransaction implements Serializable {
 	private int id;
 	private String summary;
 	private String iban;
-	
-	@SuppressWarnings("unused")
-	private TargetTransaction(){}
+
+	public TargetTransaction(){}
 	
 	public TargetTransaction(String summary) {
 		this.setSummary(summary);
@@ -40,8 +39,7 @@ public class TargetTransaction implements Serializable {
 		return this.id;
 	}
 
-	@SuppressWarnings("unused")
-	private void setId(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	

@@ -32,11 +32,8 @@ public class Advisor implements Serializable {
 	private Date assignmentDate;
 	private Agency agency;
 
-	/*
-	 * Used only by the ORM
-	 */
-	@SuppressWarnings("unused")
-	private Advisor() {
+
+	public Advisor() {
 
 	}
 
@@ -223,11 +220,8 @@ public class Advisor implements Serializable {
 		return this.id;
 	}
 
-	/*
-	 * Used only by the ORM
-	 */
-	@SuppressWarnings("unused")
-	private void setId(int id) {
+	
+	public void setId(int id) {
 		this.id = id;
 	}
 

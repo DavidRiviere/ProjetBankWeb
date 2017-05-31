@@ -60,9 +60,7 @@ public class Account implements Serializable {
 		}
 	};
 
-	// for ORM use
-	@SuppressWarnings("unused")
-	private Account() {
+	public Account() {
 	}
 
 	/**
@@ -168,7 +166,7 @@ public class Account implements Serializable {
 
 	// for ORM use
 	@SuppressWarnings("unused")
-	private void setId(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -273,9 +271,7 @@ public class Account implements Serializable {
 		return this.transactions;
 	}
 
-	// for ORM use
-	@SuppressWarnings("unused")
-	private void setTransactions(List<Transaction> transactions) {
+	public void setTransactions(List<Transaction> transactions) {
 		this.transactions = transactions;
 	}
 
@@ -354,34 +350,6 @@ public class Account implements Serializable {
 		return result;
 	}
 
-	/*	
-		*//**
-			 * 
-			 * @return a list of couples logging the balance evolution at each
-			 *         day since the account creation until today
-			 * 
-			 *//*
-			 * public List<Entry<Double,Date>> getDailyBalanceHistory() { double
-			 * balance = this.initialBalance; Calendar currentCal = new
-			 * GregorianCalendar(this.creationDate.getYear(),
-			 * this.creationDate.getMonth(), this.creationDate.getDate());
-			 * 
-			 * ArrayList<Transaction> sortedTransactions = new
-			 * ArrayList<>(this.transactions); //sort transaction by
-			 * chronological order ?
-			 * sortedTransactions.sort(Transaction.CHRONOLOGICAL_COMPARATOR);
-			 * List<Entry<Double,Date>> result = new ArrayList<>(); //add a
-			 * first entry at account creation result.add(new
-			 * SimpleImmutableEntry<Double, Date>(balance,
-			 * currentCal.getTime()));
-			 * 
-			 * while(!currentDate.equals()){ for (Transaction t :
-			 * sortedTransactions) { if(t.getDate().ge==currentDate){
-			 * currentDate. } } } //add all balance evolutions for (Transaction
-			 * t : sortedTransactions) { balance+=t.getValue(); result.add(new
-			 * SimpleImmutableEntry<Double, Date>(balance,t.getDate())); }
-			 * return result; }
-			 */
 
 	/**
 	 * @return go through the balance history and select if the balance is

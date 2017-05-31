@@ -17,8 +17,7 @@ public class Frequency implements Serializable {
 	private int id;
 	private String unit;
 
-	@SuppressWarnings("unused")
-	private Frequency() {}
+	public Frequency() {}
 
 	/**
 	 * @param unit
@@ -33,8 +32,7 @@ public class Frequency implements Serializable {
 		return this.id;
 	}
 
-	@SuppressWarnings("unused")
-	private void setId(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

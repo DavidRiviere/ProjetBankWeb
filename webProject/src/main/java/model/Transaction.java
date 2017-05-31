@@ -52,8 +52,8 @@ public class Transaction implements Serializable {
 	private TargetTransaction targetTransaction;
 	private PeriodicTransaction periodicTransaction;
     
-	@SuppressWarnings("unused")
-	private Transaction(){}
+
+	public Transaction(){}
   
     /**
      * @param description
@@ -141,8 +141,7 @@ public class Transaction implements Serializable {
 		return this.id;
 	}
 
-	@SuppressWarnings("unused")
-	private void setId(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}	
 	

@@ -22,11 +22,8 @@ public class AccountType implements Serializable {
 	private int id;
 	private String type;
 	
-	/*
-	 * Used only by the ORM
-	 */
-	@SuppressWarnings("unused")
-	private AccountType() {
+
+	public AccountType() {
 	}
 
 	/**Constructor
@@ -49,11 +46,8 @@ public class AccountType implements Serializable {
 		return this.id;
 	}
 	
-	/*
-	 * Used only by the ORM
-	 */
-	@SuppressWarnings("unused")
-	private void setId(int id) {
+
+	public void setId(int id) {
 		this.id = id;
 	}
 

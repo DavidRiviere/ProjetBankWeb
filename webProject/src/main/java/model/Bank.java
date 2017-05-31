@@ -32,12 +32,8 @@ public class Bank implements Serializable{
 		}
 	};
 	
-	/*
-	 * Used only by the ORM
-	 */
-	@SuppressWarnings("unused")
-	private Bank(){
-//		this.setCode("1235");
+
+	public Bank(){
 	}
 	
 	/**Deprecated constructor
@@ -66,11 +62,8 @@ public class Bank implements Serializable{
 		return this.id;
 	}
 	
-	/*
-	 * Used only by the ORM
-	 */
-	@SuppressWarnings("unused")
-	private void setId(int id) {
+
+	public void setId(int id) {
 		this.id = id;
 	}
 	

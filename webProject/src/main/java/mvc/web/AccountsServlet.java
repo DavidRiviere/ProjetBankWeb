@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import mvc.biz.AccountManagerEJB;
-import mvc.model.Account;
+import mvc.model.AccountMVC;
 import mvc.model.AccountAlreadyExistException;
 import mvc.model.Amount;
 
@@ -30,7 +30,7 @@ public class AccountsServlet extends HttpServlet {
 		try {
 
 			Amount amount = new Amount(req.getParameter("accountBalanceInteger"), req.getParameter("accountBalanceFraction"));
-			Account account = accountManager.save(req.getParameter("accountName"),
+			AccountMVC account = accountManager.save(req.getParameter("accountName"),
 					req.getParameter("accountNumber"), amount);
 			req.setAttribute("account", account);
 			//getServletContext().getRequestDispatcher("/account.jsp").forward(req, res);

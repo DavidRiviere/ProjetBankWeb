@@ -1,21 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.0"
-  xmlns="http://java.sun.com/xml/ns/persistence" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
 	              http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-  <persistence-unit name="bankProjectWeb">
-    <jta-data-source>projectWeb</jta-data-source>
-    <properties>
-      <property name="openjpa.jdbc.DBDictionary" value="mysql" />
-      <property name="openjpa.Log" value="SQL=Trace" />
-    </properties>
-  </persistence-unit>
-  <persistence-unit name="AccountPersistenceUnit">
-    <jta-data-source>MVCSource</jta-data-source>
-    <properties>
-      <property name="openjpa.jdbc.DBDictionary" value="mysql" />
-      <property name="openjpa.Log" value="SQL=Trace" />
-    </properties>
-  </persistence-unit>
+	<persistence-unit name="bankProjectWeb">
+		<jta-data-source>projectWeb</jta-data-source>
+		<class>model.Owner</class>
+		<class>model.Address</class>
+		<class>model.Account</class>
+		<class>model.AccountType</class>
+		<class>model.CountryCode</class>
+		<class>model.CpVille</class>
+		<class>model.Frequency</class>
+		<class>model.PeriodicTransaction</class>
+		<class>model.TargetTransaction</class>
+		<class>model.TransactionType</class>
+		<class>model.Advisor</class>
+		<class>model.Transaction</class>
+		<class>model.Agency</class>
+		<class>model.Bank</class>
+		<class>model.Category</class>
+		<properties>
+			<property name="openjpa.jdbc.DBDictionary" value="mysql" />
+			<property name="openjpa.Log" value="SQL=Trace" />
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="AccountPersistenceUnit">
+		<jta-data-source>MVCSource</jta-data-source>
+		<class>mvc.model.AccountMVC</class>
+		<class>mvc.model.Amount</class>
+		<properties>
+			<property name="openjpa.jdbc.DBDictionary" value="mysql" />
+			<property name="openjpa.Log" value="SQL=Trace" />
+		</properties>
+	</persistence-unit>
 </persistence>

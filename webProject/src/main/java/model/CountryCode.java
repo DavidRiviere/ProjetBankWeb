@@ -16,8 +16,7 @@ public class CountryCode implements Serializable {
 	private int id;
 	private String code;
 
-	@SuppressWarnings("unused")
-	private CountryCode() {}
+	public CountryCode() {}
 
 	/**
 	 * @param code : country code
@@ -32,8 +31,7 @@ public class CountryCode implements Serializable {
 		return this.id;
 	}
 
-	@SuppressWarnings("unused")
-	private void setId(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	

@@ -29,8 +29,8 @@ public class PeriodicTransaction implements Serializable {
 	private Frequency frequency;
 	private List<Transaction> transactions;
 
-	@SuppressWarnings("unused")
-	private PeriodicTransaction() {}
+
+	public PeriodicTransaction() {}
 
 	/**
 	 * @param endDate
@@ -79,8 +79,7 @@ public class PeriodicTransaction implements Serializable {
 		return this.id;
 	}
 
-	@SuppressWarnings("unused")
-	private void setId(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	

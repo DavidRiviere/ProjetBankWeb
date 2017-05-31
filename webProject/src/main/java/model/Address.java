@@ -23,11 +23,8 @@ public class Address implements Serializable{
 	private String line2 = null; //line2 is not mandatory
 	private CpVille cpVille;
 	
-	/*
-	 * Used only by the ORM
-	 */
-	@SuppressWarnings("unused")
-	private Address(){
+
+	public Address(){
 	}
 	
 	/**Constructor
@@ -100,11 +97,8 @@ public class Address implements Serializable{
 		return this.id;
 	}
 	
-	/*
-	 * Used only by the ORM
-	 */
-	@SuppressWarnings("unused")
-	private void setId(int id) {
+
+	public void setId(int id) {
 		this.id = id;
 	}
 

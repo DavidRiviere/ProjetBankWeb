@@ -16,8 +16,7 @@ public class TransactionType implements Serializable {
 	private int id;
 	private String description;
 
-	@SuppressWarnings("unused")
-	private TransactionType() {}
+	public TransactionType() {}
 
 	/**
 	 * @param description
@@ -32,8 +31,7 @@ public class TransactionType implements Serializable {
 		return this.id;
 	}
 
-	@SuppressWarnings("unused")
-	private void setId(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

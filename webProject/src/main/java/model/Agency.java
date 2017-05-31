@@ -33,11 +33,8 @@ public class Agency implements Serializable {
 	private Address adress;
 	private Bank bank;
 
-	/*
-	 * Used only by the ORM
-	 */
-	@SuppressWarnings("unused")
-	private Agency() {
+
+	public Agency() {
 
 	}
 
@@ -73,11 +70,8 @@ public class Agency implements Serializable {
 		return this.id;
 	}
 
-	/*
-	 * Used only by the ORM
-	 */
-	@SuppressWarnings("unused")
-	private void setId(int id) {
+
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -114,7 +108,7 @@ public class Agency implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "idAddress")
-	private Address getAdress() {
+	public Address getAdress() {
 		return this.adress;
 	}
 

@@ -25,11 +25,8 @@ public class Category implements Serializable {
 	private String description;
 	private Category parentCategory;
 
-	/*
-	 * Used only by the ORM
-	 */
-	@SuppressWarnings("unused")
-	private Category() {
+
+	public Category() {
 
 	}
 
@@ -89,11 +86,8 @@ public class Category implements Serializable {
 		return this.id;
 	}
 
-	/*
-	 * Used only by the ORM
-	 */
-	@SuppressWarnings("unused")
-	private void setId(int id) {
+
+	public void setId(int id) {
 		this.id = id;
 	}
 
