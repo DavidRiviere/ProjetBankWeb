@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 import model.CpVille;
 import mvc.model.AccountDoesNotExistException;
 
-@Path("/cpvilleRS")
+@Path("/rs/cpville")
 public class CpVilleResource {
 
 	@PersistenceContext(unitName = "bankProjectWeb")

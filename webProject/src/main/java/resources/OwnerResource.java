@@ -9,11 +9,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import model.Account;
+import model.Owner;
 import mvc.model.AccountDoesNotExistException;
 
-@Path("/rs/account")
-public class AccountResource {
+@Path("/rs/owner")
+public class OwnerResource {
 
 	@PersistenceContext(unitName = "bankProjectWeb")
 	private EntityManager entityManager;
@@ -21,9 +21,9 @@ public class AccountResource {
 	@GET
 	@Path("/{id}")
 	@Produces( MediaType.APPLICATION_JSON)
-	public Account get(@PathParam("id") long id) throws AccountDoesNotExistException {
+	public Owner get(@PathParam("id") long id) throws AccountDoesNotExistException {
 		try {
-			return entityManager.createQuery("SELECT a FROM Account a WHERE a.id = :id", Account.class)
+			return entityManager.createQuery("SELECT a FROM Owner a WHERE a.id = :id", Owner.class)
 					.setParameter("id", id).getSingleResult();
 		} catch (NoResultException e) {
 			throw new AccountDoesNotExistException();

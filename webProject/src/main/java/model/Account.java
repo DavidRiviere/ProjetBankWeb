@@ -32,7 +32,6 @@ import util.Formater;
 @Entity
 @Table(name = "Account")
 @NamedQuery(name = "Account.findAll", query = "SELECT t FROM Account t")
-@XmlRootElement
 public class Account implements Serializable {
 
 	private static final long serialVersionUID = 4046352721505678179L;
