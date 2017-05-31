@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 import model.Account;
 import mvc.model.AccountDoesNotExistException;
 
-@Path("/accountRS")
+@Path("/rs/account")
 public class AccountResource {
 
 	@PersistenceContext(unitName = "bankProjectWeb")
