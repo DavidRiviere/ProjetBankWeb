@@ -13,7 +13,7 @@ import model.Owner;
 import mvc.model.AccountDoesNotExistException;
 
 @Path("/rs/owner")
-public class OwnerResource {
+public class OwnerRS {
 
 	@PersistenceContext(unitName = "bankProjectWeb")
 	private EntityManager entityManager;

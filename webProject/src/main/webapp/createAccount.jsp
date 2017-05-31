@@ -10,7 +10,7 @@
 	<c:if test="${not empty error}">
 		<c:out value="${error}" />
 	</c:if>
-	<form method="POST" action='<c:url value="/accounts"/>'>
+	<form method="POST" action='<c:url value="/rs/account"/>'>
 		<label>Nom du compte</label> <input name="accountName"
 			value="<c:out value="${param['accountName']}"/>"> <br /> <label>Numéro
 			du compte</label> <input name="accountNumber"

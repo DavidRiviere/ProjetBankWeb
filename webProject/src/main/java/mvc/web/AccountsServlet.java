@@ -14,7 +14,7 @@ import mvc.model.AccountMVC;
 import mvc.model.AccountAlreadyExistException;
 import mvc.model.Amount;
 
-@WebServlet({"/accounts","/index.html"})
+//@WebServlet({"/accounts","/index.html"})
 public class AccountsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private @EJB AccountManagerEJB accountManager;

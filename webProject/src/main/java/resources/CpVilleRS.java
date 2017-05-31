@@ -13,7 +13,7 @@ import model.CpVille;
 import mvc.model.AccountDoesNotExistException;
 
 @Path("/rs/cpville")
-public class CpVilleResource {
+public class CpVilleRS {
 
 	@PersistenceContext(unitName = "bankProjectWeb")
 	private EntityManager entityManager;
