@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<header>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Personnal Account Manager</title>
+	<link rel="stylesheet" href="./stylesheet/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./stylesheet/feuille_style.css">
+</header>
+<body>
+<div class="container-fluid">
+	<header class="entete row">
+		<h2 id="header" class="col-lg-12">Personnal account manager</h2>
+	</header>
+	<div class="row">
+		<div class="col-lg-3">
+			<ul class="nav nav-pills nav-stacked">
+				<li><a href="home.html" title="home">Home</a></li>
+				<li class="active"><a href="#"><i class="fa fa-home fa-fw"></i>Transactions</a></li>
+				<li><a href="periodic.html" title ="periodic">Periodic Transactions</a></li>
+				<li><a href="rib.html" title ="rib">Export a rib</a></li>
+				<li><a href="agency.php" title ="agency">Agency Information</a></li>
+			</ul>
+		</div>
+		<div class="col-lg-9 well">
+			<article>
+				<header>Managment of your transactions</header>
+				<form action="" method="get" class="text-center">
+					Select your bank <select class="separator_ligne" name="classe" id="classe_select" size="1">
+					<option value="bank1" checked="checked">B.A.N.K.</option>
+					<option value="bank2">F.L.O.U.Z.</option>
+					</select>         
+					Select your agency <select class="separator_ligne" name="classe" size="1">
+					<option value="agence1" checked="checked">agency 1</option>
+					</select>
+					Select your account <select class="separator_ligne" name="classe" size="1">
+					<option value="account1" checked="checked">Mon compte à moi</option>
+					</select>
+				</form>
+				<table class="table-responsive">
+					<tr>
+						<td>Description</td>
+						<td>Category</td>
+						<td>Type</td>
+						<td>Date</td>
+						<td>Value</td>
+					</tr>
+					<tr>
+						<td>loyer</td>
+						<td>Appartement</td>
+						<td>Virement automatique</td>
+						<td>01/05/2017</td>
+						<td class="debit">-700</td>
+					</tr>
+					<tr>
+						<td>Victuaille</td>
+						<td>Courses</td>
+						<td>CB</td>
+						<td>23/05/2017</td>
+						<td class="debit">-70</td>
+					</tr>
+					<tr>
+						<td>j'ai gagné au loto</td>
+						<td>Loisir</td>
+						<td>cheque</td>
+						<td>24/05/2017</td>
+						<td class="credit">+1000</td>
+					</tr>
+					<tr>
+						<td id="font"></td>
+						<td id="font"></td>
+						<td id="font"></td>
+						<td>Solde</td>
+						<td class="credit">+230</td>
+					</tr>
+				</table>
+			</article>
+		</div>
+	</div>
+</div>
+</body>
+</html>
