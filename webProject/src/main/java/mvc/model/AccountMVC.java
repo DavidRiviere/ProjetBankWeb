@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Account {
+public class AccountMVC {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -16,11 +16,11 @@ public class Account {
 	@Embedded
 	private Amount amount;
 	
-	public Account() {
+	public AccountMVC() {
 		super();
 	}
 
-	public Account(String name, String number, Amount amount) {
+	public AccountMVC(String name, String number, Amount amount) {
 		this.name = name;
 		this.number = number;
 		this.amount = amount;

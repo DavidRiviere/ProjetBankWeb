@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import mvc.biz.AccountManagerEJB;
-import mvc.model.Account;
+import biz.AccountManager;
+import model.Account;
 import mvc.model.AccountDoesNotExistException;
 
 /**
@@ -19,7 +19,7 @@ import mvc.model.AccountDoesNotExistException;
 @WebServlet("/account")
 public class AccountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private @EJB AccountManagerEJB accountManager;
+	private @EJB AccountManager accountManager;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -36,7 +36,7 @@ public class AccountServlet extends HttpServlet {
 			req.setAttribute("account", account);
 			req.getServletContext().getRequestDispatcher("/WEB-INF/jsp/account.jsp").forward(req, res);
 		} catch (AccountDoesNotExistException e) {
-			log(e.getMessage(), e);
+			//log(e.getMessage(), e);
 			res.sendError(HttpServletResponse.SC_NOT_FOUND);
 		}
 

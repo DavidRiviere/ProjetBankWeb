@@ -7,4 +7,11 @@
   Password User
   JtaManaged true
 </Resource>
+<Resource id="MVCSource" type="javax.sql.DataSource">
+  JdbcDriver com.mysql.jdbc.Driver
+  JdbcUrl jdbc:mysql://localhost:3306/eedb
+  UserName User
+  Password User
+  JtaManaged true
+</Resource>
 </tomee>

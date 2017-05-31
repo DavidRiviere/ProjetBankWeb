@@ -1,14 +1,11 @@
 package mvc.biz;
 
-import javax.ejb.Lock;
-import javax.ejb.LockType;
-import javax.ejb.Singleton;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
-import mvc.model.Account;
+import mvc.model.AccountMVC;
 import mvc.model.AccountAlreadyExistException;
 import mvc.model.AccountDoesNotExistException;
 import mvc.model.Amount;
@@ -16,26 +13,26 @@ import mvc.model.Amount;
 @Stateless
 public class AccountManagerEJB {
 	
-	@PersistenceContext(unitName="bankProjectWeb")
+	@PersistenceContext(unitName="AccountPersistenceUnit")
 	private EntityManager entityManager;
 
 
-	public Account save(String accountName, String accountNumber, Amount amount)
+	public AccountMVC save(String accountName, String accountNumber, Amount amount)
 			throws AccountAlreadyExistException {
 		
 		try {
 			getByNumber(accountNumber);
 			throw new AccountAlreadyExistException();
 		} catch (AccountDoesNotExistException e) {
-			Account account = new Account(accountName, accountNumber, amount);
+			AccountMVC account = new AccountMVC(accountName, accountNumber, amount);
 			entityManager.persist(account);
 			return account;
 		}
 	}
 
-	public Account getByNumber(String accountNumber) throws AccountDoesNotExistException{
+	public AccountMVC getByNumber(String accountNumber) throws AccountDoesNotExistException{
 		try{
-		return entityManager.createQuery("SELECT a FROM Account a WHERE a.number = :number", Account.class)
+		return entityManager.createQuery("SELECT a FROM Account a WHERE a.number = :number", AccountMVC.class)
 				.setParameter("number", accountNumber)
 				.getSingleResult();
 		}catch(NoResultException e){
