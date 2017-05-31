@@ -1,0 +1,3 @@
+Home :
+	A mettre dans le WEB-INF : "modify your personnal information"
+				   "Add an account"
