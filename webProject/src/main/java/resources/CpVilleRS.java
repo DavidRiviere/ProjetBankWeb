@@ -1,15 +1,21 @@
 package resources;
 
+import java.net.URI;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 import model.CpVille;
 import mvc.model.AccountDoesNotExistException;
@@ -22,7 +28,7 @@ public class CpVilleRS {
 
 	@GET
 	@Path("/{id}")
-	@Produces( MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public CpVille get(@PathParam("id") long id) throws AccountDoesNotExistException {
 		try {
 			return entityManager.createQuery("SELECT a FROM CpVille a WHERE a.id = :id", CpVille.class)
@@ -31,15 +37,36 @@ public class CpVilleRS {
 			throw new AccountDoesNotExistException();
 		}
 	}
-	
+
 	@GET
-	@Produces( MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<CpVille> get() throws AccountDoesNotExistException {
 		try {
 			return entityManager.createQuery("SELECT a FROM CpVille a", CpVille.class).getResultList();
 		} catch (NoResultException e) {
 			throw new AccountDoesNotExistException();
 		}
+	}
+
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response post(CpVille cpVille, @Context UriInfo uriInfo) {
+		/*
+		URI location = uriInfo.getRequestUriBuilder()
+                .path("1")
+                .build();
+		
+		System.out.println(location);
+		return Response.seeOther(location).build();
+		*/
+		entityManager.persist(cpVille);
+		
+		URI location = uriInfo.getRequestUriBuilder()
+                .path(String.valueOf(cpVille.getId()))
+                .build();
+		System.out.println(location);
+		return Response.seeOther(location).build();
+		
 	}
 
 }

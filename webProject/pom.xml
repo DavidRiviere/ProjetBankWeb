@@ -73,7 +73,7 @@
 			<artifactId>itext</artifactId>
 			<version>4.2.2</version>
 		</dependency>
-				<dependency>
+		<dependency>
 			<groupId>com.airhacks</groupId>
 			<artifactId>jaxrs-cors</artifactId>
 			<version>0.0.2</version>

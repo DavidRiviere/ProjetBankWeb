@@ -25,13 +25,4 @@
 			<property name="openjpa.Log" value="SQL=Trace" />
 		</properties>
 	</persistence-unit>
-	<persistence-unit name="AccountPersistenceUnit">
-		<jta-data-source>MVCSource</jta-data-source>
-		<class>mvc.model.AccountMVC</class>
-		<class>mvc.model.Amount</class>
-		<properties>
-			<property name="openjpa.jdbc.DBDictionary" value="mysql" />
-			<property name="openjpa.Log" value="SQL=Trace" />
-		</properties>
-	</persistence-unit>
 </persistence>
