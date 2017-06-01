@@ -2,11 +2,11 @@ package resources;
 
 import java.net.URI;
 
+import javax.ejb.EJB;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -17,8 +17,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import biz.PersistManager;
 import model.Account;
-import model.CpVille;
 import mvc.model.AccountDoesNotExistException;
 
 @Path("/rs/account")
@@ -26,6 +26,9 @@ public class AccountRS {
 
 	@PersistenceContext(unitName = "bankProjectWeb")
 	private EntityManager entityManager;
+	
+	@EJB 
+	private PersistManager persistManager;
 
 	@GET
 	@Path("/{id}")
@@ -54,7 +57,8 @@ public class AccountRS {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response post(Account account, @Context UriInfo uriInfo) {
-		entityManager.persist(account);
+		
+		persistManager.persist(account);
 		
 		URI location = uriInfo.getRequestUriBuilder()
                 .path(String.valueOf(account.getId()))
