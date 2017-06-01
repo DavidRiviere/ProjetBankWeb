@@ -1,16 +1,14 @@
 package model;
 
 import java.io.Serializable;
+import java.util.AbstractMap.SimpleImmutableEntry;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map.Entry;
-import java.util.AbstractMap.SimpleImmutableEntry;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,14 +23,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import util.Formater;
 
 @Entity
 @Table(name = "Account")
 @NamedQuery(name = "Account.findAll", query = "SELECT t FROM Account t")
-public class Account implements Serializable {
+public class Account implements Serializable, Identifiable {
 
 	private static final long serialVersionUID = 4046352721505678179L;
 	private Long id;

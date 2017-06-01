@@ -21,7 +21,7 @@ import util.Validator;
 @Entity
 @Table(name = "advisor")
 @NamedQuery(name = "Advisor.findAll", query = "SELECT t FROM Advisor t")
-public class Advisor implements Serializable {
+public class Advisor implements Serializable, Identifiable {
 
 	private static final long serialVersionUID = -882488167799880777L;
 	private Long id;
