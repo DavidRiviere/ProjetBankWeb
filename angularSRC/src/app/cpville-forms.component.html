@@ -1,0 +1,52 @@
+<div class="container">
+
+   <div class="form-group">
+      <label for="power">Choose your city</label>
+      <select [(ngModel)]="selectedCity" class="form-control" id="chosenCity" required>
+        <option *ngFor="let cpville of cpvilles" [ngValue]="cpville">{{cpville.city}}, {{cpville.zip}}</option>
+      </select>
+  </div>
+
+  <p *ngIf="selectedCity">{{selectedCity.city}}</p>
+
+  <div [hidden]="submitted">
+    <h1>CpVille Form</h1>
+    <form (ngSubmit)="onSubmit()" #cpvilleForm="ngForm">
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city"
+               required
+               [(ngModel)]="selectedCity.city" name="city"
+               #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          City name is required
+        </div>
+        <label for="zip">Zip code</label>
+        <input type="text" class="form-control" id="zip"
+               required
+               [(ngModel)]="selectedCity.zip" name="zip"
+               #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          Zip code is required
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="!cpvilleForm.form.valid">Submit</button>
+      <button type="button" class="btn btn-default" (click)="newCpville(); cpvilleForm.reset()">New CpVille</button>
+    </form>
+  </div>
+  <div [hidden]="!submitted">
+    <h2>You submitted the following:</h2>
+    <div class="row">
+      <div class="col-xs-3">City name</div>
+      <div class="col-xs-9  pull-left">{{ model.city }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Zip code</div>
+      <div class="col-xs-9 pull-left">{{ model.zip }}</div>
+    </div>
+    <br>
+    <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+  </div>
+</div>
