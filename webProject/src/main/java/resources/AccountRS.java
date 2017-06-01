@@ -26,8 +26,8 @@ public class AccountRS {
 
 	@PersistenceContext(unitName = "bankProjectWeb")
 	private EntityManager entityManager;
-	
-	@EJB 
+
+	@EJB
 	private PersistManager persistManager;
 
 	@GET
@@ -42,30 +42,39 @@ public class AccountRS {
 		}
 	}
 
-	/*@POST
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public Response postForm(@FormParam("name") String description, @Context UriInfo uriInfo)
-			throws AccountDoesNotExistException {
-		Account account = new Account();
-		
-		//URI location = uriInfo.getRequestUriBuilder().path(account.getDescription()).build();
-
-		return Response.ok().build();
+	public boolean accountAlreadyExist(String accountNumber) {
+		return (entityManager
+				.createQuery("SELECT Count(a) FROM Account a WHERE a.number = :accountNumber", Integer.class)
+				.setParameter("accountNumber", accountNumber).getSingleResult() > 0);
 	}
-	*/
-	
+
+	/*
+	 * @POST
+	 * 
+	 * @Consumes(MediaType.APPLICATION_FORM_URLENCODED) public Response
+	 * postForm(@FormParam("name") String description, @Context UriInfo uriInfo)
+	 * throws AccountDoesNotExistException { Account account = new Account();
+	 * 
+	 * //URI location =
+	 * uriInfo.getRequestUriBuilder().path(account.getDescription()).build();
+	 * 
+	 * return Response.ok().build(); }
+	 */
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response post(Account account, @Context UriInfo uriInfo) {
 		
-		persistManager.persist(account);
+		if(accountAlreadyExist(account.getNumber())){
+			return Response.status(404).build();
+		}
 		
-		URI location = uriInfo.getRequestUriBuilder()
-                .path(String.valueOf(account.getId()))
-                .build();
+		persistManager.persist(account);
+
+		URI location = uriInfo.getRequestUriBuilder().path(String.valueOf(account.getId())).build();
 		System.out.println(location);
 		return Response.seeOther(location).build();
-		
+
 	}
 
 }
