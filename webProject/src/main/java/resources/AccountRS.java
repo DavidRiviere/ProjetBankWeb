@@ -18,6 +18,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import model.Account;
+import model.CpVille;
 import mvc.model.AccountDoesNotExistException;
 
 @Path("/rs/account")
@@ -38,15 +39,29 @@ public class AccountRS {
 		}
 	}
 
-	@POST
+	/*@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public Response get(@FormParam("name") String description, @Context UriInfo uriInfo)
+	public Response postForm(@FormParam("name") String description, @Context UriInfo uriInfo)
 			throws AccountDoesNotExistException {
 		Account account = new Account();
 		
 		//URI location = uriInfo.getRequestUriBuilder().path(account.getDescription()).build();
 
 		return Response.ok().build();
+	}
+	*/
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response post(Account account, @Context UriInfo uriInfo) {
+		entityManager.persist(account);
+		
+		URI location = uriInfo.getRequestUriBuilder()
+                .path(String.valueOf(account.getId()))
+                .build();
+		System.out.println(location);
+		return Response.seeOther(location).build();
+		
 	}
 
 }

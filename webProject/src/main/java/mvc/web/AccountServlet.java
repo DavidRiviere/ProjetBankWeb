@@ -16,10 +16,10 @@ import mvc.model.AccountDoesNotExistException;
 /**
  * Servlet implementation class AccountServlet
  */
-@WebServlet("/account")
+//@WebServlet("/account")
 public class AccountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private @EJB AccountManager accountManager;
+	private AccountManager accountManager;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
