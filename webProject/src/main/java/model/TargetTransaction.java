@@ -15,7 +15,7 @@ import util.Validator;
 @Entity
 @Table(name="targettransaction")
 @NamedQuery(name = "TargetTransaction.findAll", query = "SELECT t FROM TargetTransaction t")
-public class TargetTransaction implements Serializable {
+public class TargetTransaction implements Serializable, Identifiable {
 
 	private static final long serialVersionUID = 1L;
 	private Long id;

@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Table(name = "frequency")
 @NamedQuery(name = "Frequency.findAll", query = "SELECT f FROM Frequency f")
 
-public class Frequency implements Serializable {
+public class Frequency implements Serializable, Identifiable {
 
 	private static final long serialVersionUID = 2903748555649709137L;
 	private Long id;

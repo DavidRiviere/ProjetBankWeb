@@ -9,13 +9,23 @@
 	<link rel="stylesheet" href="./stylesheet/feuille_style.css">
 </header>
 <body>
-	<div class="container">
+	<div class="container-fluid">
 		<header class="row entete">
 			<h2 class="col-lg-12">Personnal account manager</h2>
 		</header>
-		<form>
-			<label class="">Login</label><input type="text" placeHolder="Enter your login"/><br/>
-			<label>Password</label><input type="password" placeHolder="Enter your password"/><br/>
+		<form action="" method="post">
+			<div class="row">
+				<label class="col-lg-2 col-lg-offset-2 text-right">Login</label>
+				<input class="col-lg-4" type="text" placeHolder="Enter your login"/><br/>
+			</div>
+			<div class="row">
+				<label class="col-lg-2 col-lg-offset-2 text-right">Password</label>
+				<input class="col-lg-4" type="password" placeHolder="Enter your password"/><br/>
+			</div>
+			<div class="row">
+				<button class="col-lg-1 col-lg-offset-4" type="submit">New user</button>
+				<button class="col-lg-1 col-lg-offset-2" type="submit">Sign in</button>
+			</div>
 		</form>
 	</div>
 </body>

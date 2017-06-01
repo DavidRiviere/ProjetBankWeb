@@ -16,7 +16,7 @@ import util.Formater;
 @Entity
 @Table(name = "agency")
 @NamedQuery(name = "Agency.findAll", query = "SELECT t FROM Agency t")
-public class Agency implements Serializable {
+public class Agency implements Serializable, Identifiable {
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
