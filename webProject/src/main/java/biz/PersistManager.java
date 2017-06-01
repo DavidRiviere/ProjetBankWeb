@@ -19,6 +19,10 @@ public class PersistManager {
 		} else {
 			entityManager.merge(entity);
 		}
-
 	}
+
+	public void remove(Identifiable entity){
+		entityManager.remove(entity);
+	}
+
 }
