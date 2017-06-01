@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-import { Http } from '@angular/http';
 
-import { Cpville }    from './cpville';
-
-import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +8,5 @@ import 'rxjs/add/operator/toPromise';
 })
 
 export class AppComponent {
-  title = 'CpVille';
 
 }

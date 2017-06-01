@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 
 import { Cpville }    from './cpville';
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'cpville-form',
@@ -42,6 +43,7 @@ export class CpvilleFormComponent implements OnInit {
     }
 
     get diagnostic() { return JSON.stringify(this.model); }
+
 
     ngOnInit(){
         
