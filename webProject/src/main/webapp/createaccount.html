@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<header>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Personnal Account Manager</title>
+	<link rel="stylesheet" href="./stylesheet/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./stylesheet/feuille_style.css">
+</header>
+<body>
+<div class="container-fluid">
+	<header class="entete row">
+		<h2 id="header" class="col-lg-12">Personnal account manager</h2>
+	</header>
+	<div class="row">
+		<div class="col-lg-3">
+			<ul class="nav nav-pills nav-stacked">
+				<li><a href="home.html" title="home">Home</a></li>
+				<li class="active"><a href="#"><i class="fa fa-home fa-fw"></i>Transactions</a></li>
+				<li><a href="periodic.html" title ="periodic">Periodic Transactions</a></li>
+				<li><a href="rib.html" title ="rib">Export a rib</a></li>
+				<li><a href="agency.php" title ="agency">Agency Information</a></li>
+			</ul>
+		</div>
+		<div class="col-lg-9 well">
+			<article>
+				<header>Creation of an account</header>
+				<form action="" method="get" class="text-right">
+					<div class="row">
+						<label class="col-lg-2">Bank name</label>
+						<input type="text" class="col-lg-4"/>
+					</div>
+					<div class="row">
+						<label class="col-lg-2">Account name</label>
+						<input type="text" class="col-lg-4"/>
+					</div>
+					<div class="row">
+						<label class="col-lg-2">Account number</label>
+						<input type="text" class="col-lg-4"/>
+					</div>
+					<div class="row">
+						<label class="col-lg-2">Country code</label>
+						<input type="text" class="col-lg-4"/>
+					</div>
+					<div class="row">
+						<label class="col-lg-2">Initial balance</label>
+						<input type="text" class="col-lg-4"/>
+					</div>
+					<div class="row">
+						<label class="col-lg-2">Creation date</label>
+						<input type="text" class="col-lg-4"/>
+					</div>
+					<div class="row">
+						<label class="col-lg-2">Overdraft</label>
+						<input type="text" class="col-lg-4"/>
+					</div>
+					<div class="row">
+						<button type="submit">Submit</button>
+					</div>
+				</form>
+			</article>
+		</div>
+	</div>
+</div>
+</body>
+</html>
