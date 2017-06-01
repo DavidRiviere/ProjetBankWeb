@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -106,7 +107,7 @@ public class Agency implements Serializable, Identifiable {
 		this.counterCode = counterCode;
 	}
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "idAddress")
 	public Address getAdress() {
 		return this.adress;
@@ -119,7 +120,7 @@ public class Agency implements Serializable, Identifiable {
 		this.adress = address;
 	}
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "idBank")
 	public Bank getBank() {
 		return this.bank;

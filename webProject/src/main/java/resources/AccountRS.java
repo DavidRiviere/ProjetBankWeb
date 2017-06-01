@@ -19,10 +19,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import biz.PersistManager;
+import builders.AccountBuilder;
 import model.Account;
 import model.AccountType;
 import model.Agency;
@@ -38,8 +40,8 @@ public class AccountRS {
 	@EJB
 	private PersistManager persistManager;
 
-	//@Resource
-	//private RS rs;
+	// @Resource
+	// private RS rs;
 
 	@GET
 	@Path("/{id}")
@@ -75,18 +77,28 @@ public class AccountRS {
 
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public Response post(@FormParam("accountDescription") String description, @FormParam("accountNumber") String number,
-			@FormParam("accountInitialBalance") double initialBalance, @Context UriInfo uriInfo){
+	public Response post(MultivaluedMap<String, String> formParams, @Context UriInfo uriInfo) {
 
 		/*
-		Account account = new Account(number, description, initialBalance, 0.0, 0, 0,
-				(CountryCode) rs.getById(1L, CountryCode.class), new Date(), (Agency) rs.getById(1, Agency.class),
-				(AccountType) rs.getById(1, AccountType.class));
-				*/
-		Account account= new Account();
-		account.setNumber(number);
-		account.setDescription(description);
-		account.setInitialBalance(initialBalance);
+		 * Account account = new Account(number, description, initialBalance,
+		 * 0.0, 0, 0, (CountryCode) rs.getById(1L, CountryCode.class), new
+		 * Date(), (Agency) rs.getById(1, Agency.class), (AccountType)
+		 * rs.getById(1, AccountType.class));
+		 */
+		/*
+		Account account = new Account();
+		account.setNumber(formParams.getFirst("accountNumber"));
+		account.setDescription(formParams.getFirst("accountDescription"));
+		account.setInitialBalance(Double.valueOf(formParams.getFirst("accountInitialBalance")));
+		account.setCreationDate(new Date());
+		*/
+		
+		Account account = new AccountBuilder().setDescription(formParams.getFirst("accountDescription"))
+				.setCreationDate(new Date())
+				.setInitialBalance(Double.valueOf(formParams.getFirst("accountInitialBalance")))
+				.setNumber(formParams.getFirst("accountNumber"))
+				.build();
+
 		if (accountAlreadyExist(account.getNumber())) {
 			return Response.status(404).build();
 		}
