@@ -17,7 +17,7 @@ import util.Validator;
 @Entity
 @Table(name = "category")
 @NamedQuery(name = "Category.findAll", query = "SELECT t FROM Category t")
-public class Category implements Serializable {
+public class Category implements Serializable, Identifiable {
 
 	private static final long serialVersionUID = -1609819592902961280L;
 

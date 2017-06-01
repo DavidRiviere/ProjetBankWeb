@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name="periodictransaction")
 @NamedQuery(name = "PeriodicTransaction.findAll", query = "SELECT t FROM PeriodicTransaction t")
-public class PeriodicTransaction implements Serializable {
+public class PeriodicTransaction implements Serializable, Identifiable {
 
 	private static final long serialVersionUID = -7446323535530912419L;
 	private Long id;

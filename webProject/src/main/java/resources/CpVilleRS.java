@@ -28,7 +28,7 @@ public class CpVilleRS {
 	@PersistenceContext(unitName = "bankProjectWeb")
 	private EntityManager entityManager;
 	
-	@EJB private PersistManager cpVilleManager;
+	@EJB private PersistManager persistManager;
 
 	@GET
 	@Path("/{id}")
@@ -56,7 +56,7 @@ public class CpVilleRS {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response post(CpVille cpVille, @Context UriInfo uriInfo) {
 		
-		cpVilleManager.persist(cpVille);
+		persistManager.persist(cpVille);
 		
 		
 		URI location = uriInfo.getRequestUriBuilder()

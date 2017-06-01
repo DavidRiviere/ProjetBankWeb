@@ -18,7 +18,7 @@ import util.Formater;
 @Entity
 @Table(name = "cpville")
 @NamedQuery(name = "CpVille.findAll", query = "SELECT t FROM CpVille t")
-public class CpVille implements Serializable {
+public class CpVille implements Serializable, Identifiable {
 
 	private static final long serialVersionUID = -7208703135643719589L;
 	private Long id;
