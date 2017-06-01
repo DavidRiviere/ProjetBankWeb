@@ -10,10 +10,10 @@ import mvc.model.AccountAlreadyExistException;
 import mvc.model.AccountDoesNotExistException;
 import mvc.model.Amount;
 
-@Stateless
+//@Stateless
 public class AccountManagerEJB {
 	
-	@PersistenceContext(unitName="AccountPersistenceUnit")
+	//@PersistenceContext(unitName="AccountPersistenceUnit")
 	private EntityManager entityManager;
 
 

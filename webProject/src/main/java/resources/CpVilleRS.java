@@ -51,14 +51,6 @@ public class CpVilleRS {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response post(CpVille cpVille, @Context UriInfo uriInfo) {
-		/*
-		URI location = uriInfo.getRequestUriBuilder()
-                .path("1")
-                .build();
-		
-		System.out.println(location);
-		return Response.seeOther(location).build();
-		*/
 		entityManager.persist(cpVille);
 		
 		URI location = uriInfo.getRequestUriBuilder()
