@@ -41,6 +41,7 @@ export class CpvilleFormComponent implements OnInit {
         this.model = new Cpville('', '');
     }
 
+    get diagnostic() { return JSON.stringify(this.model); }
 
     ngOnInit(){
         

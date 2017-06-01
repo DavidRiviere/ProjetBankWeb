@@ -1,6 +1,25 @@
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="navbar-brand" ui-sref="exemple1" routerLink="/somewhere" >somewhere</a>
+      </li>
+      <li class="nav-item">
+      <a  class="navbar-brand" ui-sref="exemple2" routerLink="/cpvilleForm">cpville formular</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
 <div class="container">
 <h1>
   {{title}}
 </h1>
+</div>
 
-<cpville-form> Loading the cpville form</cpville-form>
+<router-outlet></router-outlet>
+
+

@@ -7,8 +7,6 @@
       </select>
   </div>
 
-  <p *ngIf="selectedCity">{{selectedCity.city}}</p>
-
   <div [hidden]="submitted">
     <h1>CpVille Form</h1>
     <form (ngSubmit)="onSubmit()" #cpvilleForm="ngForm">
@@ -40,11 +38,11 @@
     <h2>You submitted the following:</h2>
     <div class="row">
       <div class="col-xs-3">City name</div>
-      <div class="col-xs-9  pull-left">{{ model.city }}</div>
+      <div class="col-xs-9  pull-left">{{ selectedCity.city }}</div>
     </div>
     <div class="row">
       <div class="col-xs-3">Zip code</div>
-      <div class="col-xs-9 pull-left">{{ model.zip }}</div>
+      <div class="col-xs-9 pull-left">{{ selectedCity.zip }}</div>
     </div>
     <br>
     <button class="btn btn-primary" (click)="submitted=false">Edit</button>
