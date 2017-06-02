@@ -21,6 +21,8 @@ import util.Validator;
 public class Bank implements Serializable, Identifiable{
 
 	private static final long serialVersionUID = -5364979069387254961L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String code;
@@ -56,8 +58,7 @@ public class Bank implements Serializable, Identifiable{
 		this.setCode(Formater.removeUsualSeparators(bankCode));
 	}
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	public Long getId() {
 		return this.id;
 	}

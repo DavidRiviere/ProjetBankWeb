@@ -40,16 +40,29 @@ public class Transaction implements Serializable, Identifiable {
 		}
 	};
 	
-
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
 	private String description;
 	private double value;
+	@Temporal(TemporalType.DATE)
+	@Column(name="dateTransaction")
 	private Date date;
+	@ManyToOne
+	@JoinColumn(name="idAccount")
 	private Account account;
+	@ManyToOne
+	@JoinColumn(name="idTransactionType")
 	private TransactionType transactionType;
+	@ManyToOne
+	@JoinColumn(name="idCategory")
 	private Category category;
+	@ManyToOne
+	@JoinColumn(name="idTargetTransaction")
 	private TargetTransaction targetTransaction;
+	@ManyToOne
+	@JoinColumn(name="idPeriodicTransaction")
 	private PeriodicTransaction periodicTransaction;
     
 
@@ -124,8 +137,7 @@ public class Transaction implements Serializable, Identifiable {
 		this.value = value;
 	}
 	
-	@Temporal(TemporalType.DATE)
-	@Column(name="dateTransaction")
+
 	public Date getDate() {
 		return date;
 	}
@@ -135,8 +147,7 @@ public class Transaction implements Serializable, Identifiable {
 		this.date = date;
 	}
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+
 	public Long getId() {
 		return this.id;
 	}
@@ -145,8 +156,7 @@ public class Transaction implements Serializable, Identifiable {
 		this.id = id;
 	}	
 	
-	@ManyToOne
-	@JoinColumn(name="idAccount")
+
 	public Account getAccount() {
 		return this.account;
 	}
@@ -155,8 +165,7 @@ public class Transaction implements Serializable, Identifiable {
 		this.account = account;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name="idTransactionType")
+
 	public TransactionType getTransactionType() {
 		return this.transactionType;
 	}
@@ -167,8 +176,7 @@ public class Transaction implements Serializable, Identifiable {
 		this.transactionType = transactionType;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name="idCategory")
+
 	public Category getCategory() {
 		return this.category;
 	}
@@ -178,8 +186,7 @@ public class Transaction implements Serializable, Identifiable {
 		this.category = category;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name="idTargetTransaction")
+
 	public TargetTransaction getTargetTransaction() {
 		return this.targetTransaction;
 	}
@@ -188,8 +195,7 @@ public class Transaction implements Serializable, Identifiable {
 		this.targetTransaction = targetTransaction;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name="idPeriodicTransaction")
+
 	public PeriodicTransaction getPeriodicTransaction() {
 		return this.periodicTransaction;
 	}

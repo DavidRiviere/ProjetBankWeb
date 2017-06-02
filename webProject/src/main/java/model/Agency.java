@@ -28,10 +28,16 @@ public class Agency implements Serializable, Identifiable {
 	}
 
 	private static final long serialVersionUID = 458612991376198713L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String counterCode;
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name = "idAddress")
 	private Address adress;
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name = "idBank")
 	private Bank bank;
 
 
@@ -65,8 +71,7 @@ public class Agency implements Serializable, Identifiable {
 		this.setBank(bank);
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	public Long getId() {
 		return this.id;
 	}
@@ -107,8 +112,7 @@ public class Agency implements Serializable, Identifiable {
 		this.counterCode = counterCode;
 	}
 
-	@ManyToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn(name = "idAddress")
+
 	public Address getAdress() {
 		return this.adress;
 	}
@@ -120,8 +124,7 @@ public class Agency implements Serializable, Identifiable {
 		this.adress = address;
 	}
 
-	@ManyToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn(name = "idBank")
+
 	public Bank getBank() {
 		return this.bank;
 	}

@@ -19,9 +19,13 @@ import javax.persistence.Table;
 public class Address implements Serializable, Identifiable{
 
 	private static final long serialVersionUID = 3089550499268003492L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String line1;
 	private String line2 = null; //line2 is not mandatory
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name = "idCpVille")
 	private CpVille cpVille;
 	
 
@@ -64,7 +68,7 @@ public class Address implements Serializable, Identifiable{
 
 	public void setLine1(String line1) {
 		
-		//checkLine1(line1);
+		checkLine1(line1);
 		
 		this.line1 = line1;
 	}
@@ -78,22 +82,20 @@ public class Address implements Serializable, Identifiable{
 		this.line2 = line2;
 	}
 	
-	@ManyToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn(name = "idCpVille")
+
 	public CpVille getCpVille() {
 		return cpVille;
 	}
 
 	public void setCpVille(CpVille cpVille) {
-//		if (cpVille==null){
-//			throw new NullPointerException("cpVille cannot be null");
-//		}
+		if (cpVille==null){
+			throw new NullPointerException("cpVille cannot be null");
+		}
 		this.cpVille = cpVille;
 	}
 	
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	public Long getId() {
 		return this.id;
 	}

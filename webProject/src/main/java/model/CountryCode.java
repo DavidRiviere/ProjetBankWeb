@@ -13,6 +13,8 @@ import javax.persistence.*;
 public class CountryCode implements Serializable, Identifiable {
 
 	private static final long serialVersionUID = 2517598819056512842L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String code;
 
@@ -25,8 +27,7 @@ public class CountryCode implements Serializable, Identifiable {
 		this.setCode(code);
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	public Long getId() {
 		return this.id;
 	}
@@ -40,7 +41,7 @@ public class CountryCode implements Serializable, Identifiable {
 	}
 
 	public void setCode(String code) {
-		//checkCountryCode(code);
+		checkCountryCode(code);
 		this.code = code;
 	}
 

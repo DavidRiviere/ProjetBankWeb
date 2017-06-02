@@ -2,16 +2,14 @@ package resources;
 
 import java.net.URI;
 import java.util.Date;
+import java.util.List;
 
-import javax.annotation.Resource;
-import javax.annotation.Resources;
 import javax.ejb.EJB;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -26,9 +24,7 @@ import javax.ws.rs.core.UriInfo;
 import biz.PersistManager;
 import builders.AccountBuilder;
 import model.Account;
-import model.AccountType;
-import model.Agency;
-import model.CountryCode;
+import model.Transaction;
 import mvc.model.AccountDoesNotExistException;
 
 @Path("/{a:rs/accounts|index.html}")
@@ -124,5 +120,18 @@ public class AccountRS {
 		return Response.ok().build();
 
 	}
+	
+	@GET
+	@Path("/{id}/transactions")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Transaction> getTransaction(@PathParam("id") long id) throws AccountDoesNotExistException {
+		try {
+			return entityManager.createQuery("SELECT t FROM Transaction t JOIN t.account a WHERE a.id = :id", Transaction.class)
+					.setParameter("id", id).getResultList();
+		} catch (NoResultException e) {
+			throw new AccountDoesNotExistException();
+		}
+	}
+	
 
 }

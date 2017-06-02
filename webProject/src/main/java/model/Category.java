@@ -20,9 +20,12 @@ import util.Validator;
 public class Category implements Serializable, Identifiable {
 
 	private static final long serialVersionUID = -1609819592902961280L;
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String description;
+	@ManyToOne
+	@JoinColumn(name = "idParentCategory")
 	private Category parentCategory;
 
 
@@ -80,8 +83,7 @@ public class Category implements Serializable, Identifiable {
 		}
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	public Long getId() {
 		return this.id;
 	}
@@ -101,8 +103,7 @@ public class Category implements Serializable, Identifiable {
 		return this.description;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "idParentCategory")
+
 	public Category getParentCategory() {
 		return this.parentCategory;
 	}

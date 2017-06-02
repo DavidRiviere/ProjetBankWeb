@@ -24,12 +24,17 @@ import util.Validator;
 public class Advisor implements Serializable, Identifiable {
 
 	private static final long serialVersionUID = -882488167799880777L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String firstName;
 	private String phoneNumber;
 	private String email;
+	@Temporal(TemporalType.DATE)
 	private Date assignmentDate;
+	@ManyToOne
+	@JoinColumn(name = "idAgency")
 	private Agency agency;
 
 
@@ -191,7 +196,7 @@ public class Advisor implements Serializable, Identifiable {
 		this.email = email;
 	}
 
-	@Temporal(TemporalType.DATE)
+
 	public Date getAssignmentDate() {
 		return this.assignmentDate;
 	}
@@ -201,8 +206,7 @@ public class Advisor implements Serializable, Identifiable {
 		this.assignmentDate = assignmentDate;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "idAgency")
+
 	public Agency getAgency() {
 		return this.agency;
 	}
@@ -214,8 +218,7 @@ public class Advisor implements Serializable, Identifiable {
 		this.agency = agency;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	public Long getId() {
 		return this.id;
 	}

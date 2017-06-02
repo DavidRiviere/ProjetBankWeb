@@ -14,6 +14,8 @@ import javax.persistence.*;
 public class Frequency implements Serializable, Identifiable {
 
 	private static final long serialVersionUID = 2903748555649709137L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String unit;
 
@@ -26,8 +28,7 @@ public class Frequency implements Serializable, Identifiable {
 		this.setUnit(unit);
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	public Long getId() {
 		return this.id;
 	}
@@ -56,31 +57,6 @@ public class Frequency implements Serializable, Identifiable {
 		}
 	}
 	
-	// //bi-directional many-to-one association to Periodictransaction
-	// @OneToMany(mappedBy="frequency")
-	// public List<PeriodicTransaction> getPeriodictransactions() {
-	// return this.periodictransactions;
-	// }
-	//
-	// public void setPeriodictransactions(List<PeriodicTransaction>
-	// periodictransactions) {
-	// this.periodictransactions = periodictransactions;
-	// }
-	//
-	// public PeriodicTransaction addPeriodictransaction(PeriodicTransaction
-	// periodictransaction) {
-	// getPeriodictransactions().add(periodictransaction);
-	// periodictransaction.setFrequency(this);
-	//
-	// return periodictransaction;
-	// }
-	//
-	// public PeriodicTransaction removePeriodictransaction(PeriodicTransaction
-	// periodictransaction) {
-	// getPeriodictransactions().remove(periodictransaction);
-	// periodictransaction.setFrequency(null);
-	//
-	// return periodictransaction;
-	// }
+
 
 }

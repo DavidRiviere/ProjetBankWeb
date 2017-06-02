@@ -13,6 +13,8 @@ import javax.persistence.*;
 public class TransactionType implements Serializable, Identifiable {
 
 	private static final long serialVersionUID = 6948430153082483301L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String description;
 
@@ -25,8 +27,7 @@ public class TransactionType implements Serializable, Identifiable {
 		this.setDescription(description);;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	public Long getId() {
 		return this.id;
 	}

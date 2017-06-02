@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.ws.rs.core.Link;
 
 import util.Formater;
 
@@ -21,9 +23,13 @@ import util.Formater;
 public class CpVille implements Serializable, Identifiable {
 
 	private static final long serialVersionUID = -7208703135643719589L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String zip;
 	private String city;
+	@Transient
+	private Link selfLink;
 
 	public CpVille() {}
 
@@ -36,8 +42,7 @@ public class CpVille implements Serializable, Identifiable {
 		this.setCity(city); 
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	public Long getId() {
 		return this.id;
 	}
@@ -52,7 +57,7 @@ public class CpVille implements Serializable, Identifiable {
 	}
 
 	public void setZip(String zip) {
-		//checkZip(zip);
+		checkZip(zip);
 		this.zip = zip;//Formater.removeUsualSeparators(zip);
 	}
 
@@ -79,5 +84,13 @@ public class CpVille implements Serializable, Identifiable {
 
 	public static boolean isValidZip(String zip) {
 		return zip.length() <= 50;
+	}
+
+	public Link getSelfLink() {
+		return selfLink;
+	}
+
+	public void setSelfLink(Link selfLink) {
+		this.selfLink = selfLink;
 	}
 }
