@@ -26,17 +26,23 @@ import util.Validator;
 public class Owner implements Serializable, Identifiable {
 
 	private static final long serialVersionUID = -5806508181292371902L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String firstName;
+	@Temporal(TemporalType.DATE)
 	private Date birthday;
 	private String login;
 	private String pswd;
 	private String salt;
 	private String email;
 	private String phoneNumber;
+	@ManyToOne
+	@JoinColumn(name = "idAddress")
 	private Address address;
 	private boolean newUser;
+	@ManyToMany(mappedBy = "owners")
 	private List<Account> accounts;
 
 	public Owner() {
@@ -80,8 +86,7 @@ public class Owner implements Serializable, Identifiable {
 		this.setNewUser(newUser);
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	public Long getId() {
 		return this.id;
 	}
@@ -110,7 +115,7 @@ public class Owner implements Serializable, Identifiable {
 		this.firstName = Formater.formatNameCase(firstName);
 	}
 
-	@Temporal(TemporalType.DATE)
+
 	public Date getBirthday() {
 		return birthday;
 	}
@@ -165,8 +170,7 @@ public class Owner implements Serializable, Identifiable {
 		this.email = email;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "idAddress")
+
 	public Address getAddress() {
 		return address;
 	}
@@ -176,7 +180,7 @@ public class Owner implements Serializable, Identifiable {
 		this.address = address;
 	}
 
-	@ManyToMany(mappedBy = "owners")
+
 	public List<Account> getAccounts() {
 		return this.accounts;
 	}

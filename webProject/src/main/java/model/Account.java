@@ -24,6 +24,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import util.Formater;
 
@@ -33,6 +34,8 @@ import util.Formater;
 public class Account implements Serializable, Identifiable {
 
 	private static final long serialVersionUID = 4046352721505678179L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String number;
 	private String description;
@@ -42,14 +45,27 @@ public class Account implements Serializable, Identifiable {
 	private double agioRate;
 	private double alertThreshold;
 	
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name = "idCountryCode")
 	private CountryCode countryCode;
+	@Temporal(TemporalType.DATE)
 	private Date creationDate;
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name = "idAgency")
 	private Agency agency;
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name = "idAccountType")
 	private AccountType accountType;
+	@OneToMany(mappedBy = "account")
 	private List<Transaction> transactions;
+	@ManyToMany
+	@JoinTable(name = "Assign", joinColumns = { @JoinColumn(name = "idAccount") }, inverseJoinColumns = {
+			@JoinColumn(name = "idOwner") })
 	private List<Owner> owners;
 
+	@Transient
 	private double interestTransaction;
+	@Transient
 	private double agioTransaction;
 
 	public static final Comparator<Account> ALPHABETICAL_COMPARATOR = new Comparator<Account>() {
@@ -158,8 +174,7 @@ public class Account implements Serializable, Identifiable {
 	/**
 	 * @return the primary key ID from the Database
 	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	public Long getId() {
 		return this.id;
 	}
@@ -202,7 +217,7 @@ public class Account implements Serializable, Identifiable {
 		this.alertThreshold = alertThreshold;
 	}
 
-	@Temporal(TemporalType.DATE)
+
 	public Date getCreationDate() {
 		return this.creationDate;
 	}
@@ -219,8 +234,7 @@ public class Account implements Serializable, Identifiable {
 		this.interestRate = interestRate;
 	}
 
-	@ManyToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn(name = "idCountryCode")
+
 	public CountryCode getCountryCode() {
 		return countryCode;
 	}
@@ -232,8 +246,7 @@ public class Account implements Serializable, Identifiable {
 		this.countryCode = countryCode;
 	}
 
-	@ManyToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn(name = "idAgency")
+
 	public Agency getAgency() {
 		return this.agency;
 	}
@@ -245,8 +258,7 @@ public class Account implements Serializable, Identifiable {
 		this.agency = agency;
 	}
 
-	@ManyToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn(name = "idAccountType")
+
 	public AccountType getAccountType() {
 		return this.accountType;
 	}
@@ -264,7 +276,7 @@ public class Account implements Serializable, Identifiable {
 	}
 
 	// bi-directional many-to-one association to transaction
-	@OneToMany(mappedBy = "account")
+
 	public List<Transaction> getTransactions() {
 		return this.transactions;
 	}
@@ -274,9 +286,7 @@ public class Account implements Serializable, Identifiable {
 	}
 
 	// @ManyToMany(mappedBy="accounts")
-	@ManyToMany
-	@JoinTable(name = "Assign", joinColumns = { @JoinColumn(name = "idAccount") }, inverseJoinColumns = {
-			@JoinColumn(name = "idOwner") })
+
 	public List<Owner> getOwners() {
 		return this.owners;
 	}

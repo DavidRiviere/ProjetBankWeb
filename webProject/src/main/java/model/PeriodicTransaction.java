@@ -23,10 +23,16 @@ import javax.persistence.TemporalType;
 public class PeriodicTransaction implements Serializable, Identifiable {
 
 	private static final long serialVersionUID = -7446323535530912419L;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	@Temporal(TemporalType.DATE)
 	private Date endDate;
 	private int numberDefiningPeriodicity;
+	@ManyToOne
+	@JoinColumn(name="idFreq")
 	private Frequency frequency;
+	@OneToMany(mappedBy="periodicTransaction")
 	private List<Transaction> transactions;
 
 
@@ -48,13 +54,12 @@ public class PeriodicTransaction implements Serializable, Identifiable {
 		this.frequency =frequency;	
 	}
 	
-	@ManyToOne
-	@JoinColumn(name="idFreq")
+
 	public Frequency getFrequency() {
 		return this.frequency;
 	}
 	
-	@Temporal(TemporalType.DATE)
+
 	public Date getEndDate() {
 		return this.endDate;
 	}
@@ -73,8 +78,7 @@ public class PeriodicTransaction implements Serializable, Identifiable {
 		this.numberDefiningPeriodicity = numberDefiningPeriodicity;
 	}
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+
 	public Long getId() {
 		return this.id;
 	}
@@ -83,7 +87,7 @@ public class PeriodicTransaction implements Serializable, Identifiable {
 		this.id = id;
 	}
 	
-	@OneToMany(mappedBy="periodicTransaction")
+
 	public List<Transaction> getTransactions() {
 		return this.transactions;
 	}
