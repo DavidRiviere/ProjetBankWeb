@@ -24,7 +24,7 @@ import model.CpVille;
 import mvc.model.AccountDoesNotExistException;
 
 @Path("/rs/cpville")
-public class CpVilleRS {
+public class CpVilleRS{
 
 	@PersistenceContext(unitName = "bankProjectWeb")
 	private EntityManager entityManager;
@@ -45,6 +45,7 @@ public class CpVilleRS {
 		}
 	}
 
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<CpVille> get() throws AccountDoesNotExistException {
@@ -54,6 +55,7 @@ public class CpVilleRS {
 			throw new AccountDoesNotExistException();
 		}
 	}
+	
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -67,6 +69,11 @@ public class CpVilleRS {
                 .build();
 		return Response.seeOther(location).build();
 		
+	}
+
+	
+	public EntityManager getEntityManager() {
+		return entityManager;
 	}
 
 }
