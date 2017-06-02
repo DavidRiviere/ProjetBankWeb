@@ -5,7 +5,7 @@ export class Owner {
     public name: string,
     public firstName: string,
     public birthday: string,
-     public pswd: string,
+    public pswd: string,
     public salt: string,
     public email: string,
     public phoneNumber: string,
