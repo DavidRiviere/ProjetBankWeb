@@ -1,0 +1,61 @@
+<div class="container">
+
+  <div [hidden]="submitted">
+    <h1>Create an account</h1>
+    <form (ngSubmit)="onSubmit()" #createaccountForm="ngForm">
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="description"
+               required
+               [(ngModel)]="model.description" name="description"
+               #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          Account description is required
+        </div>
+        <label for="number">Account number</label>
+        <input type="text" class="form-control" id="number"
+               required
+               [(ngModel)]="model.number" name="number"
+               #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          Account number is required
+        </div>
+          <label for="initialBalance">Initial balance</label>
+        <input type="number" class="form-control" id="initialBalance"
+               required
+               [(ngModel)]="model.initialBalance" name="initialBalance"
+               #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          The initial balance is required
+        </div>
+        <label for="creationDate">Creation date</label>
+        <input type="date" class="form-control" id="creationDate"
+               required
+               [(ngModel)]="model.creationDate" name="creationDate"
+               #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          The initial balance is required
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="!createaccountForm.form.valid">Submit</button>
+      <button type="button" class="btn btn-default" (click)="newAccount(); createaccountForm.reset()">New Account</button>
+    </form>
+  </div>
+  <div [hidden]="!submitted">
+    <h2>You submitted the following:</h2>
+    <div class="row">
+      <div class="col-xs-3">Account description</div>
+      <div class="col-xs-9  pull-left">{{ model.description }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Account number</div>
+      <div class="col-xs-9 pull-left">{{ model.number }}</div>
+    </div>
+    <br>
+    <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+  </div>
+</div>

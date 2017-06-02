@@ -14,6 +14,7 @@ import { HeroService }          from './hero.service';
 import { HeroSearchComponent }  from './hero-search/hero-search.component';
 
 import { CpvilleFormComponent }  from './cpville-forms/cpville-forms.component';
+import { CreateaccountComponent }  from './createaccount/createaccount.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { CpvilleFormComponent }  from './cpville-forms/cpville-forms.component';
     HeroDetailComponent,
     HeroesComponent,
     HeroSearchComponent,
-    CpvilleFormComponent
+    CpvilleFormComponent,
+    CreateaccountComponent
   ],
   providers: [ HeroService ],
   bootstrap: [ AppComponent ]
