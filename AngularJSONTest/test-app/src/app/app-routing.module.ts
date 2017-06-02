@@ -1,13 +1,17 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { CpvilleFormComponent }   from './cpville-forms.component';
-import { SomewhereComponent }      from './somewhere.component';
-
+import { DashboardComponent }   from './dashboard/dashboard.component';
+import { HeroesComponent }      from './heroes/heroes.component';
+import { HeroDetailComponent }  from './hero-detail/hero-detail.component';
+import { CpvilleFormComponent }  from './cpville-forms/cpville-forms.component';
 
 const routes: Routes = [
-  { path: 'cpvilleform',  component: CpvilleFormComponent },
-  { path: 'somewhere', component: SomewhereComponent }
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'dashboard',  component: DashboardComponent },
+  { path: 'detail/:id', component: HeroDetailComponent },
+  { path: 'heroes',     component: HeroesComponent },
+  { path: 'cpvilleform',     component: CpvilleFormComponent }
 ];
 
 @NgModule({

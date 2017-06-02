@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 import { Http, Headers, RequestOptions } from '@angular/http';
 
-import { Cpville }    from './cpville';
+import { Cpville }    from '../model/cpville';
+
 import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'cpville-form',
   templateUrl: './cpville-forms.component.html',
-  styleUrls: ['./forms.css']
+  styleUrls: ['./cpville-forms.component.css']
 })
 
 
@@ -18,7 +19,7 @@ export class CpvilleFormComponent implements OnInit {
 
     submitted = false;
 
-     cpvilles;
+    cpvilles;
 
     constructor(private http: Http) { }
 
@@ -48,7 +49,7 @@ export class CpvilleFormComponent implements OnInit {
     ngOnInit(){
         
         this.http.get("http://localhost:8080/bankProjectWeb/rs/cpville/").toPromise().
-            then(r => r.json()).then(r => this.cpvilles = r).catch(this.handleError);;
+            then(r => r.json()).then(r => this.cpvilles = r).catch(this.handleError);
     }
 
     private handleError(error: any): Promise<any> {
