@@ -15,14 +15,14 @@ import 'rxjs/add/operator/toPromise';
 
 export class CreateaccountComponent implements OnInit {
 
-    timestamp = new Date();
-    
+    timestamp = new Date(); 
     model = new Account('', this.timestamp.toISOString().slice(0,10).replace(/-/g,"")+"000000+0200", '', 0);
 
     submitted = false;
 
-
-    cpvilles;
+    accountTypesList = [];
+    agencyList  = [] ;
+    countryCodeList  = [] ;
 
     constructor(private http: Http) { }
 
@@ -39,7 +39,7 @@ export class CreateaccountComponent implements OnInit {
 
         this.model.creationDate = this.timestamp.toISOString().slice(0,10).replace(/-/g,"")+"000000+0200";
 
-        this.http.post("http://localhost:8080/bankProjectWeb/rs/accounts/", JSON.stringify(this.model), options)
+        this.http.post("http://localhost:8080/bankProjectWeb/rs/account/", JSON.stringify(this.model), options)
             .subscribe(
                 data => console.log("success!", data),
                 error => console.error("couldn't post because", error)
@@ -48,7 +48,21 @@ export class CreateaccountComponent implements OnInit {
     }
 
     ngOnInit(){
+        
+        this.http.get("http://localhost:8080/bankProjectWeb/rs/accountType/").toPromise().
+            then(r => r.json()).then(r => this.accountTypesList = r).catch(this.handleError);
 
+        this.http.get("http://localhost:8080/bankProjectWeb/rs/agency/").toPromise().
+            then(r => r.json()).then(r => this.agencyList = r).catch(this.handleError);
+
+        this.http.get("http://localhost:8080/bankProjectWeb/rs/agency/").toPromise().
+            then(r => r.json()).then(r => this.countryCodeList = r).catch(this.handleError);
+            
     }
+
+    private handleError(error: any): Promise<any> {
+        console.error('An error occurred while fetching data from server: ', error); 
+        return Promise.reject(error.message || error);
+  }
 
 }

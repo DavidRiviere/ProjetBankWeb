@@ -1,5 +1,7 @@
 package resources;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -14,6 +16,7 @@ import javax.ws.rs.core.Response;
 
 import biz.PersistManager;
 import model.AccountType;
+import model.CpVille;
 import mvc.model.AccountDoesNotExistException;
 
 @Path("/accountType")
@@ -32,6 +35,16 @@ public class AccountTypeRS {
 		try {
 			return entityManager.createQuery("SELECT a FROM AccountType a WHERE a.id = :id", AccountType.class)
 					.setParameter("id", id).getSingleResult();
+		} catch (NoResultException e) {
+			throw new AccountDoesNotExistException();
+		}
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<AccountType> get() throws AccountDoesNotExistException {
+		try {
+			return entityManager.createQuery("SELECT a FROM AccountType a WHERE a.id = :id", AccountType.class).getResultList();
 		} catch (NoResultException e) {
 			throw new AccountDoesNotExistException();
 		}

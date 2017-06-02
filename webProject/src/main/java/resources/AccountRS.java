@@ -27,7 +27,7 @@ import model.Account;
 import model.Transaction;
 import mvc.model.AccountDoesNotExistException;
 
-@Path("/{a:rs/accounts|index.html}")
+@Path("/{a:rs/account|index.html}")
 public class AccountRS {
 
 	@PersistenceContext(unitName = "bankProjectWeb")
