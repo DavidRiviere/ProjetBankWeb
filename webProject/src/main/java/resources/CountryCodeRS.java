@@ -1,5 +1,7 @@
 package resources;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -17,7 +19,7 @@ import model.Agency;
 import model.CountryCode;
 import mvc.model.AccountDoesNotExistException;
 
-@Path("/countrycode")
+@Path("/rs/countrycode")
 public class CountryCodeRS {
 
 	@PersistenceContext(unitName = "bankProjectWeb")
@@ -33,6 +35,16 @@ public class CountryCodeRS {
 		try {
 			return entityManager.createQuery("SELECT a FROM CountryCode a WHERE a.id = :id", CountryCode.class)
 					.setParameter("id", id).getSingleResult();
+		} catch (NoResultException e) {
+			throw new AccountDoesNotExistException();
+		}
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<CountryCode> get() throws AccountDoesNotExistException {
+		try {
+			return entityManager.createQuery("SELECT a FROM AccountType a WHERE a.id = :id", CountryCode.class).getResultList();
 		} catch (NoResultException e) {
 			throw new AccountDoesNotExistException();
 		}

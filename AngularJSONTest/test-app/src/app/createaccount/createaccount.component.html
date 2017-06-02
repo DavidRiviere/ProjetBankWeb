@@ -1,10 +1,28 @@
 <div class="container">
 
+  <div class="form-group">
+      <label for="accountType">Choose your account type</label>
+      <select [(ngModel)]="model.accountType" class="form-control" id="chosenCity" required>
+        <option *ngFor="let accountType of accountTypeList" [ngValue]="accountType">{{accountType.description}}</option>
+      </select>
+  </div>
+
+  <div class="form-group">
+      <label for="accountType">Choose your account type</label>
+      <select [(ngModel)]="model.countryCode" class="form-control" id="chosenCity" required>
+        <option *ngFor="let countryCode of countryCodeList" [ngValue]="countryCode">{{countryCode.description}}</option>
+      </select>
+  </div>
+
   <div [hidden]="submitted">
     <h1>Create an account</h1>
     <form (ngSubmit)="onSubmit()" #createaccountForm="ngForm">
       <div class="form-group">
         <label for="description">Description</label>
+        <input type="hidden" class="form-control" id="description"
+               required
+               [(ngModel)]="model.description" name="description"
+               #name="ngModel">
         <input type="text" class="form-control" id="description"
                required
                [(ngModel)]="model.description" name="description"
@@ -31,11 +49,14 @@
              class="alert alert-danger">
           The initial balance is required
         </div>
-        <label for="creationDate">Creation date</label>
-        <input type="date" class="form-control" id="creationDate"
+        <label for="timestamp">Creation date</label>
+        <input type="date" class="form-control" id="timestamp"
                required
-               [(ngModel)]="model.creationDate" name="creationDate"
+               [(ngModel)]="timestamp" name="timestamp"
                #name="ngModel">
+        <div> {{model.creationDate }} </div>
+
+        <div> {{timestamp}} </div>
         <div [hidden]="name.valid || name.pristine"
              class="alert alert-danger">
           The initial balance is required

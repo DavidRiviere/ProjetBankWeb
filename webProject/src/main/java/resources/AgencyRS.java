@@ -1,5 +1,7 @@
 package resources;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -17,7 +19,7 @@ import model.AccountType;
 import model.Agency;
 import mvc.model.AccountDoesNotExistException;
 
-@Path("/agency")
+@Path("/rs/agency")
 public class AgencyRS {
 
 	@PersistenceContext(unitName = "bankProjectWeb")
@@ -33,6 +35,16 @@ public class AgencyRS {
 		try {
 			return entityManager.createQuery("SELECT a FROM Agency a WHERE a.id = :id", Agency.class)
 					.setParameter("id", id).getSingleResult();
+		} catch (NoResultException e) {
+			throw new AccountDoesNotExistException();
+		}
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Agency> get() throws AccountDoesNotExistException {
+		try {
+			return entityManager.createQuery("SELECT a FROM AccountType a WHERE a.id = :id", Agency.class).getResultList();
 		} catch (NoResultException e) {
 			throw new AccountDoesNotExistException();
 		}

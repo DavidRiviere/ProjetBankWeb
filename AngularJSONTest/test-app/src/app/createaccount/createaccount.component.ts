@@ -15,43 +15,54 @@ import 'rxjs/add/operator/toPromise';
 
 export class CreateaccountComponent implements OnInit {
 
-    model = new Account('descriptionAccount', new Date(1988, 3, 15), 'accountNumber', 12344);
+    timestamp = new Date(); 
+    model = new Account('', this.timestamp.toISOString().slice(0,10).replace(/-/g,"")+"000000+0200", '', 0);
 
     submitted = false;
 
-    cpvilles;
+    accountTypesList = [];
+    agencyList  = [] ;
+    countryCodeList  = [] ;
 
     constructor(private http: Http) { }
 
     newAccount() {
-        this.model = new Account('descriptionAccount', new Date(1988, 3, 15), 'accountNumber', 12344);
+        this.model = new Account('', '', '', 0);
     }
 
     onSubmit() { 
-        
-
-        console.log(this.model.description);
-        console.log(this.model.number);
-        console.log(this.model.initialBalance);
-        console.log(this.model.creationDate);
-
-        /*this.submitted = true;
+        this.submitted = true;
 
         let headers = new Headers({ 'Content-Type': 'application/json' });
 
         let options = new RequestOptions({ headers: headers });
-        
+
+        this.model.creationDate = this.timestamp.toISOString().slice(0,10).replace(/-/g,"")+"000000+0200";
+
         this.http.post("http://localhost:8080/bankProjectWeb/rs/account/", JSON.stringify(this.model), options)
             .subscribe(
                 data => console.log("success!", data),
                 error => console.error("couldn't post because", error)
             );
 
-        */
     }
 
     ngOnInit(){
+        
+        this.http.get("http://localhost:8080/bankProjectWeb/rs/accountType/").toPromise().
+            then(r => r.json()).then(r => this.accountTypesList = r).catch(this.handleError);
 
+        this.http.get("http://localhost:8080/bankProjectWeb/rs/agency/").toPromise().
+            then(r => r.json()).then(r => this.agencyList = r).catch(this.handleError);
+
+        this.http.get("http://localhost:8080/bankProjectWeb/rs/agency/").toPromise().
+            then(r => r.json()).then(r => this.countryCodeList = r).catch(this.handleError);
+            
     }
+
+    private handleError(error: any): Promise<any> {
+        console.error('An error occurred while fetching data from server: ', error); 
+        return Promise.reject(error.message || error);
+  }
 
 }
