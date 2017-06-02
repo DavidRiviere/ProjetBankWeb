@@ -31,11 +31,14 @@
              class="alert alert-danger">
           The initial balance is required
         </div>
-        <label for="creationDate">Creation date</label>
-        <input type="date" class="form-control" id="creationDate"
+        <label for="timestamp">Creation date</label>
+        <input type="date" class="form-control" id="timestamp"
                required
-               [(ngModel)]="model.creationDate" name="creationDate"
+               [(ngModel)]="timestamp" name="timestamp"
                #name="ngModel">
+        <div> {{model.creationDate }} </div>
+
+        <div> {{timestamp}} </div>
         <div [hidden]="name.valid || name.pristine"
              class="alert alert-danger">
           The initial balance is required
