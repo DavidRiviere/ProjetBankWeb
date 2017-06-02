@@ -16,7 +16,6 @@ import javax.ws.rs.core.Response;
 
 import biz.PersistManager;
 import model.AccountType;
-import model.CpVille;
 import mvc.model.AccountDoesNotExistException;
 
 @Path("/rs/accountType")

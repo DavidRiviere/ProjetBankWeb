@@ -15,7 +15,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import biz.PersistManager;
-import model.Agency;
 import model.CountryCode;
 import mvc.model.AccountDoesNotExistException;
 
