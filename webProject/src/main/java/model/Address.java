@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -77,7 +78,7 @@ public class Address implements Serializable, Identifiable{
 		this.line2 = line2;
 	}
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "idCpVille")
 	public CpVille getCpVille() {
 		return cpVille;

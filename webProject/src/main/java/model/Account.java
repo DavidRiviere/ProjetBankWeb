@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map.Entry;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -40,6 +41,7 @@ public class Account implements Serializable, Identifiable {
 	private double interestRate;
 	private double agioRate;
 	private double alertThreshold;
+	
 	private CountryCode countryCode;
 	private Date creationDate;
 	private Agency agency;
@@ -217,7 +219,7 @@ public class Account implements Serializable, Identifiable {
 		this.interestRate = interestRate;
 	}
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "idCountryCode")
 	public CountryCode getCountryCode() {
 		return countryCode;
@@ -230,7 +232,7 @@ public class Account implements Serializable, Identifiable {
 		this.countryCode = countryCode;
 	}
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "idAgency")
 	public Agency getAgency() {
 		return this.agency;
@@ -243,7 +245,7 @@ public class Account implements Serializable, Identifiable {
 		this.agency = agency;
 	}
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "idAccountType")
 	public AccountType getAccountType() {
 		return this.accountType;
