@@ -14,6 +14,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Link;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
@@ -35,8 +36,10 @@ public class CpVilleRS {
 	@Produces(MediaType.APPLICATION_JSON)
 	public CpVille get(@PathParam("id") long id) throws AccountDoesNotExistException {
 		try {
-			return entityManager.createQuery("SELECT a FROM CpVille a WHERE a.id = :id", CpVille.class)
+			CpVille singleResult = entityManager.createQuery("SELECT a FROM CpVille a WHERE a.id = :id", CpVille.class)
 					.setParameter("id", id).getSingleResult();
+			singleResult.setSelfLink(Link.fromPath("/rs/cpville/"+singleResult.getId()).rel("self").build());
+			return singleResult;
 		} catch (NoResultException e) {
 			throw new AccountDoesNotExistException();
 		}
