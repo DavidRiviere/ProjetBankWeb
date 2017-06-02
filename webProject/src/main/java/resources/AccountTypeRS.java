@@ -19,7 +19,7 @@ import model.AccountType;
 import model.CpVille;
 import mvc.model.AccountDoesNotExistException;
 
-@Path("/accountType")
+@Path("/rs/accountType")
 public class AccountTypeRS {
 
 	@PersistenceContext(unitName = "bankProjectWeb")

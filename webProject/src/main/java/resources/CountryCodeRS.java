@@ -19,7 +19,7 @@ import model.Agency;
 import model.CountryCode;
 import mvc.model.AccountDoesNotExistException;
 
-@Path("/countrycode")
+@Path("/rs/countrycode")
 public class CountryCodeRS {
 
 	@PersistenceContext(unitName = "bankProjectWeb")
