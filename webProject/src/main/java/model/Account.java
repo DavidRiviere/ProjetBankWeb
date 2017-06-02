@@ -39,7 +39,7 @@ public class Account implements Serializable, Identifiable {
 	private Long id;
 	private String number;
 	private String description;
-	private double initialBalance;
+	private double initialBalance;	
 	private double overdraft;
 	private double interestRate;
 	private double agioRate;
