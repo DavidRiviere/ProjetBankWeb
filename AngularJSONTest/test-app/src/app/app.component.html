@@ -1,12 +1,15 @@
 <div class="container-fluid">
 <header class="row entete">
-<h2 class="col-lg-12">Personnal account manager</h2>
+  <h2 class="col-lg-12">Personnal account manager</h2>
 </header>
 <div class="row">
-<div class="col-lg-3">
-  <ul class="nav nav-pills nav-stacked">
-    <li><a routerLink="/cpvilleform" routerLinkActive="active">Cpvilleform</a></li>
-    <li><a routerLink="/createaccountform" routerLinkActive="active">Create Account Form</a></li>
-  </ul>
-</div>
-<router-outlet></router-outlet>
+  <div class="col-lg-3">
+    <ul class="nav nav-pills nav-stacked">
+      <li class="active"><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
+      <li><a routerLink="/heroes" routerLinkActive="active">Heroes</a></li>
+      <li><a routerLink="/cpvilleform" routerLinkActive="active">Cpvilleform</a></li>
+      <li><a href="rib.html" title ="rib">Export a rib</a></li>
+      <li><a routerLink="/createaccountform" routerLinkActive="active">Create Account Form</a></li>
+    </ul>
+  </div>
+  <router-outlet></router-outlet>
