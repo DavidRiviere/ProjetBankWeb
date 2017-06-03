@@ -19,7 +19,7 @@ import model.AccountType;
 import model.Agency;
 import mvc.model.AccountDoesNotExistException;
 
-@Path("/rs/agency")
+//@Path("/rs/agency")
 public class AgencyRS {
 
 	@PersistenceContext(unitName = "bankProjectWeb")
