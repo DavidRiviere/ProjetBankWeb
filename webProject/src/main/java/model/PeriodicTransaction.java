@@ -109,6 +109,7 @@ public class PeriodicTransaction implements Serializable, Identifiable {
 		return transaction;
 	}
 	
+	//TODO problem of null point exception
 	public String getDescription(){
 		if(this.transactions.isEmpty()){
 			return "empty transaction list";

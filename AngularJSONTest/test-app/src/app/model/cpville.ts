@@ -3,5 +3,5 @@ export class Cpville {
     public zip: string,
     public city: string,
     public id?: number
-  ) {  }
+  ) { }
 }

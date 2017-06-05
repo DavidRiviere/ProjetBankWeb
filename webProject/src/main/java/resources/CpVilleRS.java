@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -69,6 +70,15 @@ public class CpVilleRS{
                 .build();
 		return Response.seeOther(location).build();
 		
+	}
+	
+	@DELETE
+	@Path("/{id}")
+	public Response deleteCpVilleFromID(@PathParam("id") long id) throws AccountDoesNotExistException {
+
+		persistManager.remove(get(id));
+		return Response.ok().build();
+
 	}
 
 	

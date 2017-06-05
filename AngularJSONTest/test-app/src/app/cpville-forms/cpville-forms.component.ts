@@ -16,7 +16,7 @@ import 'rxjs/add/operator/toPromise';
 
 export class CpvilleFormComponent implements OnInit {
 
-    model = new Cpville('34577', 'Somewhere');
+    model = new Cpville('', '');
 
     submitted = false;
 
@@ -32,37 +32,24 @@ export class CpvilleFormComponent implements OnInit {
     getCpvilleList(): void {
         this.cpvilleService.getCpvilleList()
         .then(cpvilles => this.cpvilles = cpvilles);
-        console.log(this.cpvilles);
+        console.log(JSON.stringify(this.cpvilles));
     }
 
     onSubmit() { 
         this.submitted = true;
+        this.cpvilleService.createCpville(this.model.city, this.model.zip);       
+    }
 
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-
-        let options = new RequestOptions({ headers: headers });
-        
-        this.http.post("http://localhost:8080/bankProjectWeb/rs/cpville/", JSON.stringify(this.model), options)
-            .subscribe(
-                data => console.log("success!", data),
-                error => console.error("couldn't post because", error)
-            );
-
-        console.log(this.model.city);
+    deleteCpville () {
+        this.cpvilleService.deleteCpvilleId(this.model.id);
     }
 
     newCpville() {
         this.model = new Cpville( '', '');
     }
 
-    get diagnostic() { return JSON.stringify(this.model); }
-
-
     ngOnInit(){
         this.getCpvilleList();
-        console.log(this.cpvilles);
-        //this.http.get("http://localhost:8080/bankProjectWeb/rs/cpville/").toPromise().
-          //  then(r => r.json()).then(r => this.cpvilles = r).catch(this.handleError);
     }
 
     private handleError(error: any): Promise<any> {

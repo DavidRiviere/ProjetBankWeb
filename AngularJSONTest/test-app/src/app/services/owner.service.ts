@@ -3,54 +3,54 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Cpville } from '../model/cpville';
+import { Owner } from '../model/owner';
 
 @Injectable()
-export class CpvilleService {
+export class OwnerService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private cpvilleUrl = 'http://localhost:8080/bankProjectWeb/rs/cpville/';  // URL to web api
+  private ownerUrl = 'http://localhost:8080/bankProjectWeb/rs/owner/';  // URL to web api
 
   constructor(private http: Http) { }
 
-  getCpvilleList(): Promise<Cpville[]> {
-    return this.http.get(this.cpvilleUrl)
+  getCpvilleList(): Promise<Owner[]> {
+    return this.http.get(this.ownerUrl)
                .toPromise()
-               .then(response => response.json() as Cpville[])
+               .then(response => response.json() as Owner[])
                .catch(this.handleError);
   }
 
 
-  getCpvilleById(id: number): Promise<Cpville> {
-    const url = `${this.cpvilleUrl}/${id}`;
+  getCpvilleById(id: number): Promise<Owner> {
+    const url = `${this.ownerUrl}/${id}`;
     return this.http.get(url)
       .toPromise()
-      .then(response => response.json() as Cpville)
+      .then(response => response.json() as Owner)
       .catch(this.handleError);
   }
 
   deleteCpvilleId(id: number): Promise<void> {
-    const url = `${this.cpvilleUrl}${id}`;
+    const url = `${this.ownerUrl}${id}`;
     return this.http.delete(url, {headers: this.headers})
       .toPromise()
       .then(() => null)
       .catch(this.handleError);
   }
 
-  createCpville(city: string, zip:string): Promise<Cpville> {
+  createCpville(owner: Owner): Promise<Owner> {
     return this.http
-      .post(this.cpvilleUrl, JSON.stringify({city: city, zip: zip}), {headers: this.headers})
+      .post(this.ownerUrl, JSON.stringify(owner), {headers: this.headers})
       .toPromise()
-      .then(res => res.json() as Cpville)
+      .then(res => res.json() as Owner)
       .catch(this.handleError);
   }
 
-  updateCpville(cpville: Cpville): Promise<Cpville> {
-    const url = `${this.cpvilleUrl}/${cpville.id}`;
+  updateCpville(owner: Owner): Promise<Owner> {
+    const url = `${this.ownerUrl}/${owner.id}`;
     return this.http
-      .put(url, JSON.stringify(cpville), {headers: this.headers})
+      .put(url, JSON.stringify(owner), {headers: this.headers})
       .toPromise()
-      .then(() => cpville)
+      .then(() => owner)
       .catch(this.handleError);
   }
 
