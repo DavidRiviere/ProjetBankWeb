@@ -24,7 +24,8 @@ import biz.PersistManager;
 import model.CpVille;
 import mvc.model.AccountDoesNotExistException;
 
-@Path("/rs/cpville")
+@Deprecated
+@Path("/rs/cpvilles")
 public class CpVilleRS{
 
 	@PersistenceContext(unitName = "bankProjectWeb")
