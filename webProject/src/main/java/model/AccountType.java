@@ -58,7 +58,7 @@ public class AccountType implements Serializable, Identifiable {
 
 	public void setType(String type) {
 		
-		//checkType(type);
+		checkType(type);
 		
 		this.type = type;
 	}
