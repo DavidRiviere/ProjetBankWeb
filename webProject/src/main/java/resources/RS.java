@@ -24,6 +24,7 @@ import model.Agency;
 import model.Bank;
 import model.Category;
 import model.CountryCode;
+import model.CpVille;
 import model.Frequency;
 import model.Owner;
 import model.PeriodicTransaction;
@@ -32,12 +33,13 @@ import model.Transaction;
 import model.TransactionType;
 import mvc.model.AccountDoesNotExistException;
 
-@Path("/rs/{class:accounttype|agency|bank|advisor|category|owner|transaction|transactiontype|targetTransaction|frequency|address|periodicTransaction|countryCode}")
+@Path("/rs/{class:cpvilles|accounttype|agency|bank|advisor|category|owner|transaction|transactiontype|targetTransaction|frequency|address|periodicTransaction|countryCode}")
 public class RS {
 	private static final Map<String, Class> myMap = createMap();
     private static Map<String, Class> createMap()
     {
         Map<String,Class> myMap = new HashMap<String,Class>();
+        myMap.put("cpvilles", CpVille.class);
         myMap.put("accounttype", AccountType.class);
         myMap.put("agency", Agency.class);
         myMap.put("bank", Bank.class);
