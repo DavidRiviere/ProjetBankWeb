@@ -2,6 +2,7 @@ package biz;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.LockModeType;
 import javax.persistence.PersistenceContext;
 
 import model.CpVille;
@@ -23,6 +24,11 @@ public class PersistManager {
 
 	public void remove(Identifiable entity){
 		entityManager.remove(entity);
+	}
+
+	public void remove(Class myClass, long id) {
+		Identifiable entity = (Identifiable) entityManager.find(myClass, id, LockModeType.PESSIMISTIC_WRITE);
+		remove(entity);
 	}
 
 }

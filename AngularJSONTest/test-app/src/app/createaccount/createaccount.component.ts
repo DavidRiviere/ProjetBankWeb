@@ -3,6 +3,22 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 
 import { Account }    from '../model/account';
+import { Cpville }    from '../model/cpville';
+
+import { CountryCode }    from '../model/countryCode';
+import { AccountType }    from '../model/accountType';
+import { Agency }    from '../model/agency';
+import { Owner }    from '../model/owner';
+import { Transaction }    from '../model/transaction';
+import { Address }    from '../model/address';
+import { Bank }    from '../model/bank';
+
+import { TransactionType }    from '../model/transactionType';
+import { Category }    from '../model/category';
+import { TargetTransaction }    from '../model/targetTransaction';
+import { PeriodicTransaction }    from '../model/periodicTransaction';
+import { Frequency }    from '../model/frequency';
+
 
 import 'rxjs/add/operator/toPromise';
 
@@ -14,9 +30,42 @@ import 'rxjs/add/operator/toPromise';
 
 
 export class CreateaccountComponent implements OnInit {
-
+    
     timestamp = new Date(); 
-    model = new Account('', this.timestamp.toISOString().slice(0,10).replace(/-/g,"")+"000000+0200", '', 0);
+    cpVille = new Cpville("34567", "truc");
+    bank = new Bank("bank", "code");
+    address = new Address("la", "", this.cpVille);
+    countryCode = new CountryCode('ess');
+    agency = new Agency("ag", "guichet", this.bank, this.address);
+    accountType = new AccountType('prout');
+    
+    owner = new Owner("jm","jm", this.timestamp.toISOString().slice(0,10).replace(/-/g,"")+"000000+0200",
+    "qsd","salt","azeaze@azeae.aze", "0712121212", "login", this.address,
+    true, []);
+    owners = [this.owner];
+
+    transactionType = new TransactionType("hebdoma");
+    category = new Category ("az");
+    targetTransaction = new TargetTransaction("sdqsd", "qsdqsd");
+
+    frequency = new Frequency("qsd");
+
+    periodicTransaction = new PeriodicTransaction(12, this.frequency, 
+     this.timestamp.toISOString().slice(0,10).replace(/-/g,"")+"000000+0200");
+
+    model2 = new Account();
+
+    transaction = new Transaction('tr', 123, this.model2, this.transactionType,
+    this.category, this.targetTransaction, this.periodicTransaction );
+    transactions = [this.transaction];
+
+    
+    model = new Account('qsdfsdf', 
+    this.timestamp.toISOString().slice(0,10).replace(/-/g,"")+"000000+0200",
+     'qdsdf', 0, 0, 0, 0, this.countryCode,
+     this.agency, this.accountType,
+     this.owners, this.transactions, 0
+     );
 
     submitted = false;
 
@@ -27,7 +76,12 @@ export class CreateaccountComponent implements OnInit {
     constructor(private http: Http) { }
 
     newAccount() {
-        this.model = new Account('', '', '', 0);
+        this.model = new Account('qsdfsdf', 
+    this.timestamp.toISOString().slice(0,10).replace(/-/g,"")+"000000+0200",
+     'qdsdf', 0, 0, 0, 0, this.countryCode,
+     this.agency, this.accountType,
+     this.owners, this.transactions, 0
+     );
     }
 
     onSubmit() { 

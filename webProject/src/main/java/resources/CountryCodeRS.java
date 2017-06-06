@@ -18,7 +18,7 @@ import biz.PersistManager;
 import model.CountryCode;
 import mvc.model.AccountDoesNotExistException;
 
-@Path("/rs/countrycode")
+//@Path("/rs/countrycode")
 public class CountryCodeRS {
 
 	@PersistenceContext(unitName = "bankProjectWeb")
