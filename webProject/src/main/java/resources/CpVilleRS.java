@@ -75,7 +75,6 @@ public class CpVilleRS{
 	@DELETE
 	@Path("/{id}")
 	public Response deleteCpVilleFromID(@PathParam("id") long id) throws AccountDoesNotExistException {
-
 		persistManager.remove(get(id));
 		return Response.ok().build();
 
