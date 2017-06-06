@@ -1,6 +1,7 @@
 package resources;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -34,11 +35,16 @@ public class CpVilleRS{
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public CpVille get(@PathParam("id") long id) throws AccountDoesNotExistException {
+	public CpVille get(@PathParam("id") long id, @Context UriInfo uriInfo) throws AccountDoesNotExistException {
 		try {
 			CpVille singleResult = entityManager.createQuery("SELECT a FROM CpVille a WHERE a.id = :id", CpVille.class)
 					.setParameter("id", id).getSingleResult();
-			singleResult.setSelfLink(Link.fromPath("/rs/cpville/"+singleResult.getId()).rel("self").build());
+			ArrayList<Link> links = new ArrayList<Link>();
+			singleResult.setLinks(links);
+			
+			links.add(Link.fromPath("/rs/cpville/"+singleResult.getId()).rel("res:self").build());
+			links.add(Link.fromUri(uriInfo.getAbsolutePath()).rel("res").build());
+			//links.add(Link.);
 			return singleResult;
 		} catch (NoResultException e) {
 			throw new AccountDoesNotExistException();

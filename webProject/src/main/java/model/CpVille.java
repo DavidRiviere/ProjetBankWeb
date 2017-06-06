@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +11,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.ws.rs.core.Link;
-
-import util.Formater;
 
 /**
  * The persistent class for the cpville database table.
@@ -29,7 +28,7 @@ public class CpVille implements Serializable, Identifiable {
 	private String zip;
 	private String city;
 	@Transient
-	private Link selfLink;
+	private List<Link> links;
 
 	public CpVille() {}
 
@@ -66,7 +65,7 @@ public class CpVille implements Serializable, Identifiable {
 	}
 
 	public void setCity(String city) {
-		//checkCity(city);
+		checkCity(city);
 		this.city =city;// Formater.formatNameCase(city);
 	}
 
@@ -86,11 +85,12 @@ public class CpVille implements Serializable, Identifiable {
 		return zip.length() <= 50;
 	}
 
-	public Link getSelfLink() {
-		return selfLink;
+	public List<Link> getLinks() {
+		return links;
 	}
 
-	public void setSelfLink(Link selfLink) {
-		this.selfLink = selfLink;
+	public void setLinks(List<Link> links) {
+		this.links = links;
 	}
+
 }

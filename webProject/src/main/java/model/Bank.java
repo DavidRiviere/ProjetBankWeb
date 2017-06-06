@@ -98,7 +98,7 @@ public class Bank implements Serializable, Identifiable{
 
 
 	public void setName(String name) {
-		//checkBankName(name);
+		checkBankName(name);
 		this.name = name;
 	}
 
@@ -109,7 +109,7 @@ public class Bank implements Serializable, Identifiable{
 
 
 	public void setCode(String code) {
-		//checkBankCode(code);
+		checkBankCode(code);
 		this.code = code;
 	}
 
