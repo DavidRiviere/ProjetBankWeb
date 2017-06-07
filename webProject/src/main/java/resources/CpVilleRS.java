@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -24,7 +25,8 @@ import biz.PersistManager;
 import model.CpVille;
 import mvc.model.AccountDoesNotExistException;
 
-@Path("/rs/cpville")
+@Deprecated
+@Path("/rs/cpvilles")
 public class CpVilleRS{
 
 	@PersistenceContext(unitName = "bankProjectWeb")
@@ -76,10 +78,13 @@ public class CpVilleRS{
 		return Response.seeOther(location).build();
 		
 	}
-
 	
-	public EntityManager getEntityManager() {
-		return entityManager;
+	@DELETE
+	public Response deleteCpVilleFromID(@PathParam("id") long id) throws AccountDoesNotExistException {
+		persistManager.remove(get(id));
+		return Response.ok().build();
+
 	}
+
 
 }
