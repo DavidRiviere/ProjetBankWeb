@@ -87,6 +87,8 @@
     </form>
   </div>
 
+<div [hidden]="!notNewAccount"><h1>Sorry this account already exists!!</h1></div>
+
   <div [hidden]="!submitted">
     <h2>You submitted the following:</h2>
     <div class="row">

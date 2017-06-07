@@ -29,6 +29,8 @@ export class CreateaccountComponent implements OnInit {
     model : Account = new Account();
     submitted = false;
 
+    notNewAccount = false;
+
     createdAccount : Account = new Account();
 
     accountTypeList: AccountType[];
@@ -50,7 +52,13 @@ export class CreateaccountComponent implements OnInit {
     onSubmit() { 
         this.submitted = true;
         this.model.creationDate = this.timestamp.toString().slice(0,10).replace(/-/g,"")+"000000+0200";
-        this.accountService.createAccount(this.model).then(model => this.createFunction(model));     
+        this.accountService.createAccount(this.model).then(model => this.createFunction(model)); 
+        try {
+            this.accountService.createAccount(this.model).then(model => this.createFunction(model)); 
+        }
+        catch (e) {
+            this.notNewAccount = true;
+        }   
     }
 
     createFunction(model : Account){

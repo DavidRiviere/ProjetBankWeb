@@ -20,6 +20,7 @@ import { PeriodicTransaction }    from '../model/periodicTransaction';
 import { Frequency }    from '../model/frequency';
 
 import { TransactionService } from '../services/transaction.service';
+import { AccountService } from '../services/account.service';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -39,9 +40,13 @@ export class TransactionComponent implements OnInit {
     bankList : Bank[];
     accountList : Account[];
     transactionList : Transaction[];
+    accountId: Account = new Account();
+
+    balanceAccountId : number = 0;
 
     constructor(private http: Http,
         private transactionService : TransactionService,
+        private accountService : AccountService,
         private route: ActivatedRoute) { }
 
     newTransaction() {
@@ -55,6 +60,17 @@ export class TransactionComponent implements OnInit {
         this.route.params
           .switchMap((params: Params) => this.transactionService.getTransactionList(+params['id']))
           .subscribe(transactionList => this.transactionList = transactionList);
+
+        this.route.params
+          .switchMap((params: Params) => this.accountService.getAccountById(+params['id']))
+          .subscribe(res => this.accountId = res);
+
+        this.route.params
+          .switchMap((params: Params) =>  this.accountService.getAccountBalanceById(+params['id']))
+          .subscribe(res => this.balanceAccountId = res);
+
+         // this.http.get("http://localhost:8080/bankProjectWeb/rs/owner/").toPromise().
+           // then(r => r.json()).then(r => this.ownerList = r).catch(this.handleError)
     }
 
     hack(val) {
