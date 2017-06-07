@@ -44,12 +44,21 @@ export class AccountService {
       .catch(this.handleError);
   }
 
-  createAccount(account: Account): Promise<Account> {
+  createAccount(account: Account): Promise<any> {
     return this.http
       .post(this.url, JSON.stringify(account), {headers: this.headers})
       .toPromise()
-      .then(res=>this.http.get(res.url).toPromise().then(response => response.json() as Account))
+      .then(res => this.functionResponse(res))
       .catch(this.handleError);
+  }
+
+  functionResponse(res){
+    if(res.status!=200){
+      throw Error;
+    }
+    else{
+      res=>this.http.get(res.url).toPromise().then(response => response.json() as Account);
+    }
   }
   
 

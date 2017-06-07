@@ -28,7 +28,7 @@
         <td>{{transaction?.transactionType?.description}}</td>
         <td *ngIf="transaction?.category?.parentCategory?.description.length >0 else elseBlock">{{transaction?.category?.parentCategory?.description}} </td>
         <td *ngIf="transaction?.category?.description.length >0 else elseBlock">{{transaction?.category?.description}} </td>
-        <ng-template #elseBlock><td>No category</td></ng-template>
+        <ng-template #elseBlock><td></td></ng-template>
         <td>{{transaction.date}}</td>
         <td *ngIf="transaction.value >=0 else elseValue"><p style="color:green;">{{transaction.value}}</p></td>
         <ng-template #elseValue><td><p style="color:red;">{{transaction.value}}</p></td></ng-template>
