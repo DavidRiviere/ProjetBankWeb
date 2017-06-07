@@ -33,12 +33,12 @@ export class AccountService {
       .catch(this.handleError);
   }
 
-  getAccountBalanceById(id: number): Promise<number> {
+  getAccountBalanceById(id: number) {
     const urla = `${this.url}${id}/balance/`;
     return this.http.get(urla)
-      .toPromise()
-      .then(response => Number(response.toString()))
-      .catch(this.handleError);
+    .toPromise()
+    .then(response => (response.blob))
+      ;
   }
 
   deleteAccountId(id: number): Promise<void> {
