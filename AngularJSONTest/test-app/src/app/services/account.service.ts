@@ -20,6 +20,10 @@ export class AccountService {
                .catch(this.handleError);
   }
 
+ /* get(urlRes) {
+    return this.http.get(urlRes)
+      .toPromise();
+  }*/
 
   getAccountById(id: number): Promise<Account> {
     const url = `${this.url}/${id}`;
@@ -41,9 +45,10 @@ export class AccountService {
     return this.http
       .post(this.url, JSON.stringify(account), {headers: this.headers})
       .toPromise()
-      .then(res => res.json() as Account)
+      .then(res=>this.http.get(res.url).toPromise().then(response => response.json() as Account))
       .catch(this.handleError);
   }
+  
 
   updateAccount(account: Account): Promise<Account> {
     const url = `${this.url}/${account.id}`;

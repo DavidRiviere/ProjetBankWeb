@@ -29,7 +29,7 @@ export class CreateaccountComponent implements OnInit {
     model : Account = new Account();
     submitted = false;
 
-    createdAccount : Account ;
+    createdAccount : Account = new Account();
 
     accountTypeList: AccountType[];
     agencyList : Agency[];
@@ -50,7 +50,11 @@ export class CreateaccountComponent implements OnInit {
     onSubmit() { 
         this.submitted = true;
         this.model.creationDate = this.timestamp.toString().slice(0,10).replace(/-/g,"")+"000000+0200";
-        this.accountService.createAccount(this.model).then(createdAccount => this.createdAccount = createdAccount);;
+        this.accountService.createAccount(this.model).then(model => this.createFunction(model));     
+    }
+
+    createFunction(model : Account){
+        this.createdAccount = model;
     }
 
     ngOnInit(){
@@ -73,9 +77,7 @@ export class CreateaccountComponent implements OnInit {
     }
 
     goToTransactionList(){
-
-            //let link = ['/detail', hero.id];
-            let link = ['/transactions', this.createdAccount.id]
+            let link = ['/account', this.createdAccount.id, 'transactions'];
             this.router.navigate(link);
     }   
 
