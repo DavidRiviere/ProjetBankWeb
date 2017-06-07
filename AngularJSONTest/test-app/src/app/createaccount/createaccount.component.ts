@@ -60,13 +60,8 @@ export class CreateaccountComponent implements OnInit {
     this.category, this.targetTransaction, this.periodicTransaction );
     transactions = [this.transaction];
 
-    
-    model = new Account('qsdfsdf', 
-    this.timestamp.toISOString().slice(0,10).replace(/-/g,"")+"000000+0200",
-     'qdsdf', 0, 0, 0, 0, this.countryCode,
-     this.agency, this.accountType,
-     this.owners, this.transactions, 0
-     );
+
+    model : Account = new Account();
 
     submitted = false;
 
@@ -82,12 +77,13 @@ export class CreateaccountComponent implements OnInit {
         private ownerservice : OwnerService) { }
 
     newAccount() {
-        this.model = new Account('qsdfsdf', 
+        /*this.model = new Account('qsdfsdf', 
             this.timestamp.toISOString().slice(0,10).replace(/-/g,"")+"000000+0200",
             'qdsdf', 0, 0, 0, 0, this.countryCode,
             this.agency, this.accountType,
             this.owners, this.transactions, 0
-     );
+     );*/
+      this.model = new Account();
     }
 
     onSubmit() { 

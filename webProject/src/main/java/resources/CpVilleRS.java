@@ -79,12 +79,13 @@ public class CpVilleRS{
 		
 	}
 	
+	/*
 	@DELETE
 	public Response deleteCpVilleFromID(@PathParam("id") long id) throws AccountDoesNotExistException {
 		persistManager.remove(get(id));
 		return Response.ok().build();
 
-	}
+	}*/
 
 
 }
