@@ -2,9 +2,6 @@ package resources;
 
 import java.util.List;
 
-import javax.ejb.EJB;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -16,17 +13,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import biz.PersistManager;
 import model.CpVille;
 import mvc.model.AccountDoesNotExistException;
 
 @Path("/rs/{class:cpville}")
 public class CpVilleRS extends RS{
 
-//	@PersistenceContext(unitName = "bankProjectWeb")
-//	private EntityManager em;
-//	
-//	@EJB private PersistManager pm;
+
 
 //	@GET
 //	@Path("/{id}")
@@ -48,15 +41,6 @@ public class CpVilleRS extends RS{
 //	}
 
 	
-//	@GET
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public List<CpVille> get() throws AccountDoesNotExistException {
-//		try {
-//			return entityManager.createQuery("SELECT a FROM CpVille a", CpVille.class).getResultList();
-//		} catch (NoResultException e) {
-//			throw new AccountDoesNotExistException();
-//		}
-//	}
 	
 
 	@POST
@@ -66,9 +50,8 @@ public class CpVilleRS extends RS{
 		this.persistManager.persist(cpVille);
 		
 		return postLocation(cpVille.getId(), uriInfo);
-
-		
 	}
+
 
 	@Override
 	@GET
@@ -77,17 +60,7 @@ public class CpVilleRS extends RS{
 		return super.get(pathClass);
 	}
 	
-	
-	
 
-
-
-//	@DELETE
-//	public Response deleteCpVilleFromID(@PathParam("id") long id) throws AccountDoesNotExistException {
-//		//persistManager.remove(get(id));
-//		return Response.ok().build();
-//
-//	}
 
 
 }
