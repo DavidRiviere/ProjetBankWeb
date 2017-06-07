@@ -1,0 +1,19 @@
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+
+table {
+	border: medium solid rgb(34, 66, 124);
+	border-collapse: collapse;
+	width: 100%;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+td, th {
+	border: thin solid rgb(34, 66, 124);
+}

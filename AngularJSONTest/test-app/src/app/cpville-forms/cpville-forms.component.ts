@@ -32,7 +32,6 @@ export class CpvilleFormComponent implements OnInit {
     getCpvilleList(): void {
         this.cpvilleService.getCpvilleList()
         .then(cpvilles => this.cpvilles = cpvilles);
-        console.log(JSON.stringify(this.cpvilles));
     }
 
     onSubmit() { 
