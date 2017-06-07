@@ -17,7 +17,7 @@ import model.CpVille;
 import mvc.model.AccountDoesNotExistException;
 
 @Path("/rs/{class:cpville}")
-public class CpVilleRS extends RS{
+public class CpVilleRS extends Resource{
 
 
 

@@ -1,6 +1,5 @@
 package resources;
 
-import java.net.URI;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +23,7 @@ import model.Transaction;
 import mvc.model.AccountDoesNotExistException;
 
 @Path("/rs/{class:account}")
-public class AccountRS extends RS{
+public class AccountRS extends Resource{
 
 	public boolean accountAlreadyExist(String accountNumber) {
 		return (entityManager.createQuery("SELECT Count(a) FROM Account a WHERE a.number = :accountNumber", Long.class)

@@ -78,6 +78,11 @@
 			<artifactId>jaxrs-cors</artifactId>
 			<version>0.0.2</version>
 		</dependency>
+		<dependency>
+			<groupId>com.theoryinpractise</groupId>
+			<artifactId>halbuilder-standard</artifactId>
+			<version>4.0.1</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
