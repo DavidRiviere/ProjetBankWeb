@@ -84,5 +84,15 @@ public class AccountRS extends Resource{
 		}
 	}
 	
+	@GET
+	@Path("/{id}/balance")
+	public double getBalance(@PathParam("id") long id) throws AccountDoesNotExistException {
+		try {
+			return entityManager.find(Account.class, id).calculateBalance();
+		} catch (NoResultException e) {
+			throw new AccountDoesNotExistException();
+		}
+	}
+	
 
 }
