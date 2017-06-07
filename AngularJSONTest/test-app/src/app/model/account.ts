@@ -18,6 +18,7 @@ export class Account {
     public owners: Array<Owner>;
     public transactions: Array<Transaction>;
     public alertThreshold: number;
+    public id?: number;
   
   constructor(values: Object = {}) {
     Object.assign(this, values);

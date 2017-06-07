@@ -33,7 +33,7 @@ import 'rxjs/add/operator/toPromise';
 export class CreateaccountComponent implements OnInit {
     
     timestamp = new Date(); 
-    cpVille = new Cpville("34567", "truc");
+    /*cpVille = new Cpville("34567", "truc");
     bank = new Bank("bank", "code");
     address = new Address("la", "", this.cpVille);
     countryCode = new CountryCode('ess');
@@ -58,11 +58,10 @@ export class CreateaccountComponent implements OnInit {
 
     transaction = new Transaction('tr', 123, this.model2, this.transactionType,
     this.category, this.targetTransaction, this.periodicTransaction );
-    transactions = [this.transaction];
+    transactions = [this.transaction];*/
 
 
     model : Account = new Account();
-
     submitted = false;
 
 
@@ -77,13 +76,8 @@ export class CreateaccountComponent implements OnInit {
         private ownerservice : OwnerService) { }
 
     newAccount() {
-        /*this.model = new Account('qsdfsdf', 
-            this.timestamp.toISOString().slice(0,10).replace(/-/g,"")+"000000+0200",
-            'qdsdf', 0, 0, 0, 0, this.countryCode,
-            this.agency, this.accountType,
-            this.owners, this.transactions, 0
-     );*/
-      this.model = new Account();
+        this.submitted = false;
+        this.model = new Account();
     }
 
     onSubmit() { 
@@ -93,7 +87,7 @@ export class CreateaccountComponent implements OnInit {
 
         let options = new RequestOptions({ headers: headers });
 
-        this.model.creationDate = this.timestamp.toISOString().slice(0,10).replace(/-/g,"")+"000000+0200";
+        this.model.creationDate = this.timestamp.toString().slice(0,10).replace(/-/g,"")+"000000+0200";
 
         this.http.post("http://localhost:8080/bankProjectWeb/rs/account/", JSON.stringify(this.model), options)
             .subscribe(
@@ -116,9 +110,6 @@ export class CreateaccountComponent implements OnInit {
 
         this.http.get("http://localhost:8080/bankProjectWeb/rs/bank/").toPromise().
             then(r => r.json()).then(r => this.bankList = r).catch(this.handleError);
-
-        /*this.http.get("http://localhost:8080/bankProjectWeb/rs/transaction/").toPromise().
-            then(r => r.json()).then(r => this.transactionList = r).catch(this.handleError);*/
 
         this.http.get("http://localhost:8080/bankProjectWeb/rs/owner/").toPromise().
             then(r => r.json()).then(r => this.ownerList = r).catch(this.handleError);
