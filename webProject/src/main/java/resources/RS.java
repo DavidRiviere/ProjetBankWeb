@@ -39,7 +39,7 @@ import model.Transaction;
 import model.TransactionType;
 import mvc.model.AccountDoesNotExistException;
 
-@Path("/rs/{class:cpville|accounttype|agency|bank|advisor|category|owner|transaction|transactiontype|targetTransaction|frequency|address|periodicTransaction|countryCode}")
+@Path("/rs/{class:accounttype|agency|bank|advisor|category|owner|transaction|transactiontype|targetTransaction|frequency|address|periodicTransaction|countryCode}")
 public class RS {
 	private static final Map<String, Class> myMap = createMap();
     private static Map<String, Class> createMap()
@@ -63,32 +63,25 @@ public class RS {
     }
 
 	@PersistenceContext(unitName = "bankProjectWeb")
-	private EntityManager entityManager;
+	EntityManager entityManager;
 
 	@EJB
-	private PersistManager persistManager;
+	PersistManager persistManager;
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Object> get(@PathParam("class") String pathClass) throws AccountDoesNotExistException {
 		Class myClass = RS.myMap.get(pathClass);
+		System.out.println(this.entityManager);
+		System.out.println(this.entityManager.createQuery("SELECT a FROM "+myClass.getName()+" a", myClass));
 
 		try {
-			return entityManager.createQuery("SELECT a FROM "+myClass.getName()+" a", myClass).getResultList();
+			return this.entityManager.createQuery("SELECT a FROM "+myClass.getName()+" a", myClass).getResultList();
 		} catch (NoResultException e) {
 			throw new AccountDoesNotExistException();
 		}
 	}
 	
-//	@GET
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public List<CpVille> get() throws AccountDoesNotExistException {
-//		try {
-//			return entityManager.createQuery("SELECT a FROM CpVille a", CpVille.class).getResultList();
-//		} catch (NoResultException e) {
-//			throw new AccountDoesNotExistException();
-//		}
-//	}
 	
 	@GET
 	@Path("/{id}")
@@ -106,18 +99,26 @@ public class RS {
 	
 //	@POST
 //	@Consumes(MediaType.APPLICATION_JSON)
-//	public Response post(@PathParam("class") String pathClass, @Context UriInfo uriInfo) {
+//	public Response post(@PathParam("class") String pathClass, Object entity, @Context UriInfo uriInfo) {
 //		Class myClass = RS.myMap.get(pathClass);
+//		Identifiable cast = (Identifiable) myClass.cast(entity);
 //		
-//		persistManager.persist(myClass);
+//		persistManager.persist(cast);
 //		
 //		
 //		URI location = uriInfo.getRequestUriBuilder()
-//                .path(String.valueOf(myClass.getId()))
+//                .path(String.valueOf((cast).getId()))
 //                .build();
 //		return Response.seeOther(location).build();
 //		
 //	}
+	
+	protected Response postLocation(Long id, UriInfo uriInfo) {
+		URI location = uriInfo.getRequestUriBuilder()
+                .path(String.valueOf(id))
+                .build();
+		return Response.seeOther(location).build();
+	}
 
 
 	@DELETE

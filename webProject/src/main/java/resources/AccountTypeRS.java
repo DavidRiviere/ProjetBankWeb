@@ -18,7 +18,7 @@ import biz.PersistManager;
 import model.AccountType;
 import mvc.model.AccountDoesNotExistException;
 
-@Path("/rs/accountType")
+//@Path("/rs/accountType")
 public class AccountTypeRS {
 
 	@PersistenceContext(unitName = "bankProjectWeb")
