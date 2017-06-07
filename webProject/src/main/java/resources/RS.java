@@ -36,7 +36,7 @@ import model.Transaction;
 import model.TransactionType;
 import mvc.model.AccountDoesNotExistException;
 
-@Path("/rs/{class:accounttype|agency|bank|advisor|category|owner|transaction|transactiontype|targetTransaction|frequency|address|periodicTransaction|countryCode}")
+@Path("/rs/{class:accounttype|agency|bank|advisor|category|owner|transactiontype|targetTransaction|frequency|address|periodicTransaction|countryCode}")
 public class RS {
 	private static final Map<String, Class> myMap = createMap();
     private static Map<String, Class> createMap()
@@ -70,8 +70,6 @@ public class RS {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Object> get(@PathParam("class") String pathClass) throws AccountDoesNotExistException {
 		Class myClass = RS.myMap.get(pathClass);
-		System.out.println(this.entityManager);
-		System.out.println(this.entityManager.createQuery("SELECT a FROM "+myClass.getName()+" a", myClass));
 
 		try {
 			return this.entityManager.createQuery("SELECT a FROM "+myClass.getName()+" a", myClass).getResultList();
