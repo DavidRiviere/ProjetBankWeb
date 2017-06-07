@@ -8,7 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeroService }          from './hero.service';
 import { CpvilleService }          from './services/cpville.service';
 import { OwnerService }          from './services/owner.service';
+
 import{ TransactionService }   from './services/transaction.service';
+import { AccountService }          from './services/account.service';
 
 import { AppComponent }         from './app.component';
 import { DashboardComponent }   from './dashboard/dashboard.component';
@@ -36,7 +38,7 @@ import { TransactionComponent }  from './transaction/transaction.component';
     CreateaccountComponent,
     TransactionComponent
   ],
-  providers: [ HeroService, CpvilleService, OwnerService, TransactionService ],
+  providers: [ HeroService, CpvilleService, OwnerService, TransactionService, AccountService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

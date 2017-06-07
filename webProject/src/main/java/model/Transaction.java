@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -49,19 +50,19 @@ public class Transaction implements Serializable, Identifiable {
 	@Temporal(TemporalType.DATE)
 	@Column(name="dateTransaction")
 	private Date date;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idAccount")
 	private Account account;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idTransactionType")
 	private TransactionType transactionType;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idCategory")
 	private Category category;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idTargetTransaction")
 	private TargetTransaction targetTransaction;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idPeriodicTransaction")
 	private PeriodicTransaction periodicTransaction;
     
