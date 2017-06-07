@@ -15,32 +15,24 @@
         <option *ngFor="let account of accountList" [ngValue]="account">{{account.description}}</option>
       </select>
   </div>
-    <table> <!--(ngSubmit)="onSubmit()" #transaction="ngForm">-->
+    <table>
       <tr>
-        <td>Description</td>
-        <td>Type</td>
-        <td>Category</td>
-        <td>Date</td>
-        <td>Value</td>
+        <td><h3>Description</h3></td>
+        <td><h3>Type</h3></td>
+        <td><h3>Category</h3></td>
+        <td><h3>Date</h3></td>
+        <td><h3>Value</h3></td>
       </tr>
-<!--      <tr [(ngModel)]="model.transaction">
-        <td *ngFor="let transaction of transactionList" [ngValue]="transaction">
-          {{transaction.description}}
-        </td>
-        <td *ngFor="let transaction of transactionList" [ngValue]="transaction">
-          {{transaction.transactionType}}
-        </td>
-        <td *ngFor="let transaction of transactionList" [ngValue]="transaction">
-          {{transaction.category}}
-        </td>
-        <td *ngFor="let transaction of transactionList" [ngValue]="transaction">
-          {{transaction.date}}
-        </td>
-        <td *ngFor="let transaction of transactionList" [ngValue]="transaction">
-          {{transaction.value}}
-        </td>
-      </tr>-->
+    <tr *ngFor="let transaction of transactionList">
+        <td>{{transaction.description}}</td>
+        <td>{{transaction?.transactionType?.description}}</td>
+        <td>{{transaction?.category?.description}}</td>
+        <td>{{transaction.date}}</td>
+        <td>{{transaction.value}}</td>
+    </tr>
+
     </table>
+
   </div>
 
 </div>

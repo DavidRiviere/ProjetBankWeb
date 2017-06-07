@@ -51,10 +51,14 @@ export class TransactionComponent implements OnInit {
     onSubmit() {
     }
 
-    ngOnInit(){
+    ngOnInit(): void{
         this.route.params
           .switchMap((params: Params) => this.transactionService.getTransactionList(+params['id']))
           .subscribe(transactionList => this.transactionList = transactionList);
+    }
+
+    hack(val) {
+        return Array.from(val);
     }
 
     private handleError(error: any): Promise<any> {

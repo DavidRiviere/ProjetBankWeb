@@ -13,11 +13,11 @@ export class TransactionService {
 
   constructor(private http: Http) { }
 
-  getTransactionList(id:number): Promise<Transaction[]> {
-    const url = `${this.transactionUrl}/${id}/transactions/`;
+  getTransactionList(id:number): Promise<any> {
+    const url = `${this.transactionUrl}${id}/transactions/`;
     return this.http.get(url)
       .toPromise()
-      .then(response => response.json() as Transaction[])
+      .then(response => response.json())
       .catch(this.handleError);
   }
 
