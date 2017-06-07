@@ -19,6 +19,7 @@ import { TargetTransaction }    from '../model/targetTransaction';
 import { PeriodicTransaction }    from '../model/periodicTransaction';
 import { Frequency }    from '../model/frequency';
 
+import { OwnerService } from '../services/owner.service';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -69,18 +70,23 @@ export class CreateaccountComponent implements OnInit {
 
     submitted = false;
 
-    accountTypesList = [];
-    agencyList  = [] ;
-    countryCodeList  = [] ;
 
-    constructor(private http: Http) { }
+    accountTypeList: AccountType[];
+    agencyList : Agency[];
+    countryCodeList : CountryCode[];
+    bankList : Bank[];
+    transactionList : Transaction[];
+    ownerList : Owner[];
+
+    constructor(private http: Http,
+        private ownerservice : OwnerService) { }
 
     newAccount() {
         this.model = new Account('qsdfsdf', 
-    this.timestamp.toISOString().slice(0,10).replace(/-/g,"")+"000000+0200",
-     'qdsdf', 0, 0, 0, 0, this.countryCode,
-     this.agency, this.accountType,
-     this.owners, this.transactions, 0
+            this.timestamp.toISOString().slice(0,10).replace(/-/g,"")+"000000+0200",
+            'qdsdf', 0, 0, 0, 0, this.countryCode,
+            this.agency, this.accountType,
+            this.owners, this.transactions, 0
      );
     }
 
@@ -103,14 +109,23 @@ export class CreateaccountComponent implements OnInit {
 
     ngOnInit(){
         
-        this.http.get("http://localhost:8080/bankProjectWeb/rs/accountType/").toPromise().
-            then(r => r.json()).then(r => this.accountTypesList = r).catch(this.handleError);
+        this.http.get("http://localhost:8080/bankProjectWeb/rs/accounttype/").toPromise().
+            then(r => r.json()).then(r => this.accountTypeList = r).catch(this.handleError);
 
         this.http.get("http://localhost:8080/bankProjectWeb/rs/agency/").toPromise().
             then(r => r.json()).then(r => this.agencyList = r).catch(this.handleError);
 
-        this.http.get("http://localhost:8080/bankProjectWeb/rs/agency/").toPromise().
+        this.http.get("http://localhost:8080/bankProjectWeb/rs/countryCode/").toPromise().
             then(r => r.json()).then(r => this.countryCodeList = r).catch(this.handleError);
+
+        this.http.get("http://localhost:8080/bankProjectWeb/rs/bank/").toPromise().
+            then(r => r.json()).then(r => this.bankList = r).catch(this.handleError);
+
+        /*this.http.get("http://localhost:8080/bankProjectWeb/rs/transaction/").toPromise().
+            then(r => r.json()).then(r => this.transactionList = r).catch(this.handleError);*/
+
+        this.http.get("http://localhost:8080/bankProjectWeb/rs/owner/").toPromise().
+            then(r => r.json()).then(r => this.ownerList = r).catch(this.handleError);
             
     }
 

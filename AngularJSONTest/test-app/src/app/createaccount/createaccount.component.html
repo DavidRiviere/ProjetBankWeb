@@ -1,24 +1,44 @@
 <div class="container">
 
-  <div class="form-group">
-      <label for="accountType">Choose your account type</label>
-      <select [(ngModel)]="model.accountType" class="form-control" id="chosenCity" required>
-        <option *ngFor="let accountType of accountTypeList" [ngValue]="accountType">{{accountType.description}}</option>
-      </select>
-  </div>
-
-  <div class="form-group">
-      <label for="accountType">Choose your account type</label>
-      <select [(ngModel)]="model.countryCode" class="form-control" id="chosenCity" required>
-        <option *ngFor="let countryCode of countryCodeList" [ngValue]="countryCode">{{countryCode.description}}</option>
-      </select>
-  </div>
-
   <div [hidden]="submitted">
     <h1>Create an account</h1>
+      <div class="form-group">
+      <label for="owner">Choose your owner</label>
+      <select [(ngModel)]="model.owner" class="form-control" id="chosenAccountType" required>
+        <option *ngFor="let owner of ownerList" [ngValue]="owner">{{owner.name}} {{owner.firstName}}</option>
+      </select>
+  </div>
+
+  <div class="form-group">
+      <label for="accountType">Choose your account type</label>
+      <select [(ngModel)]="model.accountType" class="form-control" id="chosenAccountType" required>
+        <option *ngFor="let accountType of accountTypeList" [ngValue]="accountType">{{accountType.type}}</option>
+      </select>
+  </div>
+
+  <div class="form-group">
+      <label for="countryCode">Choose your country code</label>
+      <select [(ngModel)]="model.countryCode" class="form-control" id="chosenCountryCode" required>
+        <option *ngFor="let countryCode of countryCodeList" [ngValue]="countryCode">{{countryCode.code}}</option>
+      </select>
+  </div>
+
+    <div class="form-group">
+      <label for="bank">Choose your bank</label>
+      <select [(ngModel)]="model.bank" class="form-control" id="chosenBank" required>
+        <option *ngFor="let bank of bankList" [ngValue]="bank">{{bank.name}}</option>
+      </select>
+  </div>
+
+    <div class="form-group">
+      <label for="agency">Choose your agency</label>
+      <select [(ngModel)]="model.agency" class="form-control" id="chosenAgency" required>
+        <option *ngFor="let agency of agencyList" [ngValue]="agency">{{agency.name}}</option>
+      </select>
+  </div>
     <form (ngSubmit)="onSubmit()" #createaccountForm="ngForm">
       <div class="form-group">
-        <label for="description">Description</label>
+        <label for="description">Account description</label>
         <input type="hidden" class="form-control" id="description"
                required
                [(ngModel)]="model.description" name="description"
@@ -66,17 +86,5 @@
       <button type="button" class="btn btn-default" (click)="newAccount(); createaccountForm.reset()">New Account</button>
     </form>
   </div>
-  <div [hidden]="!submitted">
-    <h2>You submitted the following:</h2>
-    <div class="row">
-      <div class="col-xs-3">Account description</div>
-      <div class="col-xs-9  pull-left">{{ model.description }}</div>
-    </div>
-    <div class="row">
-      <div class="col-xs-3">Account number</div>
-      <div class="col-xs-9 pull-left">{{ model.number }}</div>
-    </div>
-    <br>
-    <button class="btn btn-primary" (click)="submitted=false">Edit</button>
-  </div>
+
 </div>
