@@ -1,5 +1,5 @@
 import { Injectable }    from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -9,6 +9,7 @@ import { Account } from '../model/account';
 export class AccountService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
+  private headersGet = new Headers({'Accept': 'text/plain'});
   private url = 'http://localhost:8080/bankProjectWeb/rs/account/';  // URL to web api
 
   constructor(private http: Http) { }
@@ -35,10 +36,9 @@ export class AccountService {
 
   getAccountBalanceById(id: number) {
     const urla = `${this.url}${id}/balance/`;
-    return this.http.get(urla)
+    return this.http.get(urla, {headers: this.headersGet})
     .toPromise()
-    .then(response => (response.blob))
-      ;
+    .then(response => (response.text()));
   }
 
   deleteAccountId(id: number): Promise<void> {

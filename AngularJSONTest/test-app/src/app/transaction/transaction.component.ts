@@ -43,6 +43,7 @@ export class TransactionComponent implements OnInit {
     accountId: Account = new Account();
 
     balanceAccountId : string ;
+   
     constructor(private http: Http,
         private transactionService : TransactionService,
         private accountService : AccountService,
@@ -52,8 +53,6 @@ export class TransactionComponent implements OnInit {
         this.model = new Transaction();
     }
 
-    onSubmit() {
-    }
 
     ngOnInit(): void{
         this.route.params
@@ -64,22 +63,10 @@ export class TransactionComponent implements OnInit {
           .switchMap((params: Params) => this.accountService.getAccountById(+params['id']))
           .subscribe(res => this.accountId = res);
 
-       /* this.route.params
+        this.route.params
           .switchMap((params: Params) =>  this.accountService.getAccountBalanceById(+params['id']))
-          .subscribe(res => this.balanceAccountId = res);*/
+          .subscribe(res => this.balanceAccountId = res);
 
-           this.route.params
-          .switchMap((params: Params) =>  
-          (this.http.get('http://localhost:8080/bankProjectWeb/rs/account/'+params['id']+'/balance')
-    .toPromise().then( response => response.text()))).subscribe(res => this.balanceAccountId = res);
-
-
-         // this.http.get("http://localhost:8080/bankProjectWeb/rs/owner/").toPromise().
-           // then(r => r.json()).then(r => this.ownerList = r).catch(this.handleError)
-    }
-
-    hack(val) {
-        return Array.from(val);
     }
 
     private handleError(error: any): Promise<any> {
