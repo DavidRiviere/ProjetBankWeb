@@ -98,7 +98,8 @@
       <div class="col-xs-9 pull-left">{{ model.zip }}</div>
     </div>
     <br>
-    <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+    <button type="button" class="btn btn-default" (click)="newAccount(); createaccountForm.reset()">New Account</button>
+    <button class="btn btn-primary" (click)="goToTransactionList()">OK !</button>
   </div>
 
 </div>
