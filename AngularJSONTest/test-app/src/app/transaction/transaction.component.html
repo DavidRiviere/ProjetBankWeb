@@ -19,15 +19,19 @@
         <td><h3>Description</h3></td>
         <td><h3>Type</h3></td>
         <td><h3>Category</h3></td>
+        <td><h3>Sub-Category</h3></td>
         <td><h3>Date</h3></td>
         <td><h3>Value</h3></td>
       </tr>
     <tr *ngFor="let transaction of transactionList">
         <td>{{transaction.description}}</td>
         <td>{{transaction?.transactionType?.description}}</td>
-        <td>{{transaction?.category?.description}}</td>
+        <td *ngIf="transaction?.category?.parentCategory?.description.length >0 else elseBlock">{{transaction?.category?.parentCategory?.description}} </td>
+        <td *ngIf="transaction?.category?.description.length >0 else elseBlock">{{transaction?.category?.description}} </td>
+        <ng-template #elseBlock><td>No category</td></ng-template>
         <td>{{transaction.date}}</td>
-        <td>{{transaction.value}}</td>
+        <td *ngIf="transaction.value >=0 else elseValue"><p style="color:green;">{{transaction.value}}</p></td>
+        <ng-template #elseValue><td><p style="color:red;">{{transaction.value}}</p></td></ng-template>
     </tr>
 
     </table>
@@ -37,3 +41,4 @@
 <label for="initialBalance">Initial Balance: </label>{{accountId.initialBalance}}<br>
 <h1><label for="initialBalance">Balance: </label>{{balanceAccountId}}</h1>
 </div>
+

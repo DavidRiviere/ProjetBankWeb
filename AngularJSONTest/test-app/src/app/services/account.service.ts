@@ -21,11 +21,6 @@ export class AccountService {
                .catch(this.handleError);
   }
 
- /* get(urlRes) {
-    return this.http.get(urlRes)
-      .toPromise();
-  }*/
-
   getAccountById(id: number): Promise<Account> {
     const url = `${this.url}${id}`;
     return this.http.get(url)
@@ -38,7 +33,7 @@ export class AccountService {
     const urla = `${this.url}${id}/balance/`;
     return this.http.get(urla, {headers: this.headersGet})
     .toPromise()
-    .then(response => (response.text()));
+    .then(response => (response.text())).catch(this.handleError);
   }
 
   deleteAccountId(id: number): Promise<void> {
