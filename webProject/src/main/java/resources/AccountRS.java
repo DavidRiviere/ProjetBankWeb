@@ -23,7 +23,7 @@ import model.Transaction;
 import mvc.model.AccountDoesNotExistException;
 
 @Path("/rs/{class:account}")
-public class AccountRS extends Resource{
+public class AccountRS extends Resource {
 
 	public boolean accountAlreadyExist(String accountNumber) {
 		return (entityManager.createQuery("SELECT Count(a) FROM Account a WHERE a.number = :accountNumber", Long.class)
@@ -47,12 +47,11 @@ public class AccountRS extends Resource{
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	public Response post(MultivaluedMap<String, String> formParams, @Context UriInfo uriInfo) {
-		
+
 		Account account = new AccountBuilder().setDescription(formParams.getFirst("accountDescription"))
 				.setCreationDate(new Date())
 				.setInitialBalance(Double.valueOf(formParams.getFirst("accountInitialBalance")))
-				.setNumber(formParams.getFirst("accountNumber"))
-				.build();
+				.setNumber(formParams.getFirst("accountNumber")).build();
 
 		if (accountAlreadyExist(account.getNumber())) {
 			return Response.status(404).build();
@@ -71,28 +70,30 @@ public class AccountRS extends Resource{
 		return Response.ok().build();
 
 	}
-	
+
 	@GET
 	@Path("/{id}/transactions")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Transaction> getTransaction(@PathParam("id") long id) throws AccountDoesNotExistException {
 		try {
-			return entityManager.createQuery("SELECT t FROM Transaction t JOIN t.account a WHERE a.id = :id", Transaction.class)
+			return entityManager
+					.createQuery("SELECT t FROM Transaction t JOIN t.account a WHERE a.id = :id", Transaction.class)
 					.setParameter("id", id).getResultList();
 		} catch (NoResultException e) {
 			throw new AccountDoesNotExistException();
 		}
 	}
-	
+
 	@GET
 	@Path("/{id}/balance")
-	public double getBalance(@PathParam("id") long id) throws AccountDoesNotExistException {
+	public Double getBalance(@PathParam("id") long id) throws AccountDoesNotExistException {
 		try {
-			return entityManager.find(Account.class, id).calculateBalance();
+			// return entityManager.find(Account.class, id).calculateBalance();
+			return entityManager.createQuery("SELECT Sum(t.value) FROM Transaction t JOIN t.account a WHERE a.id = :id",
+					Double.class).setParameter("id", id).getSingleResult();
 		} catch (NoResultException e) {
 			throw new AccountDoesNotExistException();
 		}
 	}
-	
 
 }
