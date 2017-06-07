@@ -11,7 +11,7 @@ import javax.ws.rs.core.UriInfo;
 import model.Transaction;
 
 @Path("/rs/{class:transaction}")
-public class TransactionRS extends RS {
+public class TransactionRS extends Resource {
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
