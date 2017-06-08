@@ -13,6 +13,12 @@ import { Bank }    from '../model/bank';
 
 import { OwnerService } from '../services/owner.service';
 import { AccountService } from '../services/account.service';
+import { AccountTypeService } from '../services/accountType.service';
+import { AgencyService }          from '../services/agency.service';
+import { BankService }          from '../services/bank.service';
+import { CountryCodeService }          from '../services/countryCode.service';
+
+
 
 import 'rxjs/add/operator/toPromise';
 
@@ -40,8 +46,12 @@ export class CreateaccountComponent implements OnInit {
     ownerList : Owner[];
 
     constructor(private http: Http,
-        private ownerservice : OwnerService,
+        private ownerService : OwnerService,
         private accountService : AccountService,
+        private accountTypeService : AccountTypeService,
+        private agencyService : AgencyService,
+        private bankService : BankService,
+        private countryCodeService : CountryCodeService,
         private router : Router) { }
 
     newAccount() {
@@ -69,31 +79,20 @@ export class CreateaccountComponent implements OnInit {
 
     ngOnInit(){
         
-        this.http.get("http://localhost:8080/bankProjectWeb/rs/accounttype/").toPromise().
-            then(r => r.json()).then(r => this.accountTypeList = r).catch(this.handleError);
+        this.accountTypeService.getAccountTypeList().then(res => this.accountTypeList = res);
 
-        this.http.get("http://localhost:8080/bankProjectWeb/rs/agency/").toPromise().
-            then(r => r.json()).then(r => this.agencyList = r).catch(this.handleError);
+        this.agencyService.getAgencyList().then(res => this.agencyList = res);
 
-        this.http.get("http://localhost:8080/bankProjectWeb/rs/countryCode/").toPromise().
-            then(r => r.json()).then(r => this.countryCodeList = r).catch(this.handleError);
+        this.bankService.getBankList().then(res => this.bankList = res);
 
-        this.http.get("http://localhost:8080/bankProjectWeb/rs/bank/").toPromise().
-            then(r => r.json()).then(r => this.bankList = r).catch(this.handleError);
+        this.ownerService.getOwnerList().then(r => this.ownerList = r);
 
-        this.http.get("http://localhost:8080/bankProjectWeb/rs/owner/").toPromise().
-            then(r => r.json()).then(r => this.ownerList = r).catch(this.handleError);
-            
+        this.countryCodeService.getCountryCodeList().then(r => this.countryCodeList = r);    
     }
 
     goToTransactionList(){
             let link = ['/account', this.createdAccount.id, 'transactions'];
             this.router.navigate(link);
     }   
-
-    private handleError(error: any): Promise<any> {
-        console.error('An error occurred while fetching data from server: ', error); 
-        return Promise.reject(error.message || error);
-  }
 
 }
