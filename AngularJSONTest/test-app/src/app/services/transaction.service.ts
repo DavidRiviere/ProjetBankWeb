@@ -9,15 +9,25 @@ import { Transaction } from '../model/transaction';
 export class TransactionService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private transactionUrl = 'http://localhost:8080/bankProjectWeb/rs/account/';  // URL to web api
+  private accountURL = 'http://localhost:8080/bankProjectWeb/rs/account/';  // URL to web api
+  private transactionURL = 'http://localhost:8080/bankProjectWeb/rs/transaction/';  // URL to web api
 
   constructor(private http: Http) { }
 
   getTransactionList(id:number): Promise<any> {
-    const url = `${this.transactionUrl}${id}/transactions/`;
+    const url = `${this.accountURL}${id}/transactions/`;
     return this.http.get(url)
       .toPromise()
       .then(response => response.json())
+      .catch(this.handleError);
+  }
+
+  
+  deleteTransactionId(id: number): Promise<void> {
+    const url = `${this.transactionURL}${id}`;
+    return this.http.delete(url, {headers: this.headers})
+      .toPromise()
+      .then(() => null)
       .catch(this.handleError);
   }
 

@@ -23,6 +23,8 @@ import { TransactionService } from '../services/transaction.service';
 import { AccountService } from '../services/account.service';
 
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'transactions',
@@ -43,14 +45,27 @@ export class TransactionComponent implements OnInit {
     accountId: Account = new Account();
 
     balanceAccountId : string ;
+
+    selectedRow : number;
+    setClickedRow : Function;
    
     constructor(private http: Http,
         private transactionService : TransactionService,
         private accountService : AccountService,
-        private route: ActivatedRoute) { }
+        private route: ActivatedRoute) { 
+            
+        this.setClickedRow = function(index){
+            this.selectedRow = index;
+          }
+        }
 
     newTransaction() {
         this.model = new Transaction();
+    }
+
+    deleteTransaction() {
+      this.transactionService.deleteTransactionId(this.transactionList[this.selectedRow].id);
+      this.transactionList.splice(this.selectedRow, 1);
     }
 
 
@@ -73,5 +88,7 @@ export class TransactionComponent implements OnInit {
         console.error('An error occurred while fetching data from server: ', error); 
         return Promise.reject(error.message || error);
   }
+
+
 
 }

@@ -3,15 +3,18 @@
     <h1>List of your transactions</h1>
 
     <table>
+      <thead>
       <tr>
-        <td><h3>Description</h3></td>
-        <td><h3>Type</h3></td>
-        <td><h3>Category</h3></td>
-        <td><h3>Sub-Category</h3></td>
-        <td><h3>Date</h3></td>
-        <td><h3>Value</h3></td>
+        <th><h3>Description</h3></th>
+        <th><h3>Type</h3></th>
+        <th><h3>Category</h3></th>
+        <th><h3>Sub-Category</h3></th>
+        <th><h3>Date</h3></th>
+        <th><h3>Value</h3></th>
       </tr>
-    <tr *ngFor="let transaction of transactionList">
+      </thead>
+    <tbody>
+    <tr *ngFor="let transaction of transactionList;  let i = index" (click)="setClickedRow(i)" [class.active]="i == selectedRow">
         <td>{{transaction.description}}</td>
         <td>{{transaction?.transactionType?.description}}</td>
         <td *ngIf="transaction?.category?.parentCategory?.description.length >0 else elseBlock">{{transaction?.category?.parentCategory?.description}} </td>
@@ -21,13 +24,20 @@
         <td *ngIf="transaction.value >=0 else elseValue"><p style="color:green;">{{transaction.value}}</p></td>
         <ng-template #elseValue><td><p style="color:red;">{{transaction.value}}</p></td></ng-template>
     </tr>
+    </tbody>
 
     </table>
+
+    <div class="well well-lg">
+          Selected Row : <strong>{{selectedRow}}</strong>
+    </div>
+    <button [disabled]="!(selectedRow  >= 0)" type="button" class="btn btn-default" (click)="deleteTransaction()"><h3>Delete this transaction</h3></button>
+    <br><button type="button" class="btn btn-default" (click)="newTransaction()"><h3>New Transaction</h3></button>
 
   </div>
 
 <h1><label for="initialBalance"><br>Initial Balance: </label> {{accountId.initialBalance}} €<br></h1>
-<h1 *ngIf="balanceAccountId.length !=0 else elseBalance"><label for="balance"><br>Balance: </label>{{balanceAccountId}}</h1>
+<h1 *ngIf="balanceAccountId else elseBalance"><label for="balance"><br>Balance: </label>{{balanceAccountId}}</h1>
 <ng-template #elseBalance><h1><label for="balance"><br>Balance: </label> {{accountId.initialBalance}} €</h1></ng-template>
 </div>
 
