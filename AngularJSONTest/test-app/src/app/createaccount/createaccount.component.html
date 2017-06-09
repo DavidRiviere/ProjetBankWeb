@@ -93,12 +93,20 @@
   <div [hidden]="!submitted">
     <h2>You submitted the following:</h2>
     <div class="row">
-      <div class="col-xs-3">City name</div>
-      <div class="col-xs-9  pull-left">{{ model.city }}</div>
+      <div class="col-xs-3">Account description</div>
+      <div class="col-xs-9  pull-left"><div> {{model.description }} </div></div>
     </div>
     <div class="row">
-      <div class="col-xs-3">Zip code</div>
-      <div class="col-xs-9 pull-left">{{ model.zip }}</div>
+      <div class="col-xs-3">Account number</div>
+      <div class="col-xs-9  pull-left"><div> {{model.number }} </div></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Account initial balance </div>
+      <div class="col-xs-9  pull-left"><div> {{model.initialBalance }} </div></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Account creation date</div>
+      <div class="col-xs-9  pull-left"><div> {{model.creationDate }} </div></div>
     </div>
     <br>
     <button type="button" class="btn btn-default" (click)="newAccount(); createaccountForm.reset()">New Account</button>

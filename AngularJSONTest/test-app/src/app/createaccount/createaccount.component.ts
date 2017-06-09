@@ -70,23 +70,16 @@ export class CreateaccountComponent implements OnInit {
 
             if (element.number == this.model.number) {
                 this.notNewAccount = true;
-                console.log(this.notNewAccount);
-                console.log(element);
             }
             
         });
 
-        console.log("foreach finished");
-
         if(this.notNewAccount == false ) {
-            this.accountService.createAccount(this.model).then(model => this.createFunction(model));
+            this.accountService.createAccount(this.model).then(r => this.createdAccount = r);
             this.submitted = true; 
+
         }
 
-    }
-
-    createFunction(model : Account){
-        this.createdAccount = model;
     }
 
     ngOnInit(){
