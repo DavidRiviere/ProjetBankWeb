@@ -15,7 +15,8 @@ import { AccountTypeService }          from './services/accountType.service';
 import { AgencyService }          from './services/agency.service';
 import { BankService }          from './services/bank.service';
 import { CountryCodeService }          from './services/countryCode.service';
-
+import { CategoryService }          from './services/category.service';
+import { TransactionTypeService }          from './services/transactionType.service'
 
 import { AppComponent }         from './app.component';
 import { DashboardComponent }   from './dashboard/dashboard.component';
@@ -37,9 +38,10 @@ import { TransactionComponent }  from './transaction/transaction.component';
     CreateaccountComponent,
     TransactionComponent
   ],
-  providers: [ CpvilleService, OwnerService, 
+  providers: [ CpvilleService, OwnerService, CategoryService,
               TransactionService, AccountService, BankService,
-              AccountTypeService, AgencyService, CountryCodeService ],
+              AccountTypeService, AgencyService, CountryCodeService,
+              TransactionTypeService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

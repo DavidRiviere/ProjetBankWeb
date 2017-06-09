@@ -22,6 +22,14 @@ export class TransactionService {
       .catch(this.handleError);
   }
 
+  createTransaction(transaction: Transaction): Promise<Transaction> {
+    return this.http
+      .post(this.transactionURL, JSON.stringify(transaction), {headers: this.headers})
+      .toPromise()
+      .then(res=>this.http.get(res.url).toPromise().then(response => response.json() as Transaction))
+      .catch(this.handleError);
+  }  
+
   
   deleteTransactionId(id: number): Promise<void> {
     const url = `${this.transactionURL}${id}`;

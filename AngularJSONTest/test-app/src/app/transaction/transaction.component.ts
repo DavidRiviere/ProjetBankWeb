@@ -21,6 +21,8 @@ import { Frequency }    from '../model/frequency';
 
 import { TransactionService } from '../services/transaction.service';
 import { AccountService } from '../services/account.service';
+import { CategoryService }          from '../services/category.service';
+import { TransactionTypeService }          from '../services/transactionType.service';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -36,12 +38,17 @@ import 'rxjs/add/operator/switchMap';
 export class TransactionComponent implements OnInit {
 
     model : Transaction = new Transaction();
-
+    timestamp = new Date(); 
+    
     submitted = false;
+    newTransactionV = false;
 
     bankList : Bank[];
     accountList : Account[];
     transactionList : Transaction[];
+    categoryList : Category[];
+    transactionTypeList : TransactionType [];
+
     accountId: Account = new Account();
 
     balanceAccountId : string ;
@@ -52,6 +59,8 @@ export class TransactionComponent implements OnInit {
     constructor(private http: Http,
         private transactionService : TransactionService,
         private accountService : AccountService,
+        private categoryService : CategoryService,
+        private transactionTypeService : TransactionTypeService,
         private route: ActivatedRoute) { 
             
         this.setClickedRow = function(index){
@@ -60,6 +69,13 @@ export class TransactionComponent implements OnInit {
         }
 
     newTransaction() {
+        this.newTransactionV = true;
+    }
+
+    onSubmitNewTransaction(){
+         this.model.dateTransaction = this.timestamp.toString().slice(0,10).replace(/-/g,"")+"000000+0200";
+        this.transactionService.createTransaction(this.model);
+
         this.model = new Transaction();
     }
 
@@ -70,6 +86,8 @@ export class TransactionComponent implements OnInit {
 
 
     ngOnInit(): void{
+        
+        
         this.route.params
           .switchMap((params: Params) => this.transactionService.getTransactionList(+params['id']))
           .subscribe(transactionList => this.transactionList = transactionList);
@@ -81,6 +99,10 @@ export class TransactionComponent implements OnInit {
         this.route.params
           .switchMap((params: Params) =>  this.accountService.getAccountBalanceById(+params['id']))
           .subscribe(res => this.balanceAccountId = res);
+
+        this.categoryService.getCategoryList().then(r => this.categoryList = r);
+        this.transactionTypeService.getTransactionTypeList().then(r => this.transactionTypeList = r);
+        this.accountService.getAccountList().then(r => this.accountList = r);
 
     }
 

@@ -43,10 +43,6 @@
                required
                [(ngModel)]="model.description" name="description"
                #name="ngModel">
-        <input type="text" class="form-control" id="description"
-               required
-               [(ngModel)]="model.description" name="description"
-               #name="ngModel">
         <div [hidden]="name.valid || name.pristine"
              class="alert alert-danger">
           Account description is required
