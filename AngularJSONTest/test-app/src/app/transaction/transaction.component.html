@@ -34,12 +34,82 @@
     <button [disabled]="!(selectedRow  >= 0)" type="button" class="btn btn-default" (click)="deleteTransaction()"><h3>Delete this transaction</h3></button>
     <br><button type="button" class="btn btn-default" (click)="newTransaction()"><h3>New Transaction</h3></button>
 
+
+    <div [hidden]="submitted">
+    <h1>Create an account</h1>
+      <div class="form-group">
+      <label for="owner">Choose your owner</label>
+      <select [(ngModel)]="model.owner" class="form-control" id="chosenAccountType" required>
+        <option *ngFor="let owner of ownerList" [ngValue]="owner">{{owner.name}} {{owner.firstName}}</option>
+      </select>
+  </div>
+
+  <div class="form-group">
+      <label for="accountType">Choose your account type</label>
+      <select [(ngModel)]="model.accountType" class="form-control" id="chosenAccountType" required>
+        <option *ngFor="let accountType of accountTypeList" [ngValue]="accountType">{{accountType.type}}</option>
+      </select>
+  </div>
+
+    <form (ngSubmit)="onSubmit()" #createaccountForm="ngForm">
+      <div class="form-group">
+        <label for="description">Account description</label>
+        <input type="hidden" class="form-control" id="description"
+               required
+               [(ngModel)]="model.description" name="description"
+               #name="ngModel">
+        <input type="text" class="form-control" id="description"
+               required
+               [(ngModel)]="model.description" name="description"
+               #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          Account description is required
+        </div>
+        <label for="number">Account number</label>
+        <input type="text" class="form-control" id="number"
+               required
+               [(ngModel)]="model.number" name="number"
+               #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          Account number is required
+        </div>
+        <div [hidden]="!notNewAccount"><h1 style="color:red;">Sorry this account already exists!!</h1></div>
+          <label for="initialBalance">Initial balance</label>
+        <input type="number" class="form-control" id="initialBalance"
+               required
+               [(ngModel)]="model.initialBalance" name="initialBalance"
+               #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          The initial balance is required
+        </div>
+        <label for="timestamp">Creation date</label>
+        <input type="date" class="form-control" id="timestamp"
+               required
+               [(ngModel)]="timestamp" name="timestamp"
+               #name="ngModel">
+        <div> {{model.creationDate }} </div>
+
+        <div> {{timestamp}} </div>
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          The initial balance is required
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="!createaccountForm.form.valid">Submit</button>
+
+    </form>
+
+  </div>
   </div>
 
 <h1><label for="initialBalance"><br>Initial Balance: </label> {{accountId.initialBalance}} €<br></h1>
 <h1 *ngIf="balanceAccountId else elseBalance"><label for="balance"><br>Balance: </label>{{balanceAccountId}}</h1>
 <ng-template #elseBalance><h1><label for="balance"><br>Balance: </label> {{accountId.initialBalance}} €</h1></ng-template>
 </div>
+
 
 
 <!--<div class="form-group">
