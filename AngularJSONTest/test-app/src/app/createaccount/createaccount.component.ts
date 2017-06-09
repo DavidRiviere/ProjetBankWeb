@@ -77,7 +77,6 @@ export class CreateaccountComponent implements OnInit {
         if(this.notNewAccount == false ) {
             this.accountService.createAccount(this.model).then(r => this.createdAccount = r);
             this.submitted = true; 
-
         }
 
     }
