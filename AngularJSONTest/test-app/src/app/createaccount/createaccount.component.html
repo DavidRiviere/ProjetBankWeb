@@ -60,6 +60,7 @@
              class="alert alert-danger">
           Account number is required
         </div>
+        <div [hidden]="!notNewAccount"><h1 style="color:red;">Sorry this account already exists!!</h1></div>
           <label for="initialBalance">Initial balance</label>
         <input type="number" class="form-control" id="initialBalance"
                required
@@ -87,7 +88,7 @@
     </form>
   </div>
 
-<div [hidden]="!notNewAccount"><h1>Sorry this account already exists!!</h1></div>
+
 
   <div [hidden]="!submitted">
     <h2>You submitted the following:</h2>

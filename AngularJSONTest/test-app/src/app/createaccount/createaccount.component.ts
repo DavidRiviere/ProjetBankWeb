@@ -39,6 +39,7 @@ export class CreateaccountComponent implements OnInit {
 
     createdAccount : Account = new Account();
 
+    accountList : Account[];
     accountTypeList: AccountType[];
     agencyList : Agency[];
     countryCodeList : CountryCode[];
@@ -60,17 +61,28 @@ export class CreateaccountComponent implements OnInit {
     }
 
     onSubmit() { 
+
+        this.notNewAccount = false;
         
         this.model.creationDate = this.timestamp.toString().slice(0,10).replace(/-/g,"")+"000000+0200";
-        
-        try {
-            this.accountService.createAccount(this.model).then(model => this.createFunction(model));
+
+        this.accountList.forEach(element => { 
+
+            if (element.number == this.model.number) {
+                this.notNewAccount = true;
+                console.log(this.notNewAccount);
+                console.log(element);
+            }
             
-            this.submitted = true;
+        });
+
+        console.log("foreach finished");
+
+        if(this.notNewAccount == false ) {
+            this.accountService.createAccount(this.model).then(model => this.createFunction(model));
+            this.submitted = true; 
         }
-        catch (e) {
-            this.notNewAccount = true;
-        }   
+
     }
 
     createFunction(model : Account){
@@ -78,6 +90,8 @@ export class CreateaccountComponent implements OnInit {
     }
 
     ngOnInit(){
+
+        this.accountService.getAccountList().then(r => this.accountList = r);
         
         this.accountTypeService.getAccountTypeList().then(res => this.accountTypeList = res);
 
