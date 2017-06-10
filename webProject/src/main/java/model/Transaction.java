@@ -50,19 +50,19 @@ public class Transaction implements Serializable, Identifiable {
 	@Temporal(TemporalType.DATE)
 	@Column(name="dateTransaction")
 	private Date date;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne()
 	@JoinColumn(name="idAccount")
 	private Account account;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne()
 	@JoinColumn(name="idTransactionType")
 	private TransactionType transactionType;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne()
 	@JoinColumn(name="idCategory")
 	private Category category;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne()
 	@JoinColumn(name="idTargetTransaction")
 	private TargetTransaction targetTransaction;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne()
 	@JoinColumn(name="idPeriodicTransaction")
 	private PeriodicTransaction periodicTransaction;
     

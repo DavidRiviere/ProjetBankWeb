@@ -39,8 +39,8 @@
     <h1>Add a transaction</h1>
       <div class="form-group">
       <label for="owner">Choose your account</label>
-      <select [(ngModel)]="model.account" class="form-control" id="chosenAccountType" required >
-        <option *ngFor="let account of accountList" [ngValue]="account" [selected]="account.id === accountId.id">{{account.description}} </option>
+      <select  [(ngModel)]="model.account" class="form-control" id="chosenAccountType" required >
+        <option *ngFor="let account of accountList" [ngValue]="account" >{{account.description}} </option>
       </select>
   </div>
 

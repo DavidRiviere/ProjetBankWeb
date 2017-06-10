@@ -58,10 +58,14 @@
         </div>
         <div [hidden]="!notNewAccount"><h1 style="color:red;">Sorry this account already exists!!</h1></div>
           <label for="initialBalance">Initial balance</label>
+        <div class="input-group">
+            <span class="input-group-addon">$</span>
+            <span class="input-group-addon">0.00</span>
         <input type="number" class="form-control" id="initialBalance"
                required
                [(ngModel)]="model.initialBalance" name="initialBalance"
                #name="ngModel">
+        </div>
         <div [hidden]="name.valid || name.pristine"
              class="alert alert-danger">
           The initial balance is required
