@@ -22,15 +22,20 @@
         <td><h3>Category</h3></td>
         <td><h3>Date</h3></td>
         <td><h3>Value</h3></td>
+        <td><h3>Value</h3></td>
       </tr>
     <tr *ngFor="let transaction of transactionList">
         <td>{{transaction.description}}</td>
         <td>{{transaction?.transactionType?.description}}</td>
         <td>{{transaction?.category?.description}}</td>
         <td>{{transaction.date}}</td>
-        <td>{{transaction.value}}</td>
+        <td *ngIf="transaction?.value < 0">
+          {{transaction.value}}
+        </td>
+        <td *ngIf="transaction?.value > 0">
+          {{transaction.value}}
+        </td>
     </tr>
-
     </table>
 
   </div>
