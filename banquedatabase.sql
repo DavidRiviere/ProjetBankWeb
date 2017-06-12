@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2017 at 08:34 AM
+-- Generation Time: Jun 12, 2017 at 03:17 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -63,7 +63,9 @@ INSERT INTO `account` (`id`, `description`, `number`, `creationDate`, `initialBa
 (15, 'qwe', '058516851', '2017-04-05', 0.00, 2.25, 0.00, 0.00, 0.00, 3, 1, 3),
 (16, 'compte crée par POST', '058516851', '2017-04-05', 0.00, 2.25, 0.00, 0.00, 0.00, 3, 1, 3),
 (17, 'compte crée par POST', '058516851', '2017-04-05', 0.00, 2.25, 0.00, 0.00, 0.00, 3, 1, 3),
-(18, '987984654awdsa', '4545', '2017-06-01', 112254.00, 0.00, 0.00, 0.00, 0.00, 6, 6, 4);
+(18, '987984654awdsa', '4545', '2017-06-01', 112254.00, 0.00, 0.00, 0.00, 0.00, 6, 6, 4),
+(19, 'compte crée par POST', '0585851', '2017-04-05', 0.00, 2.25, 0.00, 0.00, 0.00, 3, 1, 3),
+(20, 'un compte epargne', '1111 2222 3333', '2017-03-20', 2000.00, 10.00, -100.00, 100.00, 0.00, 2, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -306,7 +308,10 @@ INSERT INTO `cpville` (`id`, `zip`, `city`) VALUES
 (20, '75000', 'Paris'),
 (21, '75000', 'Hello'),
 (22, '34577', 'Somewhere'),
-(23, '000', 'XXX');
+(23, '000', 'XXX'),
+(24, '34577', 'Somewhere'),
+(25, '34577', 'Somewhere'),
+(26, '75000', 'Paris');
 
 -- --------------------------------------------------------
 
@@ -354,13 +359,13 @@ CREATE TABLE `owner` (
 
 INSERT INTO `owner` (`id`, `name`, `firstName`, `phoneNumber`, `birthday`, `login`, `pswd`, `email`, `idAddress`, `salt`, `newUser`) VALUES
 (1, 'Doe', 'John', '0000000000', '1986-07-28', 'mylogin', '62a5daea27481816ef8959019c78efa84d693dd3', '', 1, '', 0),
-(2, 'lu', 'lu', '0678787878', '2017-03-27', 'lu', 'lu', 'lu@lu.lu', 5, 'dfsgdhf', 0),
 (3, 'qwe', 'qwe', '0000000000', '2017-04-04', 'qwe', '+/yVtz/FxkMb8qgnAP3twdFbcqffZzkqGj9MBQlRZVU=', 'q@w.fr', 6, '/UE4Aq1qFBU=', 0),
 (4, 'myname', 'myFirstName', '+33612345678', '2017-04-01', 'defaultUser', 'AOV1u5aSyu7dXvpDCJQdCyMp4Fo6Ut8V6LEqoz2nRYo=', 'default@truc.com', 11, '1HoGuIfDKgA=', 0),
 (5, 'Dsfgsdffg', 'Sdffgsdffg', '0988888888', '2017-04-04', 'qgshdfj', 'cVUmnoGgh1ok0UyVhoLm9k2juaCbsdMnZKcNRn0U/L4=', 'd@d.dd', 12, 'XZIBN8WNdgY=', 0),
 (6, 'D', 'D', '0945454545', '2017-04-05', 'd', 'Ywh/mjFaunQjAnR8NKkvXpnLKSOft0xX57DXNIuJSkE=', 'd@d.dd', 13, 'CnRSFLXvpLY=', 0),
 (7, 'Asd', 'Asd', '0512345678', '2017-05-02', 'q', 'YsUmP1K1jXzVPQeaD8THdGJmCrFkcA5G+JuEbJjIPjY=', 'qwe@wer.com', 17, '5JUG7TcJZH8=', 1),
-(8, 'Aswee', 'Asd', '0512345678', '2017-05-16', 'qqq', 'QxZR+4AihaD8oCtBPXeBNDhNXchNbjH9MMCr7Cuu9w8=', 'epsi@yopmail.com', 18, '9M7DJNf0jDA=', 0);
+(8, 'Aswee', 'Asd', '0512345678', '2017-05-16', 'qqq', 'QxZR+4AihaD8oCtBPXeBNDhNXchNbjH9MMCr7Cuu9w8=', 'epsi@yopmail.com', 18, '9M7DJNf0jDA=', 0),
+(9, 'lu', 'lu', '0945454545', '2017-04-05', 'lu', 'lu', 'd@d.dd', 13, 'XX', 0);
 
 -- --------------------------------------------------------
 
@@ -399,29 +404,8 @@ CREATE TABLE `targettransaction` (
 --
 
 INSERT INTO `targettransaction` (`id`, `summary`, `iban`) VALUES
-(1, 'un destinataire', 'FR7630004000031234567890143'),
+(1, 'Un destinataire', 'FR7630004000031234567890143'),
 (2, 'un autre destinataire', 'FR7630001007941234567890185');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `test_table`
---
-
-CREATE TABLE `test_table` (
-  `id` int(11) NOT NULL,
-  `value` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `test_table`
---
-
-INSERT INTO `test_table` (`id`, `value`) VALUES
-(1, 5),
-(2, 57),
-(3, 789),
-(4, 4);
 
 -- --------------------------------------------------------
 
@@ -446,18 +430,18 @@ CREATE TABLE `transaction` (
 --
 
 INSERT INTO `transaction` (`id`, `description`, `value`, `dateTransaction`, `idAccount`, `idTransactionType`, `idTargetTransaction`, `idCategory`, `idPeriodicTransaction`) VALUES
-(2, 'un retrait', -150.00, '2017-04-03', 2, 1, 1, 1, NULL),
+(2, 'un retrait', -150.00, '2017-06-02', 20, 1, 1, 1, NULL),
 (20, 'j', 100.00, '2017-03-24', 1, 1, 1, NULL, NULL),
 (21, 'TR1', 344.00, '2017-03-28', 6, 4, NULL, NULL, NULL),
 (22, 'TR2', 6554.00, '2017-05-06', 6, 5, NULL, NULL, NULL),
-(23, 'TR2', -3444.00, '2017-03-28', 6, 1, NULL, NULL, NULL),
+(23, 'TR2', -3444.00, '2017-06-02', 6, 1, NULL, NULL, NULL),
 (24, 'TR4', -5.00, '2017-04-01', 6, 4, NULL, NULL, NULL),
 (25, 'TR5', 333.00, '2017-03-29', 6, 1, NULL, NULL, NULL),
 (33, 'df', 99.00, '2017-04-11', 6, 4, NULL, 15, NULL),
 (36, 'zdfg', 88.00, '2017-04-15', 1, 4, NULL, 18, NULL),
 (37, 'df', 3.00, '2017-04-16', 1, 4, NULL, 19, NULL),
 (38, 'balancetest', -7.00, '2017-05-01', 1, 1, NULL, 15, NULL),
-(39, 'qsdsdf', -800.00, '2017-06-01', 1, 1, NULL, NULL, NULL),
+(39, 'qsdsdf', -800.00, '2017-06-02', 1, 1, NULL, NULL, NULL),
 (40, 'sdfsdf', 9.00, '2017-05-03', 1, 4, NULL, NULL, NULL),
 (42, 'RR', 100.00, '2017-01-16', 4, 1, NULL, NULL, NULL),
 (43, 'erty', 800.00, '2017-05-11', 1, 1, 1, 2, NULL);
@@ -478,9 +462,29 @@ CREATE TABLE `transactiontype` (
 --
 
 INSERT INTO `transactiontype` (`id`, `description`) VALUES
-(1, 'je sais plus ce que c\'est\r\n'),
+(1, 'Une description'),
 (4, 'virement interne'),
 (5, 'cheque');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_roles`
+--
+
+CREATE TABLE `user_roles` (
+  `login` varchar(15) NOT NULL,
+  `role_name` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_roles`
+--
+
+INSERT INTO `user_roles` (`login`, `role_name`) VALUES
+('d', 'owner'),
+('defaultUser', 'owner'),
+('lu', 'owner');
 
 --
 -- Indexes for dumped tables
@@ -566,6 +570,7 @@ ALTER TABLE `frequency`
 --
 ALTER TABLE `owner`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `login` (`login`),
   ADD KEY `idadress` (`idAddress`);
 
 --
@@ -579,12 +584,6 @@ ALTER TABLE `periodictransaction`
 -- Indexes for table `targettransaction`
 --
 ALTER TABLE `targettransaction`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `test_table`
---
-ALTER TABLE `test_table`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -605,6 +604,12 @@ ALTER TABLE `transactiontype`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `user_roles`
+--
+ALTER TABLE `user_roles`
+  ADD PRIMARY KEY (`login`,`role_name`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -612,7 +617,7 @@ ALTER TABLE `transactiontype`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `accounttype`
 --
@@ -652,7 +657,7 @@ ALTER TABLE `countrycode`
 -- AUTO_INCREMENT for table `cpville`
 --
 ALTER TABLE `cpville`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `frequency`
 --
@@ -662,7 +667,7 @@ ALTER TABLE `frequency`
 -- AUTO_INCREMENT for table `owner`
 --
 ALTER TABLE `owner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `periodictransaction`
 --
@@ -673,11 +678,6 @@ ALTER TABLE `periodictransaction`
 --
 ALTER TABLE `targettransaction`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `test_table`
---
-ALTER TABLE `test_table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `transaction`
 --
@@ -753,6 +753,12 @@ ALTER TABLE `transaction`
   ADD CONSTRAINT `FK_pt_tartr` FOREIGN KEY (`idTargetTransaction`) REFERENCES `targettransaction` (`id`),
   ADD CONSTRAINT `FK_pt_trtyp` FOREIGN KEY (`idTransactionType`) REFERENCES `transactiontype` (`id`),
   ADD CONSTRAINT `FK_tr_pt` FOREIGN KEY (`idPeriodicTransaction`) REFERENCES `periodictransaction` (`id`);
+
+--
+-- Constraints for table `user_roles`
+--
+ALTER TABLE `user_roles`
+  ADD CONSTRAINT `FK_RoleOwner` FOREIGN KEY (`login`) REFERENCES `owner` (`login`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
