@@ -17,3 +17,8 @@ table {
 td, th {
 	border: thin solid rgb(34, 66, 124);
 }
+
+tr.active td {
+  background-color:#123456 !important;
+  color: white;
+}

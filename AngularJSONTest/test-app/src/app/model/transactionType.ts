@@ -1,6 +1,8 @@
 export class TransactionType {
-  constructor(
-    public type: string,
+    public description: string,
     public id?: number
-  ) {  }
+
+    constructor(values: Object = {}) {
+    Object.assign(this, values);
+  }
 }

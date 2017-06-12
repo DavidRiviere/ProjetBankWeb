@@ -1,5 +1,5 @@
 import { Injectable }    from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -9,6 +9,7 @@ import { Account } from '../model/account';
 export class AccountService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
+  private headersGet = new Headers({'Accept': 'text/plain'});
   private url = 'http://localhost:8080/bankProjectWeb/rs/account/';  // URL to web api
 
   constructor(private http: Http) { }
@@ -20,17 +21,19 @@ export class AccountService {
                .catch(this.handleError);
   }
 
- /* get(urlRes) {
-    return this.http.get(urlRes)
-      .toPromise();
-  }*/
-
   getAccountById(id: number): Promise<Account> {
-    const url = `${this.url}/${id}`;
+    const url = `${this.url}${id}`;
     return this.http.get(url)
       .toPromise()
       .then(response => response.json() as Account)
       .catch(this.handleError);
+  }
+
+  getAccountBalanceById(id: number) {
+    const urla = `${this.url}${id}/balance/`;
+    return this.http.get(urla, {headers: this.headersGet})
+    .toPromise()
+    .then(response => (response.text())).catch(this.handleError);
   }
 
   deleteAccountId(id: number): Promise<void> {
@@ -47,8 +50,7 @@ export class AccountService {
       .toPromise()
       .then(res=>this.http.get(res.url).toPromise().then(response => response.json() as Account))
       .catch(this.handleError);
-  }
-  
+  }  
 
   updateAccount(account: Account): Promise<Account> {
     const url = `${this.url}/${account.id}`;

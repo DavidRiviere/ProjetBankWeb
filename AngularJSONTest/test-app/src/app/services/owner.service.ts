@@ -13,7 +13,7 @@ export class OwnerService {
 
   constructor(private http: Http) { }
 
-  getCpvilleList(): Promise<Owner[]> {
+  getOwnerList(): Promise<Owner[]> {
     return this.http.get(this.ownerUrl)
                .toPromise()
                .then(response => response.json() as Owner[])
@@ -21,7 +21,7 @@ export class OwnerService {
   }
 
 
-  getCpvilleById(id: number): Promise<Owner> {
+  getOwnerById(id: number): Promise<Owner> {
     const url = `${this.ownerUrl}/${id}`;
     return this.http.get(url)
       .toPromise()
@@ -29,7 +29,7 @@ export class OwnerService {
       .catch(this.handleError);
   }
 
-  deleteCpvilleId(id: number): Promise<void> {
+  deleteOwnerId(id: number): Promise<void> {
     const url = `${this.ownerUrl}${id}`;
     return this.http.delete(url, {headers: this.headers})
       .toPromise()
@@ -37,7 +37,7 @@ export class OwnerService {
       .catch(this.handleError);
   }
 
-  createCpville(owner: Owner): Promise<Owner> {
+  createOwner(owner: Owner): Promise<Owner> {
     return this.http
       .post(this.ownerUrl, JSON.stringify(owner), {headers: this.headers})
       .toPromise()
@@ -45,7 +45,7 @@ export class OwnerService {
       .catch(this.handleError);
   }
 
-  updateCpville(owner: Owner): Promise<Owner> {
+  updateOwner(owner: Owner): Promise<Owner> {
     const url = `${this.ownerUrl}/${owner.id}`;
     return this.http
       .put(url, JSON.stringify(owner), {headers: this.headers})

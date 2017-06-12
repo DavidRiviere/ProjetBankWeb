@@ -43,10 +43,6 @@
                required
                [(ngModel)]="model.description" name="description"
                #name="ngModel">
-        <input type="text" class="form-control" id="description"
-               required
-               [(ngModel)]="model.description" name="description"
-               #name="ngModel">
         <div [hidden]="name.valid || name.pristine"
              class="alert alert-danger">
           Account description is required
@@ -60,11 +56,16 @@
              class="alert alert-danger">
           Account number is required
         </div>
+        <div [hidden]="!notNewAccount"><h1 style="color:red;">Sorry this account already exists!!</h1></div>
           <label for="initialBalance">Initial balance</label>
+        <div class="input-group">
+            <span class="input-group-addon">$</span>
+            <span class="input-group-addon">0.00</span>
         <input type="number" class="form-control" id="initialBalance"
                required
                [(ngModel)]="model.initialBalance" name="initialBalance"
                #name="ngModel">
+        </div>
         <div [hidden]="name.valid || name.pristine"
              class="alert alert-danger">
           The initial balance is required
@@ -87,15 +88,25 @@
     </form>
   </div>
 
+
+
   <div [hidden]="!submitted">
     <h2>You submitted the following:</h2>
     <div class="row">
-      <div class="col-xs-3">City name</div>
-      <div class="col-xs-9  pull-left">{{ model.city }}</div>
+      <div class="col-xs-3">Account description</div>
+      <div class="col-xs-9  pull-left"><div> {{model.description }} </div></div>
     </div>
     <div class="row">
-      <div class="col-xs-3">Zip code</div>
-      <div class="col-xs-9 pull-left">{{ model.zip }}</div>
+      <div class="col-xs-3">Account number</div>
+      <div class="col-xs-9  pull-left"><div> {{model.number }} </div></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Account initial balance </div>
+      <div class="col-xs-9  pull-left"><div> {{model.initialBalance }} </div></div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Account creation date</div>
+      <div class="col-xs-9  pull-left"><div> {{model.creationDate }} </div></div>
     </div>
     <br>
     <button type="button" class="btn btn-default" (click)="newAccount(); createaccountForm.reset()">New Account</button>

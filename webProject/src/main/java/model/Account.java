@@ -321,7 +321,12 @@ public class Account implements Serializable, Identifiable {
 	 */
 	public double calculateBalance() {
 		double balance = this.initialBalance;
+		System.out.println(this.transactions);
 		List<Transaction> transactions = getTransactions();
+		System.out.println(transactions);
+		for (Transaction transaction : transactions) {
+			System.out.println(transaction);
+		}
 		for (Transaction t : transactions) {
 			balance += t.getValue();
 		}

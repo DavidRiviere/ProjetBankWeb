@@ -1,8 +1,110 @@
 <div class="container">
-
-  <div [hidden]="submitted">
+  <div>
     <h1>List of your transactions</h1>
+
+    <table>
+      <thead>
+      <tr>
+        <th><h3>Description</h3></th>
+        <th><h3>Type</h3></th>
+        <th><h3>Category</h3></th>
+        <th><h3>Sub-Category</h3></th>
+        <th><h3>Date</h3></th>
+        <th><h3>Value</h3></th>
+      </tr>
+      </thead>
+    <tbody>
+    <tr *ngFor="let transaction of transactionList;  let i = index" (click)="setClickedRow(i)" [class.active]="i == selectedRow">
+        <td>{{transaction.description}}</td>
+        <td>{{transaction?.transactionType?.description}}</td>
+        <td *ngIf="transaction?.category?.parentCategory?.description.length >0 else elseBlock">{{transaction?.category?.parentCategory?.description}} </td>
+        <td *ngIf="transaction?.category?.description.length >0 else elseBlock">{{transaction?.category?.description}} </td>
+        <ng-template #elseBlock><td></td></ng-template>
+        <td>{{transaction.date}}</td>
+        <td *ngIf="transaction.value >=0 else elseValue"><p style="color:green;">{{transaction.value}}</p></td>
+        <ng-template #elseValue><td><p style="color:red;">{{transaction.value}}</p></td></ng-template>
+    </tr>
+    </tbody>
+    </table>
+
+    <div class="well well-lg">
+          Selected Row : <strong>{{selectedRow}}</strong>
+    </div>
+    <button [disabled]="!(selectedRow  >= 0)" type="button" class="btn btn-default" (click)="deleteTransaction()"><h3>Delete this transaction</h3></button>
+    <br><button type="button" class="btn btn-default" (click)="newTransaction()"><h3>New Transaction</h3></button>
+
+
+    <div [hidden]="!newTransactionV">
+    <h1>Add a transaction</h1>
+      <div class="form-group">
+      <label for="owner">Choose your account</label>
+      <select  [(ngModel)]="model.account" class="form-control" id="chosenAccountType" required >
+        <option *ngFor="let account of accountList" [ngValue]="account" >{{account.description}} </option>
+      </select>
+  </div>
+
   <div class="form-group">
+      <label for="accountType">Choose your transaction category</label>
+      <select [(ngModel)]="model.category" class="form-control" id="chosencategory" required>
+        <option *ngFor="let category of categoryList" [ngValue]="category">{{category.description}}</option>
+      </select>
+  </div>
+
+  <div class="form-group">
+      <label for="accountType">Choose your transaction type</label>
+      <select [(ngModel)]="model.transactionType" class="form-control" id="chosentransactionType" required>
+        <option *ngFor="let transactionType of transactionTypeList" [ngValue]="transactionType">{{transactionType.description}}</option>
+      </select>
+  </div>
+
+    <form (ngSubmit)="onSubmitNewTransaction()" #createaccountForm="ngForm">
+      <div class="form-group">
+        <label for="description">Transaction description</label>
+        <input type="text" class="form-control" id="description"
+               required
+               [(ngModel)]="model.description" name="description"
+               #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          Transaction description is required
+        </div>
+        <label for="number">Transaction value</label>
+        <input type="number" class="form-control" id="number"
+               required
+               [(ngModel)]="model.value" name="number"
+               #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          Account number is required
+        </div>
+        <label for="timestamp">Transaction date</label>
+        <input type="date" class="form-control" id="timestamp"
+               required
+               [(ngModel)]="timestamp" name="timestamp"
+               #name="ngModel">
+        <div> {{model.dateTransaction }} </div>
+
+        <div> {{timestamp}} </div>
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          The initial balance is required
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="!createaccountForm.form.valid">Submit</button>
+
+    </form>
+
+  </div>
+  </div>
+
+<h1><label for="initialBalance"><br>Initial Balance: </label> {{accountId.initialBalance}} €<br></h1>
+<h1 *ngIf="balanceAccountId else elseBalance"><label for="balance"><br>Balance: </label>{{balanceAccountId}}</h1>
+<ng-template #elseBalance><h1><label for="balance"><br>Balance: </label> {{accountId.initialBalance}} €</h1></ng-template>
+</div>
+
+
+
+<!--<div class="form-group">
       <label for="bank">Choose your bank</label>
       <select [(ngModel)]="model.bank" class="form-control" id="chosenBank" required>
         <option *ngFor="let bank of bankList" [ngValue]="bank">{{bank.name}}</option>
@@ -14,30 +116,4 @@
       <select [(ngModel)]="model.account" class="form-control" id="chosenAccount" required>
         <option *ngFor="let account of accountList" [ngValue]="account">{{account.description}}</option>
       </select>
-  </div>
-    <table>
-      <tr>
-        <td><h3>Description</h3></td>
-        <td><h3>Type</h3></td>
-        <td><h3>Category</h3></td>
-        <td><h3>Date</h3></td>
-        <td><h3>Value</h3></td>
-        <td><h3>Value</h3></td>
-      </tr>
-    <tr *ngFor="let transaction of transactionList">
-        <td>{{transaction.description}}</td>
-        <td>{{transaction?.transactionType?.description}}</td>
-        <td>{{transaction?.category?.description}}</td>
-        <td>{{transaction.date}}</td>
-        <td *ngIf="transaction?.value < 0">
-          {{transaction.value}}
-        </td>
-        <td *ngIf="transaction?.value > 0">
-          {{transaction.value}}
-        </td>
-    </tr>
-    </table>
-
-  </div>
-
-</div>
+  </div>-->

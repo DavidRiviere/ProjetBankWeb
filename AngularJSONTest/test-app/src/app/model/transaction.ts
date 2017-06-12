@@ -8,13 +8,16 @@ export class Transaction {
   public description: string;
   public value: number;
   public account: Account;
+  public dateTransaction: string;
   public transactionType: TransactionType;
   public category: Category;
   public targetTransaction: TargetTransaction;
   public periodicTransaction: PeriodicTransaction;
   public id?: number;
 
-  constructor(values: Object = {}) {
+  
+    constructor(values: Object = {}) {
     Object.assign(this, values);
   }
+
 }
