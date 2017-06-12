@@ -29,6 +29,14 @@ export class AccountService {
       .catch(this.handleError);
   }
 
+  getAccountListById(id: number): Promise<Account[]> {
+    const url = `${this.url}${id}`;
+    return this.http.get(url)
+      .toPromise()
+      .then(response => response.json() as Account[])
+      .catch(this.handleError);
+  }
+
   getAccountBalanceById(id: number) {
     const urla = `${this.url}${id}/balance/`;
     return this.http.get(urla, {headers: this.headersGet})
