@@ -10,12 +10,15 @@ export class OwnerService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private ownerUrl = 'https://localhost:8443/bankProjectWeb/rs/owner/';  // URL to web api
+  
   private options = new RequestOptions({headers: this.headers});
 
   constructor(private http: Http) {
      this.headers.append("Authorization", "Basic bHU6bHU=");
    }
   getOwnerList(): Promise<Owner[]> {
+
+    
     return this.http.get(this.ownerUrl, this.options)
                .toPromise()
                .then(response => response.json() as Owner[])
