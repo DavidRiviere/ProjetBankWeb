@@ -1,5 +1,5 @@
 import { Injectable }    from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -11,10 +11,15 @@ export class CpvilleService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private cpvilleUrl = 'https://localhost:8443/bankProjectWeb/rs/cpville/';  // URL to web api
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+     
+   }
 
   getCpvilleList(): Promise<Cpville[]> {
-    return this.http.get(this.cpvilleUrl)
+    
+    this.headers.append("Authorization", "Basic dG90bzp0b3Rv");
+    let options = new RequestOptions({headers: this.headers});
+    return this.http.get(this.cpvilleUrl,options)
                .toPromise()
                .then(response => response.json() as Cpville[])
                .catch(this.handleError);
