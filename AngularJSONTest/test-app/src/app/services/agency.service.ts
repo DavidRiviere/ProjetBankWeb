@@ -10,7 +10,7 @@ export class AgencyService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private headersGet = new Headers({'Accept': 'text/plain'});
-  private url = 'http://localhost:8080/bankProjectWeb/rs/agency/';  // URL to web api
+  private url = 'https://localhost:8443/bankProjectWeb/rs/agency/';  // URL to web api
 
   constructor(private http: Http) { }
 

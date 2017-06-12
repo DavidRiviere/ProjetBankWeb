@@ -9,7 +9,7 @@ import { Owner } from '../model/owner';
 export class OwnerService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private ownerUrl = 'http://localhost:8080/bankProjectWeb/rs/owner/';  // URL to web api
+  private ownerUrl = 'https://localhost:8443/bankProjectWeb/rs/owner/';  // URL to web api
 
   constructor(private http: Http) { }
 

@@ -8,7 +8,7 @@ export class Transaction {
   public description: string;
   public value: number;
   public account: Account;
-  public dateTransaction: string;
+  public date: string;
   public transactionType: TransactionType;
   public category: Category;
   public targetTransaction: TargetTransaction;

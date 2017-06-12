@@ -9,8 +9,8 @@ import { Transaction } from '../model/transaction';
 export class TransactionService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private accountURL = 'http://localhost:8080/bankProjectWeb/rs/account/';  // URL to web api
-  private transactionURL = 'http://localhost:8080/bankProjectWeb/rs/transaction/';  // URL to web api
+  private accountURL = 'https://localhost:8443/bankProjectWeb/rs/account/';  // URL to web api
+  private transactionURL = 'https://localhost:8443/bankProjectWeb/rs/transaction/';  // URL to web api
 
   constructor(private http: Http) { }
 
