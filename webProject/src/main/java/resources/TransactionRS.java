@@ -16,6 +16,7 @@ public class TransactionRS extends Resource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response postTransaction(Transaction transaction, @Context UriInfo uriInfo) {
+		System.out.println(transaction.getDate());
 		this.persistManager.persist(transaction);
 		return super.postLocation(transaction.getId(), uriInfo);
 	}

@@ -81,7 +81,7 @@ export class TransactionComponent implements OnInit {
   }*/
 
   onSubmitNewTransaction() {
-    this.model.dateTransaction = this.timestamp.toString().slice(0, 10).replace(/-/g, "") + "000000+0200";
+    this.model.date = this.timestamp.toString().slice(0, 10).replace(/-/g, "") + "000000+0200";
     this.transactionService.createTransaction(this.model);
 
     this.model = new Transaction();
