@@ -10,16 +10,15 @@ export class CpvilleService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private cpvilleUrl = 'https://localhost:8443/bankProjectWeb/rs/cpville/';  // URL to web api
+  private options = new RequestOptions({headers: this.headers});
 
   constructor(private http: Http) {
-     
+     this.headers.append("Authorization", "Basic bHU6bHU=");
    }
 
   getCpvilleList(): Promise<Cpville[]> {
-    
-    this.headers.append("Authorization", "Basic dG90bzp0b3Rv");
-    let options = new RequestOptions({headers: this.headers});
-    return this.http.get(this.cpvilleUrl,options)
+
+    return this.http.get(this.cpvilleUrl, this.options)
                .toPromise()
                .then(response => response.json() as Cpville[])
                .catch(this.handleError);
@@ -28,7 +27,7 @@ export class CpvilleService {
 
   getCpvilleById(id: number): Promise<Cpville> {
     const url = `${this.cpvilleUrl}/${id}`;
-    return this.http.get(url)
+    return this.http.get(url, this.options)
       .toPromise()
       .then(response => response.json() as Cpville)
       .catch(this.handleError);

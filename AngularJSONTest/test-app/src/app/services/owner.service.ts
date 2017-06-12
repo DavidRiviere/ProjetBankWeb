@@ -1,5 +1,5 @@
 import { Injectable }    from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -10,11 +10,13 @@ export class OwnerService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private ownerUrl = 'https://localhost:8443/bankProjectWeb/rs/owner/';  // URL to web api
+  private options = new RequestOptions({headers: this.headers});
 
-  constructor(private http: Http) { }
-
+  constructor(private http: Http) {
+     this.headers.append("Authorization", "Basic bHU6bHU=");
+   }
   getOwnerList(): Promise<Owner[]> {
-    return this.http.get(this.ownerUrl)
+    return this.http.get(this.ownerUrl, this.options)
                .toPromise()
                .then(response => response.json() as Owner[])
                .catch(this.handleError);
@@ -23,7 +25,7 @@ export class OwnerService {
 
   getOwnerById(id: number): Promise<Owner> {
     const url = `${this.ownerUrl}/${id}`;
-    return this.http.get(url)
+    return this.http.get(url, this.options)
       .toPromise()
       .then(response => response.json() as Owner)
       .catch(this.handleError);

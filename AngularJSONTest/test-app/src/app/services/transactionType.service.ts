@@ -12,14 +12,14 @@ export class TransactionTypeService {
   private headersGet = new Headers({'Accept': 'text/plain'});
   private url = 'https://localhost:8443/bankProjectWeb/rs/transactiontype/';  // URL to web api
 
-  constructor(private http: Http) { 
-    //this.headers.append('Authorization','Basic');
-    //this.headers.append('dG90bw==', 'dG90bw==');
-    this.headers.append("Authorization", "Basic " + btoa("toto" + ":" + "toto"));
-  }
+  private options = new RequestOptions({headers: this.headers});
+
+  constructor(private http: Http) {
+     this.headers.append("Authorization", "Basic bHU6bHU=");
+   }
 
   getTransactionTypeList(): Promise<TransactionType[]> {
-    return this.http.get(this.url)
+    return this.http.get(this.url, this.options)
                .toPromise()
                .then(response => response.json() as TransactionType[])
                .catch(this.handleError);
@@ -27,7 +27,7 @@ export class TransactionTypeService {
 
   getTransactionTypeById(id: number): Promise<TransactionType> {
     const urla = `${this.url}${id}`;
-    return this.http.get(urla)
+    return this.http.get(urla, this.options)
       .toPromise()
       .then(response => response.json() as TransactionType)
       .catch(this.handleError);

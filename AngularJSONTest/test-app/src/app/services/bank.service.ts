@@ -12,10 +12,13 @@ export class BankService {
   private headersGet = new Headers({'Accept': 'text/plain'});
   private url = 'https://localhost:8443/bankProjectWeb/rs/bank/';  // URL to web api
 
-  constructor(private http: Http) { }
+  private options = new RequestOptions({headers: this.headers});
 
+  constructor(private http: Http) {
+     this.headers.append("Authorization", "Basic bHU6bHU=");
+   }
   getBankList(): Promise<Bank[]> {
-    return this.http.get(this.url)
+    return this.http.get(this.url, this.options)
                .toPromise()
                .then(response => response.json() as Bank[])
                .catch(this.handleError);
@@ -23,7 +26,7 @@ export class BankService {
 
   getBankById(id: number): Promise<Bank> {
     const urla = `${this.url}${id}`;
-    return this.http.get(urla)
+    return this.http.get(urla, this.options)
       .toPromise()
       .then(response => response.json() as Bank)
       .catch(this.handleError);
