@@ -36,7 +36,7 @@ import model.Transaction;
 import model.TransactionType;
 import mvc.model.AccountDoesNotExistException;
 
-@Path("/rs/{class:accounttype|agency|bank|advisor|category|owner|transactiontype|targetTransaction|frequency|address|periodicTransaction|countryCode}")
+@Path("/rs/{class:accounttype|agency|bank|advisor|category|transactiontype|targetTransaction|frequency|address|periodicTransaction|countryCode}")
 public class Resource {
 	private static final Map<String, Class> myMap = createMap();
     private static Map<String, Class> createMap()
