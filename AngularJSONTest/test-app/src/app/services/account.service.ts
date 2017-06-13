@@ -11,11 +11,14 @@ export class AccountService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private headersGet = new Headers({'Accept': 'text/plain'});
   private url = 'https://localhost:8443/bankProjectWeb/rs/account/';  // URL to web api
+  private options = new RequestOptions({headers: this.headers});
 
-  constructor(private http: Http) { }
-
+  constructor(private http: Http) {
+     this.headers.append("Authorization", "Basic bHU6bHU=");
+   }
+   
   getAccountList(): Promise<Account[]> {
-    return this.http.get(this.url)
+    return this.http.get(this.url, this.options)
                .toPromise()
                .then(response => response.json() as Account[])
                .catch(this.handleError);
@@ -23,9 +26,17 @@ export class AccountService {
 
   getAccountById(id: number): Promise<Account> {
     const url = `${this.url}${id}`;
-    return this.http.get(url)
+    return this.http.get(url, this.options)
       .toPromise()
       .then(response => response.json() as Account)
+      .catch(this.handleError);
+  }
+
+  getAccountListById(id: number): Promise<Account[]> {
+    const url = `${this.url}${id}`;
+    return this.http.get(url, this.options)
+      .toPromise()
+      .then(response => response.json() as Account[])
       .catch(this.handleError);
   }
 

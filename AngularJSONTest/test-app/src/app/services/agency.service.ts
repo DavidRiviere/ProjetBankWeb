@@ -11,11 +11,14 @@ export class AgencyService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private headersGet = new Headers({'Accept': 'text/plain'});
   private url = 'https://localhost:8443/bankProjectWeb/rs/agency/';  // URL to web api
+ 
+  private options = new RequestOptions({headers: this.headers});
 
-  constructor(private http: Http) { }
-
+  constructor(private http: Http) {
+     this.headers.append("Authorization", "Basic bHU6bHU=");
+   }
   getAgencyList(): Promise<Agency[]> {
-    return this.http.get(this.url)
+    return this.http.get(this.url, this.options)
                .toPromise()
                .then(response => response.json() as Agency[])
                .catch(this.handleError);

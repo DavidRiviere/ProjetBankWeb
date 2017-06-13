@@ -24,6 +24,13 @@ import { CpvilleFormComponent }  from './cpville-forms/cpville-forms.component';
 import { CreateaccountComponent }  from './createaccount/createaccount.component';
 import { TransactionComponent }  from './transaction/transaction.component';
 
+import { AlertComponent } from './alert/alert.component';
+import { AuthGuard } from './guards/auth.guard';
+import { AlertService, AuthenticationService, UserService } from './services/index';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -36,9 +43,17 @@ import { TransactionComponent }  from './transaction/transaction.component';
     DashboardComponent,
     CpvilleFormComponent,
     CreateaccountComponent,
-    TransactionComponent
+    TransactionComponent,
+    AlertComponent,
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent
   ],
-  providers: [ CpvilleService, OwnerService, CategoryService,
+  providers: [ AuthGuard,
+        AlertService,
+        AuthenticationService,
+        UserService,
+              CpvilleService, OwnerService, CategoryService,
               TransactionService, AccountService, BankService,
               AccountTypeService, AgencyService, CountryCodeService,
               TransactionTypeService ],

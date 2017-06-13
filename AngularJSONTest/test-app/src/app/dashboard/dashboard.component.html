@@ -1,0 +1,21 @@
+<div class="container">
+    <div>
+        <h1>Get your transactions</h1>
+        <div class="form-group">
+            <label for="owner">Choose the owner</label>
+            <select [(ngModel)]="owner" class="form-control" (change)="accountSelection()" id="chosenOwner" required>
+                <option *ngFor="let owner of ownerList" [ngValue]="owner">{{owner.name}} </option>
+            </select>
+        </div>
+
+    <div [hidden]="!ownerSelected">
+        <div class="form-group">
+            <label for="account">Choose your account</label>
+            <select  [(ngModel)]="account" class="form-control" id="chosenAccountType" required >
+                <option *ngFor="let account of ownerAccountList" [ngValue]="account" >{{account.description}} </option>
+            </select>
+        </div>
+    </div>
+        
+    </div>
+</div>

@@ -1,5 +1,5 @@
 import { Injectable }    from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -11,12 +11,14 @@ export class TransactionService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private accountURL = 'https://localhost:8443/bankProjectWeb/rs/account/';  // URL to web api
   private transactionURL = 'https://localhost:8443/bankProjectWeb/rs/transaction/';  // URL to web api
+  private options = new RequestOptions({headers: this.headers});
 
-  constructor(private http: Http) { }
-
+  constructor(private http: Http) {
+     this.headers.append("Authorization", "Basic bHU6bHU=");
+   }
   getTransactionList(id:number): Promise<any> {
     const url = `${this.accountURL}${id}/transactions/`;
-    return this.http.get(url)
+    return this.http.get(url, this.options)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);

@@ -94,8 +94,6 @@ export class TransactionComponent implements OnInit {
 
 
   ngOnInit(): void {
-
-
     this.route.params
       .switchMap((params: Params) => this.transactionService.getTransactionList(+params['id']))
       .subscribe(transactionList => this.transactionList = transactionList);
@@ -111,15 +109,10 @@ export class TransactionComponent implements OnInit {
     this.categoryService.getCategoryList().then(r => this.categoryList = r);
     this.transactionTypeService.getTransactionTypeList().then(r => this.transactionTypeList = r);
     this.accountService.getAccountList().then(r => this.accountList = r);
-
-
   }
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred while fetching data from server: ', error);
     return Promise.reject(error.message || error);
   }
-
-
-
 }
