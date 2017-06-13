@@ -8,6 +8,7 @@ import { Owner }    from '../model/owner';
 
 import { OwnerService } from '../services/owner.service';
 import { AccountService } from '../services/account.service';
+import { TransactionService } from '../services/transaction.service';
 
 import 'rxjs/add/operator/toPromise';
 
