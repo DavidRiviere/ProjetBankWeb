@@ -9,6 +9,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import model.Transaction;
+import mvc.model.AccountDoesNotExistException;
 
 @Path("/rs/{class:transaction}")
 public class TransactionRS extends Resource {
@@ -19,4 +20,8 @@ public class TransactionRS extends Resource {
 		this.persistManager.persist(transaction);
 		return super.postLocation(transaction.getId(), uriInfo);
 	}
+
+
+	
+	
 }
