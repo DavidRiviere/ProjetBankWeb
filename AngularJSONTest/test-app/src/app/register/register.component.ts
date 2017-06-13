@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
  
 import { AlertService, UserService } from '../services/index';
+
+import {OwnerService} from '../services/owner.service';
  
 @Component({
     moduleId: module.id,
@@ -15,12 +17,13 @@ export class RegisterComponent {
     constructor(
         private router: Router,
         private userService: UserService,
+        private ownerService : OwnerService,
         private alertService: AlertService) { }
  
     register() {
         this.loading = true;
-        this.userService.create(this.model)
-            .subscribe(
+        this.ownerService.createOwner(this.model)
+            .then(
                 data => {
                     // set success message and pass true paramater to persist the message after redirecting to the login page
                     this.alertService.success('Registration successful', true);
@@ -30,5 +33,16 @@ export class RegisterComponent {
                     this.alertService.error(error);
                     this.loading = false;
                 });
+       /* this.userService.create(this.model)
+            .subscribe(
+                data => {
+                    // set success message and pass true paramater to persist the message after redirecting to the login page
+                    this.alertService.success('Registration successful', true);
+                    this.router.navigate(['/login']);
+                },
+                error => {
+                    this.alertService.error(error);
+                    this.loading = false;
+                });*/
     }
 }
