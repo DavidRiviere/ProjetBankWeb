@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
   ownerAccountList: Account[];
 
   ownerSelected = false;
+  accountSelected = false;
 
   owner: Owner;
   account: Account;
@@ -30,7 +31,7 @@ export class DashboardComponent implements OnInit {
   constructor(private http: Http,
     private ownerService: OwnerService,
     private accountService: AccountService,
-    private route: ActivatedRoute) { }
+    private route: Router) { }
 
   ngOnInit() {
     this.ownerService.getOwnerList().then(r => this.ownerList = r);
@@ -38,23 +39,15 @@ export class DashboardComponent implements OnInit {
   }
 
   accountSelection(){
-
-  this.accountService.getAccountListById(this.owner.id).then(r => this.ownerAccountList = r);
-
-  console.log(this.ownerAccountList[0].description);
-   this.ownerSelected = true;
+    this.ownerSelected = true;
+    this.accountService.getAccountListById(this.owner.id).then(r => this.ownerAccountList = r);
   }
 
-  ownerInOwners(owners: Array<Owner>){
-    if(owners.length){
-      owners.forEach(element => {
-        if(element.id == this.owner.id){
-          return true
-        }
-      });
-    }
-
-    return false;
+  submittedSelection(){
+    this.accountSelected = true;  
   }
-
+  getTransactionList(){
+    let link = ['/account', this.account.id, 'transactions'];
+    this.route.navigate(link);  
+  }
 }
