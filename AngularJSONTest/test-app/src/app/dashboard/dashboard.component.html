@@ -8,13 +8,21 @@
             </select>
         </div>
 
-    <div [hidden]="!ownerSelected">
-        <div class="form-group">
-            <label for="account">Choose your account</label>
-            <select  [(ngModel)]="account" class="form-control" id="chosenAccountType" required >
-                <option *ngFor="let account of ownerAccountList" [ngValue]="account" >{{account.description}} </option>
-            </select>
+        <div [hidden]="!ownerSelected">
+            <div class="form-group">
+                <label for="account">Choose your account</label>
+                <select  [(ngModel)]="account" class="form-control" id="chosenAccount" required >
+                    <option *ngFor="let account of ownerAccountList" [ngValue]="account" >{{account.description}} </option>
+                </select>
+            </div>
         </div>
-    </div>
+        <!--<div [disabled]="!accountSelected">
+            <div class="form-group">
+                <label for="account">Choose your account</label>
+                <select  [(ngModel)]="account" class="form-control" id="chosenAccount" required >
+                    <option *ngFor="let account of ownerAccountList" [ngValue]="account" >{{account.description}} </option>
+                </select>
+            </div>
+        </div>-->
     </div>
 </div>

@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
   ownerAccountList: Account[];
 
   ownerSelected = false;
+  accountSelected = false;
 
   owner: Owner;
   account: Account;
@@ -38,23 +39,11 @@ export class DashboardComponent implements OnInit {
   }
 
   accountSelection(){
-
-  this.accountService.getAccountListById(this.owner.id).then(r => this.ownerAccountList = r);
-
-  console.log(this.ownerAccountList[0].description);
-   this.ownerSelected = true;
+    this.ownerSelected = true;
+    this.accountService.getAccountListById(this.owner.id).then(r => this.ownerAccountList = r);
   }
 
-  ownerInOwners(owners: Array<Owner>){
-    if(owners.length){
-      owners.forEach(element => {
-        if(element.id == this.owner.id){
-          return true
-        }
-      });
-    }
+ /* goToTransactionList(){
 
-    return false;
-  }
-
+  }*/
 }
