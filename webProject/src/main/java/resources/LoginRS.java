@@ -22,8 +22,14 @@ public class LoginRS {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Owner authenticate( Credential cred ) throws WrongIdException{
-		Owner singleResult = entityManager.createQuery("SELECT a FROM Owner a WHERE a.login = :login", Owner.class)
-				.setParameter("login", cred.getLogin()).getSingleResult();
+		
+		Owner singleResult;
+		try {
+			singleResult = entityManager.createQuery("SELECT a FROM Owner a WHERE a.login = :login", Owner.class)
+					.setParameter("login", cred.getLogin()).getSingleResult();
+		} catch (Exception e) {
+			throw new WrongIdException();
+		}
 		
 		if(! cred.getPswd().equals(singleResult.getPswd())){
 			throw new WrongIdException();
