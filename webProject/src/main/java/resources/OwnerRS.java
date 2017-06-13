@@ -51,26 +51,6 @@ public class OwnerRS extends Resource {
 		}
 	}
 	
-	@Override
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<Object> get(@PathParam("class") String pathClass) throws AccountDoesNotExistException {
-		return super.get("owner");
-	}
-	
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Owner authenticate( Credential cred ) throws WrongIdException{
-		System.out.println(cred.getLogin());
-		Owner singleResult = entityManager.createQuery("SELECT a FROM Owner a WHERE a.login = :login", Owner.class)
-				.setParameter("login", cred.getLogin()).getSingleResult();
-		
-		if(! cred.getPswd().equals(singleResult.getPswd())){
-			throw new WrongIdException();
-		}
-		return singleResult;
-	}
 	
 	
 
