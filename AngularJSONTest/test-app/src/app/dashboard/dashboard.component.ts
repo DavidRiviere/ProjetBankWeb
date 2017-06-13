@@ -43,7 +43,11 @@ export class DashboardComponent implements OnInit {
     this.accountService.getAccountListById(this.owner.id).then(r => this.ownerAccountList = r);
   }
 
- /* goToTransactionList(){
-
-  }*/
+  submittedSelection(){
+    this.accountSelected = true;  
+  }
+  getTransactionList(){
+    let link = ['/account', this.account.id, 'transactions'];
+    this.route.navigate(link);  
+  }
 }

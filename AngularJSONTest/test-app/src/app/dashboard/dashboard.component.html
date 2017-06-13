@@ -11,18 +11,11 @@
         <div [hidden]="!ownerSelected">
             <div class="form-group">
                 <label for="account">Choose your account</label>
-                <select  [(ngModel)]="account" class="form-control" id="chosenAccount" required >
+                <select  [(ngModel)]="account" class="form-control" (change)="submittedSelection()" id="chosenAccount" required >
                     <option *ngFor="let account of ownerAccountList" [ngValue]="account" >{{account.description}} </option>
                 </select>
             </div>
         </div>
-        <!--<div [disabled]="!accountSelected">
-            <div class="form-group">
-                <label for="account">Choose your account</label>
-                <select  [(ngModel)]="account" class="form-control" id="chosenAccount" required >
-                    <option *ngFor="let account of ownerAccountList" [ngValue]="account" >{{account.description}} </option>
-                </select>
-            </div>
-        </div>-->
+        <button [disabled]="!accountSelected" type="button" class="btn btn-default" (click)="getTransactionList()">Submit</button>
     </div>
 </div>
