@@ -9,6 +9,7 @@ import { Component }          from '@angular/core';
       <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
       <a routerLink="/cpvilleform" routerLinkActive="active">Cpvilleform</a>
       <a routerLink="/createaccountform" routerLinkActive="active">Create Account Form</a>
+      <a routerLink="/login" routerLinkActive="active">Login</a>
     </nav>
    <alert></alert>
     <router-outlet></router-outlet>
