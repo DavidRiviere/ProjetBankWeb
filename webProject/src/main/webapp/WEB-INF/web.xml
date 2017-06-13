@@ -15,7 +15,10 @@
 		<web-resource-collection>
 			<web-resource-name>sécurisé</web-resource-name>
 			<url-pattern>/rs/*</url-pattern>
-			<http-method-omission>OPTION</http-method-omission>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+			<http-method>DELETE</http-method>
+			<http-method>UPDATE</http-method>
 			
 		</web-resource-collection>
 		

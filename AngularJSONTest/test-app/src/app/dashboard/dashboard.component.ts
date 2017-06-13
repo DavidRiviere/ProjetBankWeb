@@ -17,10 +17,14 @@ import 'rxjs/add/operator/toPromise';
   styleUrls: [ './dashboard.component.css' ]
 })
 export class DashboardComponent implements OnInit {
-  ownerList: Owner[];
-  accountList: Account[];
 
-  model: Owner;
+  ownerList: Owner[];
+  allAccountList: Account[];
+  ownerAccountList: Account[];
+
+  ownerSelected = false;
+
+  owner: Owner;
   account: Account;
 
   constructor(private http: Http,
@@ -30,9 +34,27 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.ownerService.getOwnerList().then(r => this.ownerList = r);
+    this.accountService.getAccountList().then(r => this.allAccountList = r);
   }
 
   accountSelection(){
-    this.accountService.getAccountListById(this.model.id).then(r => this.accountList = r);
+
+  this.accountService.getAccountListById(this.owner.id).then(r => this.ownerAccountList = r);
+
+  console.log(this.ownerAccountList[0].description);
+   this.ownerSelected = true;
   }
+
+  ownerInOwners(owners: Array<Owner>){
+    if(owners.length){
+      owners.forEach(element => {
+        if(element.id == this.owner.id){
+          return true
+        }
+      });
+    }
+
+    return false;
+  }
+
 }

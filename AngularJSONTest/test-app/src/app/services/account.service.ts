@@ -16,6 +16,7 @@ export class AccountService {
   constructor(private http: Http) {
      this.headers.append("Authorization", "Basic bHU6bHU=");
    }
+   
   getAccountList(): Promise<Account[]> {
     return this.http.get(this.url, this.options)
                .toPromise()
@@ -25,7 +26,7 @@ export class AccountService {
 
   getAccountById(id: number): Promise<Account> {
     const url = `${this.url}${id}`;
-    return this.http.get(url)
+    return this.http.get(url, this.options)
       .toPromise()
       .then(response => response.json() as Account)
       .catch(this.handleError);

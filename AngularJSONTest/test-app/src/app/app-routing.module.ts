@@ -7,12 +7,23 @@ import { CpvilleFormComponent }  from './cpville-forms/cpville-forms.component';
 import { CreateaccountComponent }  from './createaccount/createaccount.component';
 import { TransactionComponent }  from './transaction/transaction.component';
 
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { AuthGuard } from './guards/auth.guard';
+
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  //{ path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard',  component: DashboardComponent },
   { path: 'cpvilleform',     component: CpvilleFormComponent },
   { path: 'createaccountform',     component: CreateaccountComponent },
-  { path: 'account/:id/transactions',     component: TransactionComponent }
+  { path: 'account/:id/transactions',     component: TransactionComponent },
+
+  // otherwise redirect to home
+  { path: '**', redirectTo: '' }
 
 ];
 
