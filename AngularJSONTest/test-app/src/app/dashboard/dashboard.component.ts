@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
   constructor(private http: Http,
     private ownerService: OwnerService,
     private accountService: AccountService,
-    private route: ActivatedRoute) { }
+    private route: Router) { }
 
   ngOnInit() {
     this.ownerService.getOwnerList().then(r => this.ownerList = r);
