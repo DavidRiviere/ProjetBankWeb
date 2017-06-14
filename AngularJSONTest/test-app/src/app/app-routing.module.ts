@@ -17,10 +17,10 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   //{ path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard',  component: DashboardComponent },
-  { path: 'cpvilleform',     component: CpvilleFormComponent },
-  { path: 'createaccountform',     component: CreateaccountComponent },
-  { path: 'account/:id/transactions',     component: TransactionComponent },
+  { path: 'dashboard',  component: DashboardComponent, canActivate: [AuthGuard]  },
+  { path: 'cpvilleform',     component: CpvilleFormComponent, canActivate: [AuthGuard] },
+  { path: 'createaccountform',     component: CreateaccountComponent, canActivate: [AuthGuard] },
+  { path: 'account/:id/transactions',     component: TransactionComponent, canActivate: [AuthGuard] },
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }

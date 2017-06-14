@@ -24,7 +24,7 @@ public class Address implements Serializable, Identifiable{
 	private Long id;
 	private String line1;
 	private String line2 = null; //line2 is not mandatory
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn(name = "idCpVille")
 	private CpVille cpVille;
 	
