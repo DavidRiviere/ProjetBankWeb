@@ -1,39 +1,55 @@
 <div class="col-md-6 col-md-offset-3">
     <h2>Register</h2>
+    
+    <div class="form-group">
+        <label for="address">Choose your address because we are lazy</label>
+        <select [(ngModel)]="model.address" class="form-control" id="address" required>
+        <option *ngFor="let address of addressesList" [ngValue]="address">{{address.line1}} City: {{address.cpVille.city}} Zip: {{address.cpVille.zip}}</option>
+        </select>
+    </div>
     <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
             <label for="firstName">First Name</label>
-            <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required />
+            <input type="text" class="form-control" name="firstName" 
+            [(ngModel)]="model.firstName" #firstName="ngModel" required />
             <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
         </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
             <label for="name">Last Name</label>
             <input type="text" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel" required />
             <div *ngIf="f.submitted && !name.valid" class="help-block">Last Name is required</div>
         </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !login.valid }">
             <label for="login">Login</label>
             <input type="text" class="form-control" name="login" [(ngModel)]="model.login" #login="ngModel" required />
             <div *ngIf="f.submitted && !login.valid" class="help-block">Login is required</div>
         </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !pswd.valid }">
             <label for="pswd">Password</label>
-            <input type="password" class="form-control" name="pswd" [(ngModel)]="model.pswd" #password="ngModel" required />
+            <input type="password" class="form-control" name="pswd" 
+            [(ngModel)]="model.pswd" #password="ngModel" required />
             <div *ngIf="f.submitted && !pswd.valid" class="help-block">Password is required</div>
         </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
             <label for="email">Email</label>
             <input type="text" class="form-control" name="email" 
             [(ngModel)]="model.email" #email="ngModel" required />
             <div *ngIf="f.submitted && !email.valid" class="help-block">
                 Email is required</div>
         </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !phoneNumber.valid }">
             <label for="phoneNumber">Phone number</label>
             <input type="text" class="form-control" name="phoneNumber" 
             [(ngModel)]="model.phoneNumber" #phoneNumber="ngModel" required />
             <div *ngIf="f.submitted && !phoneNumber.valid" class="help-block">
                 Phone number is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !timestamp.valid }">
+        <label for="timestamp">Birthday</label>
+        <input type="date" class="form-control" id="timestamp"
+         required [(ngModel)]="timestamp" name="timestamp" #birthday="ngModel">
+        <div *ngIf="f.submitted && !timestamp.valid" class="help-block">
+                Birthday is required</div>
         </div>
         <div class="form-group">
             <button [disabled]="loading" class="btn btn-primary">Register</button>
@@ -41,4 +57,5 @@
             <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
         </div>
     </form>
+
 </div>

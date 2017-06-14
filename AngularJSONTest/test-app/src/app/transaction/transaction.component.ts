@@ -70,29 +70,34 @@ export class TransactionComponent implements OnInit {
 
   newTransaction() {
     this.newTransactionV = true;
-
-    this.model.account.id = this.accountId.id;
-    console.log(this.accountId.id);
-
   }
 
-  /*byId(item2: Transaction, item1: Account, ) {
-    return item1.id === item2.account.id;
-  }*/
+  refreshTransactionListAndBalance(){
+    this.route.params
+      .switchMap((params: Params) => this.transactionService.getTransactionList(+params['id']))
+      .subscribe(transactionList => this.transactionList = transactionList);
+
+    this.route.params
+      .switchMap((params: Params) => this.accountService.getAccountBalanceById(+params['id']))
+      .subscribe(res => this.balanceAccountId = res);
+  }
 
   onSubmitNewTransaction() {
     this.model.date = this.timestamp.toString().slice(0, 10).replace(/-/g, "") + "000000+0200";
-    this.transactionService.createTransaction(this.model);
-
-    this.transactionList.push(this.model);
-
+    this.model.account = this.accountId;
+    this.transactionService.createTransaction(this.model).then(() => this.refreshTransactionListAndBalance());
 
     this.model = new Transaction();
   }
 
   deleteTransaction() {
-    this.transactionService.deleteTransactionId(this.transactionList[this.selectedRow].id);
-    this.transactionList.splice(this.selectedRow, 1);
+    this.transactionService.deleteTransactionId(this.transactionList[this.selectedRow].id).then(() => this.refreshTransactionListAndBalance());
+    //this.transactionList.splice(this.selectedRow, 1);
+
+    
+    /*this.route.params
+      .switchMap((params: Params) => this.accountService.getAccountBalanceById(+params['id']))
+      .subscribe(res => this.balanceAccountId = res);*/
   }
 
 
@@ -113,6 +118,7 @@ export class TransactionComponent implements OnInit {
     this.transactionTypeService.getTransactionTypeList().then(r => this.transactionTypeList = r);
     this.accountService.getAccountList().then(r => this.accountList = r);
   }
+
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred while fetching data from server: ', error);

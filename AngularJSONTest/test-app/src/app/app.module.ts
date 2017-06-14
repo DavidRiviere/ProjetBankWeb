@@ -17,6 +17,7 @@ import { BankService }          from './services/bank.service';
 import { CountryCodeService }          from './services/countryCode.service';
 import { CategoryService }          from './services/category.service';
 import { TransactionTypeService }          from './services/transactionType.service'
+import {AddressService} from './services/address.service';
 
 import { AppComponent }         from './app.component';
 import { DashboardComponent }   from './dashboard/dashboard.component';
@@ -30,6 +31,12 @@ import { AlertService, AuthenticationService, UserService } from './services/ind
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+
+
+import { DefaultRequestOptions} from './headers.request.options';
+
+import { RequestOptions } from '@angular/http';
+
 
 @NgModule({
   imports: [
@@ -56,7 +63,8 @@ import { RegisterComponent } from './register/register.component';
               CpvilleService, OwnerService, CategoryService,
               TransactionService, AccountService, BankService,
               AccountTypeService, AgencyService, CountryCodeService,
-              TransactionTypeService ],
+              TransactionTypeService, AddressService,
+              {provide : RequestOptions, useClass : DefaultRequestOptions} ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

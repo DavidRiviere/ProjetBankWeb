@@ -2,7 +2,7 @@
    <div class="form-group">
       <label for="power">Choose your city</label>
       <select [(ngModel)]="model" class="form-control" id="chosenCity" required>
-        <option *ngFor="let cpville of cpvilles" [ngValue]="cpville">{{cpville.city}}, {{cpville.zip}}</option>
+        <option *ngFor="let cpville of cpvillesList" [ngValue]="cpville">{{cpville.city}}, {{cpville.zip}}</option>
       </select>
   </div>
 
@@ -45,6 +45,6 @@
       <div class="col-xs-9 pull-left">{{ model.zip }}</div>
     </div>
     <br>
-    <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+    <button class="btn btn-primary" (click)="submitted=false">New CpVille</button>
   </div>
 </div>

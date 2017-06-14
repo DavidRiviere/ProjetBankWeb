@@ -33,14 +33,12 @@ export class UserService {
 
     // private helper methods
 
-    private jwt() {
-        // create authorization header with jwt token
-        let currentOwner = JSON.parse(localStorage.getItem('currentOwner'));
-        if (currentOwner) {
-            let headers = new Headers({ 'Content-Type': 'application/json' });
-            headers.append("Authorization", "Basic " + btoa(currentOwner.login+':'+currentOwner.pswd));
-            //let headers = new Headers({ 'Authorization': 'Bearer ' + currentOwner.token });
-            return new RequestOptions({ headers: headers });
-        }
+  private jwt() {
+    let currentOwner = JSON.parse(localStorage.getItem('currentOwner'));
+    if (currentOwner) {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        headers.append("Authorization", "Basic " + btoa(currentOwner.login+':'+currentOwner.pswd));
+        return new RequestOptions({ headers: headers });
     }
+  }
 }

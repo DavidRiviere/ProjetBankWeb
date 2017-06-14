@@ -14,10 +14,10 @@ export class OwnerService {
   private options = new RequestOptions({headers: this.headers});
 
   constructor(private http: Http) {
-     this.headers.append("Authorization", "Basic bHU6bHU=");
-   }
-  getOwnerList(): Promise<Owner[]> {
+    this.headers.append("Authorization", "Basic bHU6bHU=");
+  }
 
+  getOwnerList(): Promise<Owner[]> {
     return this.http.get(this.ownerUrl, this.jwt())
                .toPromise()
                .then(response => response.json() as Owner[])
@@ -27,7 +27,7 @@ export class OwnerService {
 
   getOwnerById(id: number): Promise<Owner> {
     const url = `${this.ownerUrl}/${id}`;
-    return this.http.get(url, this.options)
+    return this.http.get(url, this.jwt())
       .toPromise()
       .then(response => response.json() as Owner)
       .catch(this.handleError);
@@ -35,7 +35,7 @@ export class OwnerService {
 
   deleteOwnerId(id: number): Promise<void> {
     const url = `${this.ownerUrl}${id}`;
-    return this.http.delete(url, {headers: this.headers})
+    return this.http.delete(url, this.jwt())
       .toPromise()
       .then(() => null)
       .catch(this.handleError);
@@ -43,7 +43,7 @@ export class OwnerService {
 
   createOwner(owner: Owner): Promise<Owner> {
     return this.http
-      .post(this.ownerUrl, JSON.stringify(owner), {headers: this.headers})
+      .post(this.ownerUrl, JSON.stringify(owner),this.options)
       .toPromise()
       .then(res => res.json() as Owner)
       .catch(this.handleError);
@@ -52,7 +52,7 @@ export class OwnerService {
   updateOwner(owner: Owner): Promise<Owner> {
     const url = `${this.ownerUrl}/${owner.id}`;
     return this.http
-      .put(url, JSON.stringify(owner), {headers: this.headers})
+      .put(url, JSON.stringify(owner), this.jwt())
       .toPromise()
       .then(() => owner)
       .catch(this.handleError);
@@ -64,15 +64,13 @@ export class OwnerService {
   }
 
   private jwt() {
-    // create authorization header with jwt token
     let currentOwner = JSON.parse(localStorage.getItem('currentOwner'));
-    //if (currentOwner) {
+    if (currentOwner) {
         let headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append("Authorization", "Basic bHU6bHU=");
-        //headers.append("Authorization", "Basic " + btoa(currentOwner.login+':'+currentOwner.pswd));
-        //let headers = new Headers({ 'Authorization': 'Bearer ' + currentOwner.token });
+        headers.append("Authorization", "Basic " + btoa(currentOwner.login+':'+currentOwner.pswd));
         return new RequestOptions({ headers: headers });
-    //}
-}
+    }
+  }
+
 }
 

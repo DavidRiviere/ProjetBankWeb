@@ -39,7 +39,7 @@
     <form (ngSubmit)="onSubmit()" #createaccountForm="ngForm">
       <div class="form-group">
         <label for="description">Account description</label>
-        <input type="hidden" class="form-control" id="description"
+        <input type="text" class="form-control" id="description"
                required
                [(ngModel)]="model.description" name="description"
                #name="ngModel">
@@ -75,9 +75,10 @@
                required
                [(ngModel)]="timestamp" name="timestamp"
                #name="ngModel">
-        <div> {{model.creationDate }} </div>
-
-        <div> {{timestamp}} </div>
+        
+        <div>model: {{model.creationDate }} </div>
+        
+        <div>datepicker: {{timestamp}} </div>
         <div [hidden]="name.valid || name.pristine"
              class="alert alert-danger">
           The initial balance is required
