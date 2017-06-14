@@ -20,7 +20,7 @@ export class CpvilleFormComponent implements OnInit {
 
     submitted = false;
 
-    cpvilles: Cpville[];
+    cpvillesList: Cpville[];
 
     constructor(
         private http: Http, 
@@ -31,20 +31,21 @@ export class CpvilleFormComponent implements OnInit {
 
     getCpvilleList(): void {
         this.cpvilleService.getCpvilleList()
-        .then(cpvilles => this.cpvilles = cpvilles);
+        .then(cpvilles => this.cpvillesList = cpvilles);
     }
 
     onSubmit() { 
         this.submitted = true;
-        this.cpvilleService.createCpville(this.model.city, this.model.zip);       
+        this.cpvilleService.createCpville(this.model.city, this.model.zip).then(() => this.getCpvilleList());  
     }
 
     deleteCpville () {
-        this.cpvilleService.deleteCpvilleId(this.model.id);
+        this.cpvilleService.deleteCpvilleId(this.model.id).then(() => this.getCpvilleList());
     }
 
     newCpville() {
         this.model = new Cpville( '', '');
+        this.getCpvilleList(); 
     }
 
     ngOnInit(){
