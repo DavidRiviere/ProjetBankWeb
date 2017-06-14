@@ -29,7 +29,7 @@ import javax.persistence.Transient;
 import util.Formater;
 
 @Entity
-@Table(name = "Account")
+@Table
 @NamedQuery(name = "Account.findAll", query = "SELECT t FROM Account t")
 public class Account implements Serializable, Identifiable {
 

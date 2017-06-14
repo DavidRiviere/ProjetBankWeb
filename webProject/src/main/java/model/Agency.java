@@ -33,10 +33,10 @@ public class Agency implements Serializable, Identifiable {
 	private Long id;
 	private String name;
 	private String counterCode;
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn(name = "idAddress")
 	private Address adress;
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn(name = "idBank")
 	private Bank bank;
 

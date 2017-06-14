@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,7 +25,7 @@ public class Category implements Serializable, Identifiable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String description;
-	@ManyToOne
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn(name = "idParentCategory")
 	private Category parentCategory;
 
