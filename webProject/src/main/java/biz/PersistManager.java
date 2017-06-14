@@ -31,4 +31,9 @@ public class PersistManager {
 		remove(entity);
 	}
 
+	public void assignRole(String login) {
+		String req = "INSERT INTO `user_roles` (`login`, `role_name`) VALUES (?, 'owner')";
+		entityManager.createNativeQuery(req ).setParameter(1, login).executeUpdate();
+	}
+
 }

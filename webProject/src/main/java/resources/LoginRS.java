@@ -52,6 +52,7 @@ public class LoginRS {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response postTransaction(Owner owner, @Context UriInfo uriInfo) {
 		this.persistManager.persist(owner);
+		this.persistManager.assignRole(owner.getLogin());
 		return Response.ok().build();
 		//return postLocation(owner.getId(), uriInfo);
 	}

@@ -58,6 +58,8 @@ public class OwnerRS extends Resource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response postTransaction(Owner owner, @Context UriInfo uriInfo) {
 		this.persistManager.persist(owner);
+		this.persistManager.assignRole(owner.getLogin());
+		
 		return super.postLocation(owner.getId(), uriInfo);
 	}
 	
