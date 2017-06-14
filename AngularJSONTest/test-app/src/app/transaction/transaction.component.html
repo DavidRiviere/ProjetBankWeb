@@ -47,9 +47,6 @@
       </tbody>
     </table>
 
-    <div class="well well-lg">
-      Selected Row : <strong>{{selectedRow}}</strong>
-    </div>
     <button [disabled]="!(selectedRow  >= 0)" type="button" class="btn btn-default" (click)="deleteTransaction()"><h3>Delete this transaction</h3></button>
     <br><button type="button" class="btn btn-default" (click)="newTransaction()"><h3>New Transaction</h3></button>
 
@@ -57,10 +54,11 @@
     <div [hidden]="!newTransactionV">
       <h1>Add a transaction</h1>
       <div class="form-group">
-        <label for="owner">Choose your account</label>
-        <select [(ngModel)]="model.account" class="form-control" id="chosenAccountType" required>
+        <label for="owner">Choose your account</label><br>
+        <!--<select [(ngModel)]="model.account" class="form-control" id="chosenAccountType" required>
         <option *ngFor="let account of accountList" [ngValue]="account" >{{account.description}} </option>
-      </select>
+      </select><br>-->
+        <label>{{accountId.description}}</label>
       </div>
 
       <div class="form-group">
@@ -111,19 +109,3 @@
     <h1><label for="balance"><br>Balance: </label> {{accountId.initialBalance}} €</h1>
   </ng-template>
 </div>
-
-
-
-<!--<div class="form-group">
-      <label for="bank">Choose your bank</label>
-      <select [(ngModel)]="model.bank" class="form-control" id="chosenBank" required>
-        <option *ngFor="let bank of bankList" [ngValue]="bank">{{bank.name}}</option>
-      </select>
-  </div>
-
-  <div class="form-group">
-      <label for="account">Choose your account</label>
-      <select [(ngModel)]="model.account" class="form-control" id="chosenAccount" required>
-        <option *ngFor="let account of accountList" [ngValue]="account">{{account.description}}</option>
-      </select>
-  </div>-->
