@@ -91,13 +91,13 @@ export class TransactionComponent implements OnInit {
   }
 
   deleteTransaction() {
-    this.transactionService.deleteTransactionId(this.transactionList[this.selectedRow].id);
-    this.transactionList.splice(this.selectedRow, 1);
+    this.transactionService.deleteTransactionId(this.transactionList[this.selectedRow].id).then(() => this.refreshTransactionListAndBalance());
+    //this.transactionList.splice(this.selectedRow, 1);
 
     
-    this.route.params
+    /*this.route.params
       .switchMap((params: Params) => this.accountService.getAccountBalanceById(+params['id']))
-      .subscribe(res => this.balanceAccountId = res);
+      .subscribe(res => this.balanceAccountId = res);*/
   }
 
 
