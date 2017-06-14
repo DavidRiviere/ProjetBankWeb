@@ -45,15 +45,15 @@ public class Account implements Serializable, Identifiable {
 	private double agioRate;
 	private double alertThreshold;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn(name = "idCountryCode")
 	private CountryCode countryCode;
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn(name = "idAgency")
 	private Agency agency;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn(name = "idAccountType")
 	private AccountType accountType;
 	@OneToMany(mappedBy = "account")
