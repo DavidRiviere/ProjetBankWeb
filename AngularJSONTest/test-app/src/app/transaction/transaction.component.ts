@@ -70,18 +70,18 @@ export class TransactionComponent implements OnInit {
 
   newTransaction() {
     this.newTransactionV = true;
-
-    //this.model.account.id = this.accountId.id;
-    console.log(this.accountId.id);
-
   }
 
   onSubmitNewTransaction() {
     this.model.date = this.timestamp.toString().slice(0, 10).replace(/-/g, "") + "000000+0200";
-    this.transactionService.createTransaction(this.model);
+    this.model.account = this.accountId;
+    this.transactionService.createTransaction(this.model).then(() =>this.route.params
+      .switchMap((params: Params) => this.transactionService.getTransactionList(+params['id']))
+      .subscribe(transactionList => this.transactionList = transactionList));
 
-    this.transactionList.push(this.model);
-
+    this.route.params
+      .switchMap((params: Params) => this.accountService.getAccountBalanceById(+params['id']))
+      .subscribe(res => this.balanceAccountId = res);
 
     this.model = new Transaction();
   }
@@ -89,6 +89,11 @@ export class TransactionComponent implements OnInit {
   deleteTransaction() {
     this.transactionService.deleteTransactionId(this.transactionList[this.selectedRow].id);
     this.transactionList.splice(this.selectedRow, 1);
+
+    
+    this.route.params
+      .switchMap((params: Params) => this.accountService.getAccountBalanceById(+params['id']))
+      .subscribe(res => this.balanceAccountId = res);
   }
 
 
