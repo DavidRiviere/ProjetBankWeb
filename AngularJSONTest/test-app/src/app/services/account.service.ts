@@ -16,6 +16,7 @@ export class AccountService {
 
   constructor(private http: Http) {
      this.headers.append("Authorization", "Basic bHU6bHU=");
+     this.headersGet.append("Authorization", "Basic bHU6bHU=");
    }
    
   getAccountList(): Promise<Account[]> {
