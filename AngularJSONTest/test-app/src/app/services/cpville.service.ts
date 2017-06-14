@@ -8,17 +8,13 @@ import { Cpville } from '../model/cpville';
 @Injectable()
 export class CpvilleService {
 
-  private headers = new Headers({'Content-Type': 'application/json'});
   private cpvilleUrl = 'https://localhost:8443/bankProjectWeb/rs/cpville/';  // URL to web api
-  private options = new RequestOptions({headers: this.headers});
-
-  constructor(private http: Http) {
-     this.headers.append("Authorization", "Basic bHU6bHU=");
-   }
+  
+  constructor(private http: Http) {}
 
   getCpvilleList(): Promise<Cpville[]> {
 
-    return this.http.get(this.cpvilleUrl, this.options)
+    return this.http.get(this.cpvilleUrl, this.jwt())
                .toPromise()
                .then(response => response.json() as Cpville[])
                .catch(this.handleError);
@@ -27,7 +23,7 @@ export class CpvilleService {
 
   getCpvilleById(id: number): Promise<Cpville> {
     const url = `${this.cpvilleUrl}/${id}`;
-    return this.http.get(url, this.options)
+    return this.http.get(url, this.jwt())
       .toPromise()
       .then(response => response.json() as Cpville)
       .catch(this.handleError);
@@ -35,7 +31,7 @@ export class CpvilleService {
 
   deleteCpvilleId(id: number): Promise<void> {
     const url = `${this.cpvilleUrl}${id}`;
-    return this.http.delete(url, {headers: this.headers})
+    return this.http.delete(url, this.jwt())
       .toPromise()
       .then(() => null)
       .catch(this.handleError);
@@ -43,7 +39,7 @@ export class CpvilleService {
 
   createCpville(city: string, zip:string): Promise<Cpville> {
     return this.http
-      .post(this.cpvilleUrl, JSON.stringify({city: city, zip: zip}), {headers: this.headers})
+      .post(this.cpvilleUrl, JSON.stringify({city: city, zip: zip}), this.jwt())
       .toPromise()
       .then(res => res.json() as Cpville)
       .catch(this.handleError);
@@ -52,10 +48,19 @@ export class CpvilleService {
   updateCpville(cpville: Cpville): Promise<Cpville> {
     const url = `${this.cpvilleUrl}/${cpville.id}`;
     return this.http
-      .put(url, JSON.stringify(cpville), {headers: this.headers})
+      .put(url, JSON.stringify(cpville), this.jwt())
       .toPromise()
       .then(() => cpville)
       .catch(this.handleError);
+  }
+
+  private jwt() {
+    let currentOwner = JSON.parse(localStorage.getItem('currentOwner'));
+    if (currentOwner) {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        headers.append("Authorization", "Basic " + btoa(currentOwner.login+':'+currentOwner.pswd));
+        return new RequestOptions({ headers: headers });
+    }
   }
 
   private handleError(error: any): Promise<any> {
