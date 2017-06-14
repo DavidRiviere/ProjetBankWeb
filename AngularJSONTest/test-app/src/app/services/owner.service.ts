@@ -13,7 +13,9 @@ export class OwnerService {
   
   private options = new RequestOptions({headers: this.headers});
 
-  constructor(private http: Http) {}
+  constructor(private http: Http) {
+    this.headers.append("Authorization", "Basic bHU6bHU=");
+  }
 
   getOwnerList(): Promise<Owner[]> {
     return this.http.get(this.ownerUrl, this.jwt())
@@ -41,7 +43,7 @@ export class OwnerService {
 
   createOwner(owner: Owner): Promise<Owner> {
     return this.http
-      .post(this.ownerUrl, JSON.stringify(owner),this.jwt())
+      .post(this.ownerUrl, JSON.stringify(owner),this.options)
       .toPromise()
       .then(res => res.json() as Owner)
       .catch(this.handleError);
