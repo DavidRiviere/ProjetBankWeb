@@ -72,16 +72,20 @@ export class TransactionComponent implements OnInit {
     this.newTransactionV = true;
   }
 
-  onSubmitNewTransaction() {
-    this.model.date = this.timestamp.toString().slice(0, 10).replace(/-/g, "") + "000000+0200";
-    this.model.account = this.accountId;
-    this.transactionService.createTransaction(this.model).then(() =>this.route.params
+  refreshTransactionListAndBalance(){
+    this.route.params
       .switchMap((params: Params) => this.transactionService.getTransactionList(+params['id']))
-      .subscribe(transactionList => this.transactionList = transactionList));
+      .subscribe(transactionList => this.transactionList = transactionList);
 
     this.route.params
       .switchMap((params: Params) => this.accountService.getAccountBalanceById(+params['id']))
       .subscribe(res => this.balanceAccountId = res);
+  }
+
+  onSubmitNewTransaction() {
+    this.model.date = this.timestamp.toString().slice(0, 10).replace(/-/g, "") + "000000+0200";
+    this.model.account = this.accountId;
+    this.transactionService.createTransaction(this.model).then(() => this.refreshTransactionListAndBalance());
 
     this.model = new Transaction();
   }
@@ -114,6 +118,7 @@ export class TransactionComponent implements OnInit {
     this.transactionTypeService.getTransactionTypeList().then(r => this.transactionTypeList = r);
     this.accountService.getAccountList().then(r => this.accountList = r);
   }
+
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred while fetching data from server: ', error);
