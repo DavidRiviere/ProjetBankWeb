@@ -57,10 +57,11 @@
     <div [hidden]="!newTransactionV">
       <h1>Add a transaction</h1>
       <div class="form-group">
-        <label for="owner">Choose your account</label>
-        <select [(ngModel)]="model.account" class="form-control" id="chosenAccountType" required>
+        <label for="owner">Choose your account</label><br>
+        <!--<select [(ngModel)]="model.account" class="form-control" id="chosenAccountType" required>
         <option *ngFor="let account of accountList" [ngValue]="account" >{{account.description}} </option>
-      </select>
+      </select><br>-->
+        <label>{{accountId.description}}</label>
       </div>
 
       <div class="form-group">

@@ -71,14 +71,10 @@ export class TransactionComponent implements OnInit {
   newTransaction() {
     this.newTransactionV = true;
 
-    this.model.account.id = this.accountId.id;
+    //this.model.account.id = this.accountId.id;
     console.log(this.accountId.id);
 
   }
-
-  /*byId(item2: Transaction, item1: Account, ) {
-    return item1.id === item2.account.id;
-  }*/
 
   onSubmitNewTransaction() {
     this.model.date = this.timestamp.toString().slice(0, 10).replace(/-/g, "") + "000000+0200";
